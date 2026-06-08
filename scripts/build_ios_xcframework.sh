@@ -11,6 +11,8 @@ JME_OUTPUT_DIR="$FRAMEWORK_DIR/Jme.xcframework"
 CALCEPH_OUTPUT_DIR="$FRAMEWORK_DIR/Calceph.xcframework"
 BUILD_ROOT="${TMPDIR:-/tmp}/jme-ios-build"
 OVERLAY_TRIPLETS="$ROOT_DIR/vcpkg-triplets"
+CALCEPH_ARCHIVE_NAME="calceph-4.0.5.tar.gz"
+CALCEPH_ARCHIVE_PATH="$VCPKG_ROOT/downloads/$CALCEPH_ARCHIVE_NAME"
 
 if ! command -v xcodebuild >/dev/null 2>&1; then
   echo "xcodebuild is required to build the iOS xcframework." >&2
@@ -34,21 +36,50 @@ fi
 
 NATIVE_ROOT="$(cd "$NATIVE_ROOT" && pwd)"
 JME_HEADERS_DIR="$NATIVE_ROOT/include"
+export VCPKG_OVERLAY_TRIPLETS="$OVERLAY_TRIPLETS"
+
+ensure_calceph_source() {
+  local url
+
+  if [[ -f "$CALCEPH_ARCHIVE_PATH" ]]; then
+    return 0
+  fi
+
+  mkdir -p "$(dirname "$CALCEPH_ARCHIVE_PATH")"
+
+  for url in \
+    "https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/$CALCEPH_ARCHIVE_NAME" \
+    "https://deb.debian.org/debian/pool/main/c/calceph/calceph_4.0.5.orig.tar.gz"
+  do
+    if curl --fail --location --retry 5 --retry-all-errors --connect-timeout 30 --max-time 600 \
+      --output "$CALCEPH_ARCHIVE_PATH" "$url"; then
+      return 0
+    fi
+  done
+
+  echo "Unable to download $CALCEPH_ARCHIVE_NAME from known mirrors." >&2
+  exit 1
+}
 
 install_calceph() {
   local triplet="$1"
+  ensure_calceph_source
   "$VCPKG_EXE" install "calceph:$triplet"
 }
 
 configure_and_build() {
   local triplet="$1"
   local build_dir="$2"
+  local sysroot="$3"
+  local architectures="$4"
 
   cmake -S "$NATIVE_ROOT" -B "$build_dir" -G Xcode \
-    -DCMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" \
-    -DVCPKG_TARGET_TRIPLET="$triplet" \
-    -DVCPKG_OVERLAY_TRIPLETS="$OVERLAY_TRIPLETS" \
-    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_SYSTEM_NAME=iOS \
+    -DCMAKE_OSX_SYSROOT="$sysroot" \
+    -DCMAKE_OSX_ARCHITECTURES="$architectures" \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
+    -DCMAKE_PREFIX_PATH="$VCPKG_ROOT/installed/$triplet" \
+    -Dcalceph_DIR="$VCPKG_ROOT/installed/$triplet/share/calceph" \
     -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
     -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
     -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="" \
@@ -76,14 +107,38 @@ find_built_library() {
   printf '%s\n' "$path"
 }
 
+find_library_with_fallback() {
+  local root="$1"
+  local primary_pattern="$2"
+  local fallback_pattern="$3"
+  local path
+
+  path="$(find "$root" -type f -name "$primary_pattern" | sort | head -n 1)"
+  if [[ -n "$path" ]]; then
+    printf '%s\n' "$path"
+    return 0
+  fi
+
+  path="$(find "$root" -type f -name "$fallback_pattern" | sort | head -n 1)"
+  if [[ -n "$path" ]]; then
+    printf '%s\n' "$path"
+    return 0
+  fi
+
+  echo "Unable to locate $primary_pattern or $fallback_pattern in $root" >&2
+  exit 1
+}
+
 build_slice() {
   local triplet="$1"
   local name="$2"
+  local sysroot="$3"
+  local architectures="$4"
   local build_dir="$BUILD_ROOT/$name"
 
   rm -rf "$build_dir"
   install_calceph "$triplet"
-  configure_and_build "$triplet" "$build_dir"
+  configure_and_build "$triplet" "$build_dir" "$sysroot" "$architectures"
 }
 
 merge_simulator_libs() {
@@ -95,23 +150,23 @@ merge_simulator_libs() {
   lipo -create "$arm64_path" "$x64_path" -output "$output_path"
 }
 
-build_slice "arm64-ios" "device"
-build_slice "arm64-ios-simulator" "sim-arm64"
-build_slice "x64-ios-simulator" "sim-x64"
+build_slice "arm64-ios" "device" "iphoneos" "arm64"
+build_slice "arm64-ios-simulator" "sim-arm64" "iphonesimulator" "arm64"
+build_slice "x64-ios-simulator" "sim-x64" "iphonesimulator" "x86_64"
 
 rm -rf "$JME_OUTPUT_DIR" "$CALCEPH_OUTPUT_DIR"
 mkdir -p "$FRAMEWORK_DIR" "$BUILD_ROOT/universal"
 
-DEVICE_JME_LIB="$(find_built_library "$BUILD_ROOT/device" 'libjme*.a')"
-SIM_ARM64_JME_LIB="$(find_built_library "$BUILD_ROOT/sim-arm64" 'libjme*.a')"
-SIM_X64_JME_LIB="$(find_built_library "$BUILD_ROOT/sim-x64" 'libjme*.a')"
-SIM_UNIVERSAL_JME_LIB="$BUILD_ROOT/universal/libjme-simulator.a"
+DEVICE_JME_LIB="$(find_library_with_fallback "$BUILD_ROOT/device" 'libjme*.dylib' 'libjme*.a')"
+SIM_ARM64_JME_LIB="$(find_library_with_fallback "$BUILD_ROOT/sim-arm64" 'libjme*.dylib' 'libjme*.a')"
+SIM_X64_JME_LIB="$(find_library_with_fallback "$BUILD_ROOT/sim-x64" 'libjme*.dylib' 'libjme*.a')"
+SIM_UNIVERSAL_JME_LIB="$BUILD_ROOT/universal/$(basename "$DEVICE_JME_LIB")"
 merge_simulator_libs "$SIM_UNIVERSAL_JME_LIB" "$SIM_ARM64_JME_LIB" "$SIM_X64_JME_LIB"
 
-DEVICE_CALCEPH_LIB="$(find_built_library "$VCPKG_ROOT/installed/arm64-ios/lib" 'libcalceph*.dylib')"
-SIM_ARM64_CALCEPH_LIB="$(find_built_library "$VCPKG_ROOT/installed/arm64-ios-simulator/lib" 'libcalceph*.dylib')"
-SIM_X64_CALCEPH_LIB="$(find_built_library "$VCPKG_ROOT/installed/x64-ios-simulator/lib" 'libcalceph*.dylib')"
-SIM_UNIVERSAL_CALCEPH_LIB="$BUILD_ROOT/universal/libcalceph-simulator.dylib"
+DEVICE_CALCEPH_LIB="$(find_library_with_fallback "$VCPKG_ROOT/installed/arm64-ios/lib" 'libcalceph*.a' 'libcalceph*.dylib')"
+SIM_ARM64_CALCEPH_LIB="$(find_library_with_fallback "$VCPKG_ROOT/installed/arm64-ios-simulator/lib" 'libcalceph*.a' 'libcalceph*.dylib')"
+SIM_X64_CALCEPH_LIB="$(find_library_with_fallback "$VCPKG_ROOT/installed/x64-ios-simulator/lib" 'libcalceph*.a' 'libcalceph*.dylib')"
+SIM_UNIVERSAL_CALCEPH_LIB="$BUILD_ROOT/universal/$(basename "$DEVICE_CALCEPH_LIB")"
 merge_simulator_libs "$SIM_UNIVERSAL_CALCEPH_LIB" "$SIM_ARM64_CALCEPH_LIB" "$SIM_X64_CALCEPH_LIB"
 
 CALCEPH_HEADERS_DIR="$VCPKG_ROOT/installed/arm64-ios/include"

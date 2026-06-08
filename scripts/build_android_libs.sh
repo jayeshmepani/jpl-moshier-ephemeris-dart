@@ -10,6 +10,8 @@ ANDROID_NDK_ROOT="${ANDROID_NDK_ROOT:-${ANDROID_NDK_HOME:-}}"
 OUTPUT_ROOT="$ROOT_DIR/android/src/main/jniLibs"
 BUILD_ROOT="${TMPDIR:-/tmp}/jme-android-build"
 OVERLAY_TRIPLETS="$ROOT_DIR/vcpkg-triplets"
+CALCEPH_ARCHIVE_NAME="calceph-4.0.5.tar.gz"
+CALCEPH_ARCHIVE_PATH="$VCPKG_ROOT/downloads/$CALCEPH_ARCHIVE_NAME"
 
 if [[ -z "$VCPKG_ROOT" ]]; then
   echo "VCPKG_ROOT or VCPKG_INSTALLATION_ROOT must be set." >&2
@@ -32,6 +34,30 @@ if [[ ! -d "$NATIVE_ROOT" ]]; then
 fi
 
 NATIVE_ROOT="$(cd "$NATIVE_ROOT" && pwd)"
+export VCPKG_OVERLAY_TRIPLETS="$OVERLAY_TRIPLETS"
+
+ensure_calceph_source() {
+  local url
+
+  if [[ -f "$CALCEPH_ARCHIVE_PATH" ]]; then
+    return 0
+  fi
+
+  mkdir -p "$(dirname "$CALCEPH_ARCHIVE_PATH")"
+
+  for url in \
+    "https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/$CALCEPH_ARCHIVE_NAME" \
+    "https://deb.debian.org/debian/pool/main/c/calceph/calceph_4.0.5.orig.tar.gz"
+  do
+    if curl --fail --location --retry 5 --retry-all-errors --connect-timeout 30 --max-time 600 \
+      --output "$CALCEPH_ARCHIVE_PATH" "$url"; then
+      return 0
+    fi
+  done
+
+  echo "Unable to download $CALCEPH_ARCHIVE_NAME from known mirrors." >&2
+  exit 1
+}
 
 copy_calceph_artifacts() {
   local triplet="$1"
@@ -53,18 +79,22 @@ build_abi() {
   local triplet="$2"
   local build_dir="$BUILD_ROOT/$abi"
   local output_dir="$OUTPUT_ROOT/$abi"
+  local android_abi="$3"
   local lib_path
 
   rm -rf "$build_dir" "$output_dir"
   mkdir -p "$output_dir"
 
+  ensure_calceph_source
   "$VCPKG_EXE" install "calceph:$triplet"
 
   cmake -S "$NATIVE_ROOT" -B "$build_dir" \
-    -DCMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" \
-    -DVCPKG_TARGET_TRIPLET="$triplet" \
-    -DVCPKG_OVERLAY_TRIPLETS="$OVERLAY_TRIPLETS" \
+    -DCMAKE_TOOLCHAIN_FILE="$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake" \
+    -DANDROID_ABI="$android_abi" \
+    -DANDROID_PLATFORM=android-21 \
     -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_PREFIX_PATH="$VCPKG_ROOT/installed/$triplet" \
+    -Dcalceph_DIR="$VCPKG_ROOT/installed/$triplet/share/calceph" \
     -DJME_BUILD_TESTS=OFF \
     -DJME_REQUIRE_CALCEPH=ON
 
@@ -83,7 +113,7 @@ build_abi() {
   copy_calceph_artifacts "$triplet" "$output_dir"
 }
 
-build_abi "arm64-v8a" "arm64-android"
-build_abi "x86_64" "x64-android"
+build_abi "arm64-v8a" "arm64-android-dynamic" "arm64-v8a"
+build_abi "x86_64" "x64-android-dynamic" "x86_64"
 
 echo "Generated Android JNI libraries under $OUTPUT_ROOT"

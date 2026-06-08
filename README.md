@@ -1,6 +1,6 @@
 # jpl_moshier_ephemeris_dart
 
-Pure Dart FFI wrapper for the **JPL Moshier Ephemeris** native library.
+Flutter FFI plugin for the **JPL Moshier Ephemeris** native library.
 
 This package provides direct, lossless access to the `jme_*` C API and `JME_*` constants for high-precision astronomical and astrological calculations in Flutter applications.
 
@@ -14,16 +14,21 @@ This package provides direct, lossless access to the `jme_*` C API and `JME_*` c
 
 ## Native Integration
 
-This plugin uses prebuilt native binaries for maximum performance and stability.
+This plugin uses bundled native binaries for mobile integration.
 
 ### Android
 Supports the following ABIs in `android/src/main/jniLibs/`:
 *   `arm64-v8a`: Most modern Android phones.
-*   `armeabi-v7a`: Older ARM devices.
 *   `x86_64`: Android emulators.
+
+The Android release workflow regenerates `libjme.so` for these ABIs from source. CALCEPH is optional in mobile builds unless you add a mobile CALCEPH build path.
 
 ### iOS
 Supports `arm64` and simulator architectures via `ios/Frameworks/Jme.xcframework`.
+
+The xcframework is generated from the native `jpl-ephemeris` source tree on macOS by `scripts/build_ios_xcframework.sh` and by the publish workflow before release.
+
+Current iOS packaging focuses on the core analytical engine surface. JPL kernel mode depends on CALCEPH availability in the Apple build you ship.
 
 ## Installation
 
@@ -49,7 +54,7 @@ void main() {
 
 ## Quality Assurance
 
-We maintain strict quality standards similar to our PHP and Python wrappers:
+We maintain strict quality standards for the Dart wrapper:
 
 *   **Linting:** `dart analyze` with `very_good_analysis`.
 *   **Formatting:** `dart format`.
@@ -58,6 +63,13 @@ We maintain strict quality standards similar to our PHP and Python wrappers:
 Run the quality check:
 ```bash
 ./scripts/quality.sh
+```
+
+For a manual publish from macOS, build the iOS xcframework first:
+
+```bash
+./scripts/build_ios_xcframework.sh
+flutter pub publish
 ```
 
 ## License

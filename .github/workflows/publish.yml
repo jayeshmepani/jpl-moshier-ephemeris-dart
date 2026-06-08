@@ -1,0 +1,69 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    name: Publish package
+    runs-on: macos-14
+    environment: pub.dev
+
+    steps:
+      - name: Checkout wrapper
+        uses: actions/checkout@v4
+
+      - name: Checkout native JME
+        uses: actions/checkout@v4
+        with:
+          repository: jayeshmepani/jpl-ephemeris
+          path: native
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Setup Dart publishing credentials
+        uses: dart-lang/setup-dart@v1
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK
+        run: sdkmanager "ndk;27.2.12479018"
+
+      - name: Build Android JNI libraries
+        env:
+          ANDROID_NDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
+        run: ./scripts/build_android_libs.sh
+
+      - name: Build iOS xcframework
+        run: ./scripts/build_ios_xcframework.sh native
+
+      - name: Format check
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: dart analyze --fatal-infos
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Publish dry-run
+        run: flutter pub publish --dry-run
+
+      - name: Publish to pub.dev
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: flutter pub publish --force

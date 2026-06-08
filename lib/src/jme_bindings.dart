@@ -4926,7 +4926,7 @@ class JmeBindings {
 
 const int JME_JME_H = 1;
 
-const int JME_VERSION = 774975024;
+const String JME_VERSION = '0.1.0';
 
 const double JME_AU_KM = 149597870.7;
 

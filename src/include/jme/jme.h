@@ -4,7 +4,7 @@
 #include <stddef.h>
 
 #define JME_JME_H 1
-#define JME_VERSION '0.1.0'
+#define JME_VERSION "0.1.0"
 #define JME_AU_KM 149597870.7
 #define JME_SPEED_OF_LIGHT_KM_PER_SEC 299792.458
 #define JME_SECONDS_PER_DAY 86400.0

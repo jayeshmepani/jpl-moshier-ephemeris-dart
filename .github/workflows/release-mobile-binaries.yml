@@ -1,0 +1,144 @@
+name: Release Mobile Binaries
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Release tag to create or update
+        required: true
+        default: mobile-binaries
+        type: string
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-mobile-binaries
+  cancel-in-progress: false
+
+jobs:
+  android:
+    name: Android ${{ matrix.abi }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        abi:
+          - arm64-v8a
+          - x86_64
+
+    steps:
+      - name: Checkout wrapper
+        uses: actions/checkout@v4
+
+      - name: Checkout native JME
+        uses: actions/checkout@v4
+        with:
+          repository: jayeshmepani/jpl-ephemeris
+          path: native
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK
+        run: sdkmanager "ndk;27.2.12479018"
+
+      - name: Build Android libraries
+        env:
+          ANDROID_NDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
+          JME_SOURCE_PATH: ${{ github.workspace }}/native
+        run: ./scripts/build_android_libs.sh
+
+      - name: Package Android artifact
+        run: |
+          mkdir -p dist
+          tar -czf "dist/jme-android-${{ matrix.abi }}.tar.gz" -C "android/src/main/jniLibs/${{ matrix.abi }}" .
+
+      - name: Upload Android artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jme-android-${{ matrix.abi }}
+          path: dist/jme-android-${{ matrix.abi }}.tar.gz
+          if-no-files-found: error
+
+  ios:
+    name: iOS xcframework
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout wrapper
+        uses: actions/checkout@v4
+
+      - name: Checkout native JME
+        uses: actions/checkout@v4
+        with:
+          repository: jayeshmepani/jpl-ephemeris
+          path: native
+
+      - name: Build iOS xcframework
+        run: ./scripts/build_ios_xcframework.sh native
+
+      - name: Package iOS artifact
+        run: |
+          mkdir -p dist
+          ditto -c -k --sequesterRsrc --keepParent "ios/Frameworks/Jme.xcframework" "dist/jme-ios-xcframework.zip"
+
+      - name: Upload iOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jme-ios-xcframework
+          path: dist/jme-ios-xcframework.zip
+          if-no-files-found: error
+
+  release:
+    name: Publish mobile binary release
+    needs:
+      - android
+      - ios
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Write release notes
+        run: |
+          cat > release-notes.md <<'EOF'
+          Mobile runtime binaries for `jpl_moshier_ephemeris_dart`.
+
+          Artifacts:
+
+          - `jme-android-arm64-v8a.tar.gz`
+          - `jme-android-x86_64.tar.gz`
+          - `jme-ios-xcframework.zip`
+
+          Notes:
+
+          - Android artifacts contain generated `libjme.so` binaries for the supported ABIs.
+          - The iOS artifact contains `Jme.xcframework` for device and simulator builds.
+          - Mobile builds currently focus on the core analytical engine surface.
+          EOF
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag || github.ref_name }}
+        run: |
+          set -euo pipefail
+
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" dist/* --clobber
+            gh release edit "$RELEASE_TAG" \
+              --title "Mobile Runtime Binaries" \
+              --notes-file release-notes.md
+          else
+            gh release create "$RELEASE_TAG" dist/* \
+              --title "Mobile Runtime Binaries" \
+              --notes-file release-notes.md
+          fi

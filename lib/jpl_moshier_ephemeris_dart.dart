@@ -5,6 +5,8 @@ import 'package:jpl_moshier_ephemeris_dart/src/jme_bindings.dart';
 import 'package:jpl_moshier_ephemeris_dart/src/jme_loader.dart';
 
 export 'package:jpl_moshier_ephemeris_dart/src/jme_bindings.dart';
+export 'package:jpl_moshier_ephemeris_dart/src/jme_loader.dart';
+export 'package:jpl_moshier_ephemeris_dart/src/jme_metadata.dart';
 
 /// High-level wrapper for the JPL Moshier Ephemeris library.
 class JmeEph {
@@ -15,7 +17,7 @@ class JmeEph {
   /// The underlying FFI bindings.
   final JmeBindings bindings;
 
-  /// Helper to configure the engine, matching the PHP/Python implementation.
+  /// Helper to configure the engine.
   void configureEngine(
     String engine, {
     String? ephemerisPath,
@@ -80,9 +82,21 @@ class JmeEph {
   }
 
   String _resolveUsableJplKernelPath(String? ephemerisPath, String? jplFile) {
-    // Basic resolution logic similar to PHP
-    final candidates =
-        [jplFile, ephemerisPath].whereType<String>().where((s) => s.isNotEmpty);
+    final runtimeJplFile = using((Arena arena) {
+      final ptr = bindings.jme_jpl_file();
+      return ptr == nullptr ? '' : ptr.cast<Utf8>().toDartString();
+    });
+    final runtimeEphemerisPath = using((Arena arena) {
+      final ptr = bindings.jme_ephemeris_path();
+      return ptr == nullptr ? '' : ptr.cast<Utf8>().toDartString();
+    });
+
+    final candidates = <String>[
+      if (jplFile != null && jplFile.isNotEmpty) jplFile,
+      if (ephemerisPath != null && ephemerisPath.isNotEmpty) ephemerisPath,
+      if (runtimeJplFile.isNotEmpty) runtimeJplFile,
+      if (runtimeEphemerisPath.isNotEmpty) runtimeEphemerisPath,
+    ];
 
     for (final candidate in candidates) {
       if (FileSystemEntity.isFileSync(candidate)) {
@@ -93,13 +107,19 @@ class JmeEph {
         final files = dir
             .listSync()
             .where((f) => f.path.toLowerCase().endsWith('.bsp'))
-            .toList();
+            .map((f) => f.path)
+            .toList()
+          ..sort();
         if (files.isNotEmpty) {
-          return files.first.path;
+          return files.first;
         }
       }
     }
 
-    throw Exception('ENGINE=JPL requires a readable .bsp kernel file.');
+    throw Exception(
+      'ENGINE=JPL requires a readable .bsp kernel file, but no usable kernel '
+      'was found in the configured JPL file or ephemeris path. Download '
+      'kernels from: https://github.com/jayeshmepani/jpl-ephemeris/releases/tag/jpl-kernels',
+    );
   }
 }

@@ -10,8 +10,7 @@ ANDROID_NDK_ROOT="${ANDROID_NDK_ROOT:-${ANDROID_NDK_HOME:-}}"
 OUTPUT_ROOT="$ROOT_DIR/android/src/main/jniLibs"
 BUILD_ROOT="${TMPDIR:-/tmp}/jme-android-build"
 OVERLAY_TRIPLETS="$ROOT_DIR/vcpkg-triplets"
-CALCEPH_ARCHIVE_NAME="calceph-4.0.5.tar.gz"
-CALCEPH_ARCHIVE_PATH="$VCPKG_ROOT/downloads/$CALCEPH_ARCHIVE_NAME"
+OVERLAY_PORTS="$ROOT_DIR/ports"
 
 if [[ -z "$VCPKG_ROOT" ]]; then
   echo "VCPKG_ROOT or VCPKG_INSTALLATION_ROOT must be set." >&2
@@ -35,29 +34,7 @@ fi
 
 NATIVE_ROOT="$(cd "$NATIVE_ROOT" && pwd)"
 export VCPKG_OVERLAY_TRIPLETS="$OVERLAY_TRIPLETS"
-
-ensure_calceph_source() {
-  local url
-
-  if [[ -f "$CALCEPH_ARCHIVE_PATH" ]]; then
-    return 0
-  fi
-
-  mkdir -p "$(dirname "$CALCEPH_ARCHIVE_PATH")"
-
-  for url in \
-    "https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/$CALCEPH_ARCHIVE_NAME" \
-    "https://deb.debian.org/debian/pool/main/c/calceph/calceph_4.0.5.orig.tar.gz"
-  do
-    if curl --fail --location --retry 5 --retry-all-errors --connect-timeout 30 --max-time 600 \
-      --output "$CALCEPH_ARCHIVE_PATH" "$url"; then
-      return 0
-    fi
-  done
-
-  echo "Unable to download $CALCEPH_ARCHIVE_NAME from known mirrors." >&2
-  exit 1
-}
+export VCPKG_OVERLAY_PORTS="$OVERLAY_PORTS"
 
 copy_calceph_artifacts() {
   local triplet="$1"
@@ -85,7 +62,6 @@ build_abi() {
   rm -rf "$build_dir" "$output_dir"
   mkdir -p "$output_dir"
 
-  ensure_calceph_source
   "$VCPKG_EXE" install "calceph:$triplet"
 
   cmake -S "$NATIVE_ROOT" -B "$build_dir" \
@@ -94,7 +70,9 @@ build_abi() {
     -DANDROID_PLATFORM=android-21 \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_PREFIX_PATH="$VCPKG_ROOT/installed/$triplet" \
-    -Dcalceph_DIR="$VCPKG_ROOT/installed/$triplet/share/calceph" \
+    -DCMAKE_FIND_ROOT_PATH="$VCPKG_ROOT/installed/$triplet" \
+    -DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=BOTH \
+    -Dcalceph_DIR="$VCPKG_ROOT/installed/$triplet/lib/cmake/calceph" \
     -DJME_BUILD_TESTS=OFF \
     -DJME_REQUIRE_CALCEPH=ON
 

@@ -11,8 +11,7 @@ JME_OUTPUT_DIR="$FRAMEWORK_DIR/Jme.xcframework"
 CALCEPH_OUTPUT_DIR="$FRAMEWORK_DIR/Calceph.xcframework"
 BUILD_ROOT="${TMPDIR:-/tmp}/jme-ios-build"
 OVERLAY_TRIPLETS="$ROOT_DIR/vcpkg-triplets"
-CALCEPH_ARCHIVE_NAME="calceph-4.0.5.tar.gz"
-CALCEPH_ARCHIVE_PATH="$VCPKG_ROOT/downloads/$CALCEPH_ARCHIVE_NAME"
+OVERLAY_PORTS="$ROOT_DIR/ports"
 
 if ! command -v xcodebuild >/dev/null 2>&1; then
   echo "xcodebuild is required to build the iOS xcframework." >&2
@@ -37,33 +36,10 @@ fi
 NATIVE_ROOT="$(cd "$NATIVE_ROOT" && pwd)"
 JME_HEADERS_DIR="$NATIVE_ROOT/include"
 export VCPKG_OVERLAY_TRIPLETS="$OVERLAY_TRIPLETS"
-
-ensure_calceph_source() {
-  local url
-
-  if [[ -f "$CALCEPH_ARCHIVE_PATH" ]]; then
-    return 0
-  fi
-
-  mkdir -p "$(dirname "$CALCEPH_ARCHIVE_PATH")"
-
-  for url in \
-    "https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/$CALCEPH_ARCHIVE_NAME" \
-    "https://deb.debian.org/debian/pool/main/c/calceph/calceph_4.0.5.orig.tar.gz"
-  do
-    if curl --fail --location --retry 5 --retry-all-errors --connect-timeout 30 --max-time 600 \
-      --output "$CALCEPH_ARCHIVE_PATH" "$url"; then
-      return 0
-    fi
-  done
-
-  echo "Unable to download $CALCEPH_ARCHIVE_NAME from known mirrors." >&2
-  exit 1
-}
+export VCPKG_OVERLAY_PORTS="$OVERLAY_PORTS"
 
 install_calceph() {
   local triplet="$1"
-  ensure_calceph_source
   "$VCPKG_EXE" install "calceph:$triplet"
 }
 
@@ -79,7 +55,7 @@ configure_and_build() {
     -DCMAKE_OSX_ARCHITECTURES="$architectures" \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
     -DCMAKE_PREFIX_PATH="$VCPKG_ROOT/installed/$triplet" \
-    -Dcalceph_DIR="$VCPKG_ROOT/installed/$triplet/share/calceph" \
+    -Dcalceph_DIR="$VCPKG_ROOT/installed/$triplet/lib/cmake/calceph" \
     -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
     -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
     -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="" \

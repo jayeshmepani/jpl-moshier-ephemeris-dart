@@ -51,18 +51,63 @@ copy_calceph_artifacts() {
   done
 }
 
+find_calceph_library() {
+  local triplet="$1"
+  local lib_dir="$VCPKG_ROOT/installed/$triplet/lib"
+  local path
+
+  for pattern in 'libcalceph.so' 'libcalceph.so.*' 'libcalceph.a'; do
+    path="$(find "$lib_dir" -maxdepth 1 -type f -name "$pattern" | sort | head -n 1)"
+    if [[ -n "$path" ]]; then
+      printf '%s\n' "$path"
+      return 0
+    fi
+  done
+
+  echo "Unable to locate CALCEPH library in $lib_dir" >&2
+  exit 1
+}
+
+write_calceph_config() {
+  local triplet="$1"
+  local config_dir="$2"
+  local include_dir="$VCPKG_ROOT/installed/$triplet/include"
+  local lib_path
+  local lib_type
+
+  lib_path="$(find_calceph_library "$triplet")"
+  lib_type="SHARED"
+  if [[ "$lib_path" == *.a ]]; then
+    lib_type="STATIC"
+  fi
+
+  mkdir -p "$config_dir"
+  cat > "$config_dir/calcephConfig.cmake" <<EOF
+set(calceph_FOUND TRUE)
+if(NOT TARGET calceph)
+  add_library(calceph ${lib_type} IMPORTED GLOBAL)
+  set_target_properties(calceph PROPERTIES
+    IMPORTED_LOCATION "${lib_path}"
+    INTERFACE_INCLUDE_DIRECTORIES "${include_dir}"
+  )
+endif()
+EOF
+}
+
 build_abi() {
   local abi="$1"
   local triplet="$2"
   local build_dir="$BUILD_ROOT/$abi"
   local output_dir="$OUTPUT_ROOT/$abi"
   local android_abi="$3"
+  local calceph_config_dir="$build_dir/calceph-config"
   local lib_path
 
   rm -rf "$build_dir" "$output_dir"
   mkdir -p "$output_dir"
 
   "$VCPKG_EXE" install "calceph:$triplet"
+  write_calceph_config "$triplet" "$calceph_config_dir"
 
   cmake -S "$NATIVE_ROOT" -B "$build_dir" \
     -DCMAKE_TOOLCHAIN_FILE="$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake" \
@@ -72,7 +117,7 @@ build_abi() {
     -DCMAKE_PREFIX_PATH="$VCPKG_ROOT/installed/$triplet" \
     -DCMAKE_FIND_ROOT_PATH="$VCPKG_ROOT/installed/$triplet" \
     -DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=BOTH \
-    -Dcalceph_DIR="$VCPKG_ROOT/installed/$triplet/lib/cmake/calceph" \
+    -Dcalceph_DIR="$calceph_config_dir" \
     -DJME_BUILD_TESTS=OFF \
     -DJME_REQUIRE_CALCEPH=ON
 

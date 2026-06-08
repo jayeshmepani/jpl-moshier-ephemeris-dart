@@ -43,11 +43,55 @@ install_calceph() {
   "$VCPKG_EXE" install "calceph:$triplet"
 }
 
+find_calceph_library() {
+  local triplet="$1"
+  local lib_dir="$VCPKG_ROOT/installed/$triplet/lib"
+  local path
+
+  for pattern in 'libcalceph.a' 'libcalceph.dylib' 'libcalceph.*.dylib'; do
+    path="$(find "$lib_dir" -maxdepth 1 -type f -name "$pattern" | sort | head -n 1)"
+    if [[ -n "$path" ]]; then
+      printf '%s\n' "$path"
+      return 0
+    fi
+  done
+
+  echo "Unable to locate CALCEPH library in $lib_dir" >&2
+  exit 1
+}
+
+write_calceph_config() {
+  local triplet="$1"
+  local config_dir="$2"
+  local include_dir="$VCPKG_ROOT/installed/$triplet/include"
+  local lib_path
+  local lib_type
+
+  lib_path="$(find_calceph_library "$triplet")"
+  lib_type="STATIC"
+  if [[ "$lib_path" == *.dylib ]]; then
+    lib_type="SHARED"
+  fi
+
+  mkdir -p "$config_dir"
+  cat > "$config_dir/calcephConfig.cmake" <<EOF
+set(calceph_FOUND TRUE)
+if(NOT TARGET calceph)
+  add_library(calceph ${lib_type} IMPORTED GLOBAL)
+  set_target_properties(calceph PROPERTIES
+    IMPORTED_LOCATION "${lib_path}"
+    INTERFACE_INCLUDE_DIRECTORIES "${include_dir}"
+  )
+endif()
+EOF
+}
+
 configure_and_build() {
   local triplet="$1"
   local build_dir="$2"
   local sysroot="$3"
   local architectures="$4"
+  local calceph_config_dir="$5"
 
   cmake -S "$NATIVE_ROOT" -B "$build_dir" -G Xcode \
     -DCMAKE_SYSTEM_NAME=iOS \
@@ -55,7 +99,7 @@ configure_and_build() {
     -DCMAKE_OSX_ARCHITECTURES="$architectures" \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
     -DCMAKE_PREFIX_PATH="$VCPKG_ROOT/installed/$triplet" \
-    -Dcalceph_DIR="$VCPKG_ROOT/installed/$triplet/lib/cmake/calceph" \
+    -Dcalceph_DIR="$calceph_config_dir" \
     -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
     -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
     -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="" \
@@ -111,10 +155,12 @@ build_slice() {
   local sysroot="$3"
   local architectures="$4"
   local build_dir="$BUILD_ROOT/$name"
+  local calceph_config_dir="$build_dir/calceph-config"
 
   rm -rf "$build_dir"
   install_calceph "$triplet"
-  configure_and_build "$triplet" "$build_dir" "$sysroot" "$architectures"
+  write_calceph_config "$triplet" "$calceph_config_dir"
+  configure_and_build "$triplet" "$build_dir" "$sysroot" "$architectures" "$calceph_config_dir"
 }
 
 merge_simulator_libs() {

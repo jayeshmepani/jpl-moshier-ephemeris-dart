@@ -29,8 +29,16 @@ class JmeLoader {
   /// Best-effort preload of CALCEPH so JME can resolve dependent symbols.
   static DynamicLibrary? loadCalcephRuntime() {
     try {
+      if (Platform.isAndroid) {
+        return DynamicLibrary.open(_filename(_calcephLibraryName));
+      }
+      if (Platform.isIOS) {
+        return null;
+      }
       return DynamicLibrary.open(findCalcephLibraryPath());
     } on JmeLibraryNotFoundError {
+      return null;
+    } catch (_) {
       return null;
     }
   }
@@ -38,6 +46,7 @@ class JmeLoader {
   /// Loads the [DynamicLibrary] based on the current platform.
   static DynamicLibrary load() {
     if (Platform.isAndroid) {
+      loadCalcephRuntime();
       return DynamicLibrary.open(_filename(_jmeLibraryName));
     }
     if (Platform.isIOS) {

@@ -17,8 +17,8 @@ Flutter FFI plugin for the JPL Moshier Ephemeris native library with direct jme_
   s.dependency 'Flutter'
   s.platform = :ios, '12.0'
 
-  # Bundle the native framework
-  s.vendored_frameworks = 'Frameworks/Jme.xcframework'
+  # Bundle the native frameworks
+  s.vendored_frameworks = 'Frameworks/Jme.xcframework', 'Frameworks/Calceph.xcframework'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 

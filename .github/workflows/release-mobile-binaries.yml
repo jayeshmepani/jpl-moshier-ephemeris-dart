@@ -46,9 +46,19 @@ jobs:
       - name: Install Android NDK
         run: sdkmanager "ndk;27.2.12479018"
 
+      - name: Prepare vcpkg
+        run: |
+          git clone --depth 1 https://github.com/microsoft/vcpkg.git "$RUNNER_TEMP/vcpkg"
+          "$RUNNER_TEMP/vcpkg/bootstrap-vcpkg.sh" -disableMetrics
+          echo "VCPKG_ROOT=$RUNNER_TEMP/vcpkg" >> "$GITHUB_ENV"
+          echo "VCPKG_EXE=$RUNNER_TEMP/vcpkg/vcpkg" >> "$GITHUB_ENV"
+
       - name: Build Android libraries
         env:
+          VCPKG_ROOT: ${{ env.VCPKG_ROOT }}
+          VCPKG_EXE: ${{ env.VCPKG_EXE }}
           ANDROID_NDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
+          ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
           JME_SOURCE_PATH: ${{ github.workspace }}/native
         run: ./scripts/build_android_libs.sh
 
@@ -78,19 +88,29 @@ jobs:
           repository: jayeshmepani/jpl-ephemeris
           path: native
 
+      - name: Prepare vcpkg
+        run: |
+          git clone --depth 1 https://github.com/microsoft/vcpkg.git "$RUNNER_TEMP/vcpkg"
+          "$RUNNER_TEMP/vcpkg/bootstrap-vcpkg.sh" -disableMetrics
+          echo "VCPKG_ROOT=$RUNNER_TEMP/vcpkg" >> "$GITHUB_ENV"
+          echo "VCPKG_EXE=$RUNNER_TEMP/vcpkg/vcpkg" >> "$GITHUB_ENV"
+
       - name: Build iOS xcframework
+        env:
+          VCPKG_ROOT: ${{ env.VCPKG_ROOT }}
+          VCPKG_EXE: ${{ env.VCPKG_EXE }}
         run: ./scripts/build_ios_xcframework.sh native
 
       - name: Package iOS artifact
         run: |
           mkdir -p dist
-          ditto -c -k --sequesterRsrc --keepParent "ios/Frameworks/Jme.xcframework" "dist/jme-ios-xcframework.zip"
+          ditto -c -k --sequesterRsrc --keepParent "ios/Frameworks" "dist/jme-ios-frameworks.zip"
 
       - name: Upload iOS artifact
         uses: actions/upload-artifact@v4
         with:
-          name: jme-ios-xcframework
-          path: dist/jme-ios-xcframework.zip
+          name: jme-ios-frameworks
+          path: dist/jme-ios-frameworks.zip
           if-no-files-found: error
 
   release:
@@ -119,13 +139,13 @@ jobs:
 
           - `jme-android-arm64-v8a.tar.gz`
           - `jme-android-x86_64.tar.gz`
-          - `jme-ios-xcframework.zip`
+          - `jme-ios-frameworks.zip`
 
           Notes:
 
-          - Android artifacts contain generated `libjme.so` binaries for the supported ABIs.
-          - The iOS artifact contains `Jme.xcframework` for device and simulator builds.
-          - Mobile builds currently focus on the core analytical engine surface.
+          - Android artifacts contain generated `libjme.so` and bundled `libcalceph.so*` binaries for the supported ABIs.
+          - The iOS artifact contains both `Jme.xcframework` and `Calceph.xcframework` for device and simulator builds.
+          - These mobile binaries are built with CALCEPH enabled so Flutter can use `ENGINE=JPL` with a real kernel.
           EOF
 
       - name: Create or update release

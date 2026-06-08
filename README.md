@@ -21,14 +21,17 @@ Supports the following ABIs in `android/src/main/jniLibs/`:
 *   `arm64-v8a`: Most modern Android phones.
 *   `x86_64`: Android emulators.
 
-The Android release workflow regenerates `libjme.so` for these ABIs from source. CALCEPH is optional in mobile builds unless you add a mobile CALCEPH build path.
+The Android release workflow regenerates `libjme.so` and bundles `libcalceph.so*` for these ABIs so Flutter can use `ENGINE=JPL`.
 
 ### iOS
 Supports `arm64` and simulator architectures via `ios/Frameworks/Jme.xcframework`.
 
-The xcframework is generated from the native `jpl-ephemeris` source tree on macOS by `scripts/build_ios_xcframework.sh` and by the publish workflow before release.
+The xcframeworks are generated from the native `jpl-ephemeris` source tree on macOS by `scripts/build_ios_xcframework.sh` and by the publish workflow before release.
 
-Current iOS packaging focuses on the core analytical engine surface. JPL kernel mode depends on CALCEPH availability in the Apple build you ship.
+For JPL mode on iOS, the package ships both:
+
+*   `ios/Frameworks/Jme.xcframework`
+*   `ios/Frameworks/Calceph.xcframework`
 
 ## Installation
 

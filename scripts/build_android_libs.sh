@@ -56,7 +56,7 @@ find_calceph_library() {
   local lib_dir="$VCPKG_ROOT/installed/$triplet/lib"
   local path
 
-  for pattern in 'libcalceph.so' 'libcalceph.so.*' 'libcalceph.a'; do
+  for pattern in 'libcalceph.a' 'libcalceph.so' 'libcalceph.so.*'; do
     path="$(find "$lib_dir" -maxdepth 1 -type f -name "$pattern" | sort | head -n 1)"
     if [[ -n "$path" ]]; then
       printf '%s\n' "$path"
@@ -76,9 +76,9 @@ write_calceph_config() {
   local lib_type
 
   lib_path="$(find_calceph_library "$triplet")"
-  lib_type="SHARED"
-  if [[ "$lib_path" == *.a ]]; then
-    lib_type="STATIC"
+  lib_type="STATIC"
+  if [[ "$lib_path" == *.so || "$lib_path" == *.so.* ]]; then
+    lib_type="SHARED"
   fi
 
   mkdir -p "$config_dir"

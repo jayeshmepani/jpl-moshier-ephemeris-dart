@@ -96,26 +96,27 @@ EOF
 
 build_abi() {
   local abi="$1"
-  local triplet="$2"
+  local link_triplet="$2"
+  local runtime_triplet="$3"
+  local android_abi="$4"
   local build_dir="$BUILD_ROOT/$abi"
   local output_dir="$OUTPUT_ROOT/$abi"
-  local android_abi="$3"
   local calceph_config_dir="$build_dir/calceph-config"
   local lib_path
 
   rm -rf "$build_dir" "$output_dir"
   mkdir -p "$output_dir"
 
-  "$VCPKG_EXE" install "calceph:$triplet"
-  write_calceph_config "$triplet" "$calceph_config_dir"
+  "$VCPKG_EXE" install "calceph:$link_triplet" "calceph:$runtime_triplet"
+  write_calceph_config "$link_triplet" "$calceph_config_dir"
 
   cmake -S "$NATIVE_ROOT" -B "$build_dir" \
     -DCMAKE_TOOLCHAIN_FILE="$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake" \
     -DANDROID_ABI="$android_abi" \
     -DANDROID_PLATFORM=android-21 \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_PREFIX_PATH="$VCPKG_ROOT/installed/$triplet" \
-    -DCMAKE_FIND_ROOT_PATH="$VCPKG_ROOT/installed/$triplet" \
+    -DCMAKE_PREFIX_PATH="$VCPKG_ROOT/installed/$link_triplet" \
+    -DCMAKE_FIND_ROOT_PATH="$VCPKG_ROOT/installed/$link_triplet" \
     -DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=BOTH \
     -Dcalceph_DIR="$calceph_config_dir" \
     -DJME_BUILD_TESTS=OFF \
@@ -133,10 +134,10 @@ build_abi() {
   fi
 
   cp "$lib_path" "$output_dir/libjme.so"
-  copy_calceph_artifacts "$triplet" "$output_dir"
+  copy_calceph_artifacts "$runtime_triplet" "$output_dir"
 }
 
-build_abi "arm64-v8a" "arm64-android-dynamic" "arm64-v8a"
-build_abi "x86_64" "x64-android-dynamic" "x86_64"
+build_abi "arm64-v8a" "arm64-android-static" "arm64-android-dynamic" "arm64-v8a"
+build_abi "x86_64" "x64-android-static" "x64-android-dynamic" "x86_64"
 
 echo "Generated Android JNI libraries under $OUTPUT_ROOT"

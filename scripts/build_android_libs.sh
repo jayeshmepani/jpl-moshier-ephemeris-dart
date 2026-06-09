@@ -49,7 +49,7 @@ download_calceph_source() {
   for url in "${CALCEPH_URLS[@]}"; do
     temp_path="$archive_path.part"
     rm -f "$temp_path"
-    echo "Downloading CALCEPH source: $url"
+    echo "Downloading CALCEPH source: $url" >&2
     if curl -fL --retry 2 --connect-timeout 30 --max-time 300 -o "$temp_path" "$url"; then
       hash="$(sha512sum "$temp_path" | awk '{print $1}')"
       if [[ "$hash" == "$CALCEPH_SHA512_IMCCE" || "$hash" == "$CALCEPH_SHA512_DEBIAN" ]]; then

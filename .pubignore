@@ -1,0 +1,14 @@
+.git/
+.github/
+.dart_tool/
+.codex/
+.agents/
+build/
+temp/
+RELEASING.md
+pubspec.lock
+jpl_moshier_ephemeris_dart.iml
+android/local.properties
+ports/
+scripts/
+vcpkg-triplets/

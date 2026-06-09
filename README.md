@@ -14,21 +14,22 @@ This package provides direct, lossless access to the `jme_*` C API and `JME_*` c
 
 ## Native Integration
 
-This plugin uses bundled native binaries for mobile integration.
+This plugin ships its mobile native binaries inside the package itself.
+After `dart pub add jpl_moshier_ephemeris_dart` or `flutter pub add jpl_moshier_ephemeris_dart`, no separate native download step is required.
 
 ### Android
 Supports the following ABIs in `android/src/main/jniLibs/`:
 *   `arm64-v8a`: Most modern Android phones.
 *   `x86_64`: Android emulators.
 
-The Android release workflow regenerates `libjme.so` and bundles `libcalceph.so*` for these ABIs so Flutter can use `ENGINE=JPL`.
+The published plugin includes `libjme.so` and `libcalceph.so*` for these ABIs, so Flutter apps can use `ENGINE=JPL` immediately.
 
 ### iOS
 Supports `arm64` and simulator architectures via `ios/Frameworks/Jme.xcframework`.
 
 The xcframeworks are generated from the native `jpl-ephemeris` source tree on macOS by `scripts/build_ios_xcframework.sh` and by the publish workflow before release.
 
-For JPL mode on iOS, the package ships both:
+For JPL mode on iOS, the published plugin ships both:
 
 *   `ios/Frameworks/Jme.xcframework`
 *   `ios/Frameworks/Calceph.xcframework`
@@ -41,6 +42,8 @@ Add the dependency to your `pubspec.yaml`:
 dependencies:
   jpl_moshier_ephemeris_dart: ^1.0.0
 ```
+
+That is enough for consumers. The plugin already contains the Android JNI libraries and iOS xcframeworks required for JPL mode.
 
 ## Quick Start
 

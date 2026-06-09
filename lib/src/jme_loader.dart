@@ -89,12 +89,6 @@ class JmeLoader {
 
     for (final root in _searchRoots()) {
       candidates.add('$root/libs/${_platformDir()}/$filename');
-
-      if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
-        candidates.add(
-          '$root/android/src/main/jniLibs/${_androidAbiForHost()}/$filename',
-        );
-      }
     }
 
     if (Platform.isLinux || Platform.isMacOS) {
@@ -148,14 +142,6 @@ class JmeLoader {
       return 'macos-$arch';
     }
     return 'linux-$arch';
-  }
-
-  static String _androidAbiForHost() {
-    final arch = _normalizedArch();
-    if (arch == 'arm64') {
-      return 'arm64-v8a';
-    }
-    return 'x86_64';
   }
 
   static String _filename(String kind) {

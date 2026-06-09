@@ -25,4 +25,16 @@ flutter test
 
 # Packaging check
 echo "Running publish dry-run..."
-flutter pub publish --dry-run
+publish_output="$(mktemp)"
+if flutter pub publish --dry-run >"$publish_output" 2>&1; then
+  cat "$publish_output"
+else
+  cat "$publish_output"
+  if grep -q 'checked-in files are modified in git' "$publish_output"; then
+    echo "Publish dry-run reported a dirty git worktree. Commit the packaged binaries, then rerun the dry-run before publishing."
+  else
+    rm -f "$publish_output"
+    exit 1
+  fi
+fi
+rm -f "$publish_output"

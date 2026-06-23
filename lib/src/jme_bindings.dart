@@ -26,6 +26,7 @@ class JmeBindings {
           lookup)
       : _lookup = lookup;
 
+  /// Calls the native `jme_body_id_from_name` entry point.
   int jme_body_id_from_name(
     ffi.Pointer<ffi.Char> name,
   ) {
@@ -40,6 +41,7 @@ class JmeBindings {
   late final _jme_body_id_from_name = _jme_body_id_from_namePtr
       .asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_body_naif_id` entry point.
   int jme_body_naif_id(
     int body,
   ) {
@@ -54,6 +56,7 @@ class JmeBindings {
   late final _jme_body_naif_id =
       _jme_body_naif_idPtr.asFunction<int Function(int)>();
 
+  /// Calls the native `jme_calc` entry point.
   int jme_calc(
     double jd_et,
     int body,
@@ -78,6 +81,7 @@ class JmeBindings {
       int Function(
           double, int, int, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_calc_pctr` entry point.
   int jme_calc_pctr(
     double jd_et,
     int body,
@@ -109,6 +113,7 @@ class JmeBindings {
       int Function(double, int, int, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_calc_ut` entry point.
   int jme_calc_ut(
     double jd_ut,
     int body,
@@ -133,6 +138,7 @@ class JmeBindings {
       int Function(
           double, int, int, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_calendar_is_leap_year` entry point.
   int jme_calendar_is_leap_year(
     int year,
     int calendar,
@@ -149,6 +155,7 @@ class JmeBindings {
   late final _jme_calendar_is_leap_year =
       _jme_calendar_is_leap_yearPtr.asFunction<int Function(int, int)>();
 
+  /// Calls the native `jme_centiseconds_difference` entry point.
   int jme_centiseconds_difference(
     int p1,
     int p2,
@@ -165,6 +172,7 @@ class JmeBindings {
   late final _jme_centiseconds_difference =
       _jme_centiseconds_differencePtr.asFunction<int Function(int, int)>();
 
+  /// Calls the native `jme_centiseconds_difference_signed` entry point.
   int jme_centiseconds_difference_signed(
     int p1,
     int p2,
@@ -182,6 +190,7 @@ class JmeBindings {
       _jme_centiseconds_difference_signedPtr
           .asFunction<int Function(int, int)>();
 
+  /// Calls the native `jme_centiseconds_normalize` entry point.
   int jme_centiseconds_normalize(
     int p,
   ) {
@@ -196,6 +205,7 @@ class JmeBindings {
   late final _jme_centiseconds_normalize =
       _jme_centiseconds_normalizePtr.asFunction<int Function(int)>();
 
+  /// Calls the native `jme_centiseconds_round_second` entry point.
   int jme_centiseconds_round_second(
     int x,
   ) {
@@ -218,6 +228,7 @@ class JmeBindings {
       _lookup<ffi.NativeFunction<ffi.Void Function()>>('jme_close');
   late final _jme_close = _jme_closePtr.asFunction<void Function()>();
 
+  /// Calls the native `jme_date_is_valid` entry point.
   int jme_date_is_valid(
     int year,
     int month,
@@ -239,6 +250,7 @@ class JmeBindings {
   late final _jme_date_is_valid =
       _jme_date_is_validPtr.asFunction<int Function(int, int, int, int)>();
 
+  /// Calls the native `jme_day_of_week` entry point.
   int jme_day_of_week(
     double jd,
   ) {
@@ -253,6 +265,7 @@ class JmeBindings {
   late final _jme_day_of_week =
       _jme_day_of_weekPtr.asFunction<int Function(double)>();
 
+  /// Calls the native `jme_day_of_year` entry point.
   int jme_day_of_year(
     int year,
     int month,
@@ -274,6 +287,7 @@ class JmeBindings {
   late final _jme_day_of_year =
       _jme_day_of_yearPtr.asFunction<int Function(int, int, int, int)>();
 
+  /// Calls the native `jme_days_in_month` entry point.
   int jme_days_in_month(
     int year,
     int month,
@@ -292,6 +306,7 @@ class JmeBindings {
   late final _jme_days_in_month =
       _jme_days_in_monthPtr.asFunction<int Function(int, int, int)>();
 
+  /// Calls the native `jme_decimal_hour` entry point.
   double jme_decimal_hour(
     int hour,
     int minute,
@@ -311,6 +326,7 @@ class JmeBindings {
   late final _jme_decimal_hour =
       _jme_decimal_hourPtr.asFunction<double Function(int, int, double)>();
 
+  /// Calls the native `jme_degree_midpoint` entry point.
   double jme_degree_midpoint(
     double x1,
     double x0,
@@ -327,6 +343,7 @@ class JmeBindings {
   late final _jme_degree_midpoint =
       _jme_degree_midpointPtr.asFunction<double Function(double, double)>();
 
+  /// Calls the native `jme_degree_normalize` entry point.
   double jme_degree_normalize(
     double x,
   ) {
@@ -341,6 +358,7 @@ class JmeBindings {
   late final _jme_degree_normalize =
       _jme_degree_normalizePtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_degrees_difference` entry point.
   double jme_degrees_difference(
     double p1,
     double p2,
@@ -357,6 +375,7 @@ class JmeBindings {
   late final _jme_degrees_difference =
       _jme_degrees_differencePtr.asFunction<double Function(double, double)>();
 
+  /// Calls the native `jme_degrees_difference_signed` entry point.
   double jme_degrees_difference_signed(
     double p1,
     double p2,
@@ -373,6 +392,7 @@ class JmeBindings {
   late final _jme_degrees_difference_signed = _jme_degrees_difference_signedPtr
       .asFunction<double Function(double, double)>();
 
+  /// Calls the native `jme_degrees_to_hours` entry point.
   double jme_degrees_to_hours(
     double degrees,
   ) {
@@ -387,6 +407,7 @@ class JmeBindings {
   late final _jme_degrees_to_hours =
       _jme_degrees_to_hoursPtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_degrees_to_radians` entry point.
   double jme_degrees_to_radians(
     double degrees,
   ) {
@@ -401,6 +422,7 @@ class JmeBindings {
   late final _jme_degrees_to_radians =
       _jme_degrees_to_radiansPtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_delta_t` entry point.
   double jme_delta_t(
     double jd_ut,
   ) {
@@ -415,6 +437,7 @@ class JmeBindings {
   late final _jme_delta_t =
       _jme_delta_tPtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_delta_t_ex` entry point.
   double jme_delta_t_ex(
     double jd_ut,
     int model,
@@ -434,6 +457,7 @@ class JmeBindings {
   late final _jme_delta_t_ex = _jme_delta_t_exPtr
       .asFunction<double Function(double, int, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_double_to_long` entry point.
   int jme_double_to_long(
     double x,
   ) {
@@ -448,6 +472,7 @@ class JmeBindings {
   late final _jme_double_to_long =
       _jme_double_to_longPtr.asFunction<int Function(double)>();
 
+  /// Calls the native `jme_ecliptic_to_equatorial` entry point.
   void jme_ecliptic_to_equatorial(
     double lon,
     double lat,
@@ -477,6 +502,7 @@ class JmeBindings {
           void Function(double, double, double, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_ecliptic_to_equatorial_rectangular_state` entry point.
   int jme_ecliptic_to_equatorial_rectangular_state(
     ffi.Pointer<ffi.Double> ecliptic,
     double eps,
@@ -499,6 +525,7 @@ class JmeBindings {
           int Function(
               ffi.Pointer<ffi.Double>, double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_elp2000_moon_state` entry point.
   int jme_elp2000_moon_state(
     double jd_et,
     ffi.Pointer<ffi.Double> results,
@@ -516,6 +543,7 @@ class JmeBindings {
   late final _jme_elp2000_moon_state = _jme_elp2000_moon_statePtr
       .asFunction<int Function(double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_equatorial_to_ecliptic` entry point.
   void jme_equatorial_to_ecliptic(
     double ra,
     double dec,
@@ -545,6 +573,7 @@ class JmeBindings {
           void Function(double, double, double, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_equatorial_to_ecliptic_rectangular_state` entry point.
   int jme_equatorial_to_ecliptic_rectangular_state(
     ffi.Pointer<ffi.Double> equatorial,
     double eps,
@@ -567,6 +596,7 @@ class JmeBindings {
           int Function(
               ffi.Pointer<ffi.Double>, double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_equatorial_to_horizontal` entry point.
   void jme_equatorial_to_horizontal(
     double hour_angle,
     double dec,
@@ -596,6 +626,7 @@ class JmeBindings {
           void Function(double, double, double, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_fixstar` entry point.
   int jme_fixstar(
     ffi.Pointer<ffi.Char> star,
     double jd_et,
@@ -620,6 +651,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Char>, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_fixstar_mag` entry point.
   int jme_fixstar_mag(
     ffi.Pointer<ffi.Char> star,
     ffi.Pointer<ffi.Double> mag,
@@ -640,6 +672,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_fixstar_ut` entry point.
   int jme_fixstar_ut(
     ffi.Pointer<ffi.Char> star,
     double jd_ut,
@@ -668,6 +701,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Char>, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_fixstar2` entry point.
   int jme_fixstar2(
     ffi.Pointer<ffi.Char> star,
     double jd_et,
@@ -692,6 +726,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Char>, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_fixstar2_mag` entry point.
   int jme_fixstar2_mag(
     ffi.Pointer<ffi.Char> star,
     ffi.Pointer<ffi.Double> mag,
@@ -712,6 +747,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_fixstar2_ut` entry point.
   int jme_fixstar2_ut(
     ffi.Pointer<ffi.Char> star,
     double jd_ut,
@@ -740,6 +776,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Char>, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_gauquelin_sector` entry point.
   int jme_gauquelin_sector(
     double jd_ut,
     int body,
@@ -792,6 +829,7 @@ class JmeBindings {
           ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_get_astro_models` entry point.
   int jme_get_astro_models(
     ffi.Pointer<ffi.Char> models,
     int flags,
@@ -808,6 +846,7 @@ class JmeBindings {
   late final _jme_get_astro_models = _jme_get_astro_modelsPtr
       .asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
+  /// Calls the native `jme_get_ayanamsa` entry point.
   double jme_get_ayanamsa(
     double jd_et,
   ) {
@@ -822,6 +861,7 @@ class JmeBindings {
   late final _jme_get_ayanamsa =
       _jme_get_ayanamsaPtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_get_ayanamsa_ex` entry point.
   int jme_get_ayanamsa_ex(
     double jd_et,
     int model,
@@ -844,6 +884,7 @@ class JmeBindings {
       int Function(
           double, int, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_get_ayanamsa_ex_ut` entry point.
   int jme_get_ayanamsa_ex_ut(
     double jd_ut,
     int model,
@@ -866,6 +907,7 @@ class JmeBindings {
       int Function(
           double, int, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_get_ayanamsa_ut` entry point.
   double jme_get_ayanamsa_ut(
     double jd_ut,
   ) {
@@ -880,6 +922,7 @@ class JmeBindings {
   late final _jme_get_ayanamsa_ut =
       _jme_get_ayanamsa_utPtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_get_nutation` entry point.
   int jme_get_nutation(
     double jd_et,
     int model,
@@ -908,6 +951,7 @@ class JmeBindings {
       int Function(double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_get_nutation_matrix` entry point.
   void jme_get_nutation_matrix(
     double dpsi_rad,
     double deps_rad,
@@ -929,6 +973,7 @@ class JmeBindings {
   late final _jme_get_nutation_matrix = _jme_get_nutation_matrixPtr.asFunction<
       void Function(double, double, double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_get_obliquity` entry point.
   int jme_get_obliquity(
     double jd_et,
     int model,
@@ -951,6 +996,7 @@ class JmeBindings {
       int Function(
           double, int, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_get_orbital_elements` entry point.
   int jme_get_orbital_elements(
     double jd_et,
     int body,
@@ -980,6 +1026,7 @@ class JmeBindings {
           int Function(double, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_get_precession_matrix` entry point.
   int jme_get_precession_matrix(
     double jd_start,
     double jd_end,
@@ -1001,6 +1048,7 @@ class JmeBindings {
   late final _jme_get_precession_matrix = _jme_get_precession_matrixPtr
       .asFunction<int Function(double, double, int, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_get_sidereal_mode` entry point.
   void jme_get_sidereal_mode(
     ffi.Pointer<ffi.Int> sidereal_mode,
     ffi.Pointer<ffi.Double> t0,
@@ -1030,6 +1078,7 @@ class JmeBindings {
   late final _jme_get_tid_acc =
       _jme_get_tid_accPtr.asFunction<double Function()>();
 
+  /// Calls the native `jme_get_topo_pos` entry point.
   int jme_get_topo_pos(
     double jd_et,
     ffi.Pointer<ffi.Double> pos_au,
@@ -1049,6 +1098,7 @@ class JmeBindings {
   late final _jme_get_topo_pos = _jme_get_topo_posPtr.asFunction<
       int Function(double, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_heliacal_angle` entry point.
   double jme_heliacal_angle(
     double jd_ut,
     ffi.Pointer<ffi.Double> geopos,
@@ -1074,6 +1124,7 @@ class JmeBindings {
       double Function(double, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_heliacal_pheno_ut` entry point.
   int jme_heliacal_pheno_ut(
     double jd_ut,
     ffi.Pointer<ffi.Double> geopos,
@@ -1099,6 +1150,7 @@ class JmeBindings {
       int Function(double, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_heliacal_ut` entry point.
   int jme_heliacal_ut(
     double jd_ut,
     ffi.Pointer<ffi.Double> geopos,
@@ -1124,6 +1176,7 @@ class JmeBindings {
       int Function(double, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_helio_cross` entry point.
   int jme_helio_cross(
     int body,
     double x2cross,
@@ -1155,6 +1208,7 @@ class JmeBindings {
       int Function(int, double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_helio_cross_ut` entry point.
   int jme_helio_cross_ut(
     int body,
     double x2cross,
@@ -1186,6 +1240,7 @@ class JmeBindings {
       int Function(int, double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_horizontal_to_equatorial` entry point.
   void jme_horizontal_to_equatorial(
     double azimuth,
     double altitude,
@@ -1215,6 +1270,7 @@ class JmeBindings {
           void Function(double, double, double, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_hours_normalize` entry point.
   double jme_hours_normalize(
     double hours,
   ) {
@@ -1229,6 +1285,7 @@ class JmeBindings {
   late final _jme_hours_normalize =
       _jme_hours_normalizePtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_hours_to_degrees` entry point.
   double jme_hours_to_degrees(
     double hours,
   ) {
@@ -1243,6 +1300,7 @@ class JmeBindings {
   late final _jme_hours_to_degrees =
       _jme_hours_to_degreesPtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_house_pos` entry point.
   double jme_house_pos(
     double armc,
     double geo_lat,
@@ -1274,6 +1332,7 @@ class JmeBindings {
       double Function(double, double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_houses` entry point.
   int jme_houses(
     double jd_ut,
     double geo_lat,
@@ -1300,6 +1359,7 @@ class JmeBindings {
       int Function(double, double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_houses_armc` entry point.
   int jme_houses_armc(
     double armc,
     double geo_lat,
@@ -1331,6 +1391,7 @@ class JmeBindings {
       int Function(double, double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_houses_armc_ex2` entry point.
   int jme_houses_armc_ex2(
     double armc,
     double geo_lat,
@@ -1375,6 +1436,7 @@ class JmeBindings {
           ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_houses_ex` entry point.
   int jme_houses_ex(
     double jd_ut,
     int flags,
@@ -1409,6 +1471,7 @@ class JmeBindings {
       int Function(double, int, double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_houses_ex2` entry point.
   int jme_houses_ex2(
     double jd_ut,
     int flags,
@@ -1457,6 +1520,7 @@ class JmeBindings {
           ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_jd_add_seconds` entry point.
   double jme_jd_add_seconds(
     double jd,
     double seconds,
@@ -1473,6 +1537,7 @@ class JmeBindings {
   late final _jme_jd_add_seconds =
       _jme_jd_add_secondsPtr.asFunction<double Function(double, double)>();
 
+  /// Calls the native `jme_jd_difference_seconds` entry point.
   double jme_jd_difference_seconds(
     double jd_end,
     double jd_start,
@@ -1489,6 +1554,7 @@ class JmeBindings {
   late final _jme_jd_difference_seconds = _jme_jd_difference_secondsPtr
       .asFunction<double Function(double, double)>();
 
+  /// Calls the native `jme_jd_to_utc` entry point.
   void jme_jd_to_utc(
     double jd,
     int calendar,
@@ -1533,6 +1599,7 @@ class JmeBindings {
           ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_jpl_body_state` entry point.
   int jme_jpl_body_state(
     double jd_time,
     int target_body,
@@ -1564,6 +1631,7 @@ class JmeBindings {
       int Function(double, int, int, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_naif` entry point.
   int jme_jpl_body_state_naif(
     double jd_time,
     int target_naif,
@@ -1595,6 +1663,7 @@ class JmeBindings {
       int Function(double, int, int, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_native` entry point.
   int jme_jpl_body_state_native(
     double jd_time,
     int target_body,
@@ -1624,6 +1693,7 @@ class JmeBindings {
           int Function(double, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_native_naif` entry point.
   int jme_jpl_body_state_native_naif(
     double jd_time,
     int target_naif,
@@ -1653,6 +1723,7 @@ class JmeBindings {
           int Function(double, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_native_split` entry point.
   int jme_jpl_body_state_native_split(
     double jd0,
     double time_offset,
@@ -1685,6 +1756,7 @@ class JmeBindings {
           int Function(double, double, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_native_split_naif` entry point.
   int jme_jpl_body_state_native_split_naif(
     double jd0,
     double time_offset,
@@ -1717,6 +1789,7 @@ class JmeBindings {
           int Function(double, double, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_order` entry point.
   int jme_jpl_body_state_order(
     double jd0,
     double time_offset,
@@ -1755,6 +1828,7 @@ class JmeBindings {
           int Function(double, double, int, int, int, int,
               ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_order_naif` entry point.
   int jme_jpl_body_state_order_naif(
     double jd0,
     double time_offset,
@@ -1793,6 +1867,7 @@ class JmeBindings {
           int Function(double, double, int, int, int, int,
               ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_split` entry point.
   int jme_jpl_body_state_split(
     double jd0,
     double time_offset,
@@ -1828,6 +1903,7 @@ class JmeBindings {
           int Function(double, double, int, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_split_naif` entry point.
   int jme_jpl_body_state_split_naif(
     double jd0,
     double time_offset,
@@ -1863,6 +1939,7 @@ class JmeBindings {
           int Function(double, double, int, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_utc` entry point.
   int jme_jpl_body_state_utc(
     int year,
     int month,
@@ -1912,6 +1989,7 @@ class JmeBindings {
       int Function(int, int, int, int, int, double, int, int, int, int,
           ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_body_state_utc_naif` entry point.
   int jme_jpl_body_state_utc_naif(
     int year,
     int month,
@@ -1970,6 +2048,7 @@ class JmeBindings {
       _lookup<ffi.NativeFunction<ffi.Void Function()>>('jme_jpl_close');
   late final _jme_jpl_close = _jme_jpl_closePtr.asFunction<void Function()>();
 
+  /// Calls the native `jme_jpl_constant` entry point.
   int jme_jpl_constant(
     ffi.Pointer<ffi.Char> name,
     ffi.Pointer<ffi.Double> value,
@@ -1990,6 +2069,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_constant_count` entry point.
   int jme_jpl_constant_count(
     ffi.Pointer<ffi.Char> error,
   ) {
@@ -2004,6 +2084,7 @@ class JmeBindings {
   late final _jme_jpl_constant_count = _jme_jpl_constant_countPtr
       .asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_constant_index` entry point.
   int jme_jpl_constant_index(
     int index,
     ffi.Pointer<ffi.Char> name,
@@ -2032,6 +2113,7 @@ class JmeBindings {
       int Function(int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_constant_string` entry point.
   int jme_jpl_constant_string(
     ffi.Pointer<ffi.Char> name,
     ffi.Pointer<ffi.Char> value,
@@ -2057,6 +2139,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_constant_string_vector` entry point.
   int jme_jpl_constant_string_vector(
     ffi.Pointer<ffi.Char> name,
     ffi.Pointer<ffi.Char> values,
@@ -2086,6 +2169,7 @@ class JmeBindings {
           int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_constant_vector` entry point.
   int jme_jpl_constant_vector(
     ffi.Pointer<ffi.Char> name,
     ffi.Pointer<ffi.Double> values,
@@ -2108,6 +2192,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Double>, int,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_coverage` entry point.
   int jme_jpl_coverage(
     ffi.Pointer<ffi.Double> first_time,
     ffi.Pointer<ffi.Double> last_time,
@@ -2133,6 +2218,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_current_file_data` entry point.
   int jme_jpl_current_file_data(
     ffi.Pointer<ffi.Char> path,
     int path_size,
@@ -2170,6 +2256,7 @@ class JmeBindings {
               ffi.Pointer<ffi.Int>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_ecliptic_state` entry point.
   int jme_jpl_ecliptic_state(
     double jd_time,
     int target_body,
@@ -2201,6 +2288,7 @@ class JmeBindings {
       int Function(double, int, int, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_ecliptic_state_naif` entry point.
   int jme_jpl_ecliptic_state_naif(
     double jd_time,
     int target_naif,
@@ -2233,6 +2321,7 @@ class JmeBindings {
           int Function(double, int, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_ecliptic_state_split` entry point.
   int jme_jpl_ecliptic_state_split(
     double jd0,
     double time_offset,
@@ -2268,6 +2357,7 @@ class JmeBindings {
           int Function(double, double, int, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_ecliptic_state_split_naif` entry point.
   int jme_jpl_ecliptic_state_split_naif(
     double jd0,
     double time_offset,
@@ -2303,6 +2393,7 @@ class JmeBindings {
           int Function(double, double, int, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_ecliptic_state_utc` entry point.
   int jme_jpl_ecliptic_state_utc(
     int year,
     int month,
@@ -2353,6 +2444,7 @@ class JmeBindings {
           int Function(int, int, int, int, int, double, int, int, int, int,
               ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_ecliptic_state_utc_naif` entry point.
   int jme_jpl_ecliptic_state_utc_naif(
     int year,
     int month,
@@ -2403,6 +2495,7 @@ class JmeBindings {
           int Function(int, int, int, int, int, double, int, int, int, int,
               ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_file_version` entry point.
   int jme_jpl_file_version(
     ffi.Pointer<ffi.Char> buffer,
     int buffer_size,
@@ -2422,6 +2515,7 @@ class JmeBindings {
   late final _jme_jpl_file_version = _jme_jpl_file_versionPtr.asFunction<
       int Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_id_by_name` entry point.
   int jme_jpl_id_by_name(
     ffi.Pointer<ffi.Char> name,
     ffi.Pointer<ffi.Int> id,
@@ -2460,6 +2554,7 @@ class JmeBindings {
   late final _jme_jpl_is_open =
       _jme_jpl_is_openPtr.asFunction<int Function()>();
 
+  /// Calls the native `jme_jpl_is_thread_safe` entry point.
   int jme_jpl_is_thread_safe(
     ffi.Pointer<ffi.Char> error,
   ) {
@@ -2474,6 +2569,7 @@ class JmeBindings {
   late final _jme_jpl_is_thread_safe = _jme_jpl_is_thread_safePtr
       .asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_max_supported_order` entry point.
   int jme_jpl_max_supported_order(
     int segment_type,
   ) {
@@ -2488,6 +2584,7 @@ class JmeBindings {
   late final _jme_jpl_max_supported_order =
       _jme_jpl_max_supported_orderPtr.asFunction<int Function(int)>();
 
+  /// Calls the native `jme_jpl_name_by_id` entry point.
   int jme_jpl_name_by_id(
     int id,
     ffi.Pointer<ffi.Char> name,
@@ -2509,6 +2606,7 @@ class JmeBindings {
   late final _jme_jpl_name_by_id = _jme_jpl_name_by_idPtr.asFunction<
       int Function(int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_open` entry point.
   int jme_jpl_open(
     ffi.Pointer<ffi.Char> path,
     ffi.Pointer<ffi.Char> error,
@@ -2526,6 +2624,7 @@ class JmeBindings {
   late final _jme_jpl_open = _jme_jpl_openPtr
       .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_open_array` entry point.
   int jme_jpl_open_array(
     int path_count,
     ffi.Pointer<ffi.Pointer<ffi.Char>> paths,
@@ -2546,6 +2645,7 @@ class JmeBindings {
       int Function(
           int, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_orientation_record_count` entry point.
   int jme_jpl_orientation_record_count(
     ffi.Pointer<ffi.Char> error,
   ) {
@@ -2561,6 +2661,7 @@ class JmeBindings {
       _jme_jpl_orientation_record_countPtr
           .asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_orientation_record_index` entry point.
   int jme_jpl_orientation_record_index(
     int index,
     ffi.Pointer<ffi.Int> target,
@@ -2602,6 +2703,7 @@ class JmeBindings {
               ffi.Pointer<ffi.Int>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_orientation_state_naif` entry point.
   int jme_jpl_orientation_state_naif(
     double jd_time,
     int target_naif,
@@ -2631,6 +2733,7 @@ class JmeBindings {
           int Function(double, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_orientation_state_order_naif` entry point.
   int jme_jpl_orientation_state_order_naif(
     double jd0,
     double time_offset,
@@ -2666,6 +2769,7 @@ class JmeBindings {
           int Function(double, double, int, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_orientation_state_split_naif` entry point.
   int jme_jpl_orientation_state_split_naif(
     double jd0,
     double time_offset,
@@ -2698,6 +2802,7 @@ class JmeBindings {
           int Function(double, double, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_orientation_state_utc_naif` entry point.
   int jme_jpl_orientation_state_utc_naif(
     int year,
     int month,
@@ -2745,6 +2850,7 @@ class JmeBindings {
           int Function(int, int, int, int, int, double, int, int, int,
               ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_position_record_count` entry point.
   int jme_jpl_position_record_count(
     ffi.Pointer<ffi.Char> error,
   ) {
@@ -2759,6 +2865,7 @@ class JmeBindings {
   late final _jme_jpl_position_record_count = _jme_jpl_position_record_countPtr
       .asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_position_record_index` entry point.
   int jme_jpl_position_record_index(
     int index,
     ffi.Pointer<ffi.Int> target,
@@ -2804,6 +2911,7 @@ class JmeBindings {
               ffi.Pointer<ffi.Int>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_prefetch` entry point.
   int jme_jpl_prefetch(
     ffi.Pointer<ffi.Char> error,
   ) {
@@ -2818,6 +2926,7 @@ class JmeBindings {
   late final _jme_jpl_prefetch =
       _jme_jpl_prefetchPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_rotational_angular_momentum_state_naif` entry point.
   int jme_jpl_rotational_angular_momentum_state_naif(
     double jd_time,
     int target_naif,
@@ -2844,6 +2953,7 @@ class JmeBindings {
           int Function(double, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_rotational_angular_momentum_state_order_naif` entry point.
   int jme_jpl_rotational_angular_momentum_state_order_naif(
     double jd0,
     double time_offset,
@@ -2874,6 +2984,7 @@ class JmeBindings {
           int Function(double, double, int, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_rotational_angular_momentum_state_split_naif` entry point.
   int jme_jpl_rotational_angular_momentum_state_split_naif(
     double jd0,
     double time_offset,
@@ -2902,6 +3013,7 @@ class JmeBindings {
           int Function(double, double, int, int, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_jpl_rotational_angular_momentum_state_utc_naif` entry point.
   int jme_jpl_rotational_angular_momentum_state_utc_naif(
     int year,
     int month,
@@ -2959,6 +3071,7 @@ class JmeBindings {
   late final _jme_jpl_timescale =
       _jme_jpl_timescalePtr.asFunction<int Function()>();
 
+  /// Calls the native `jme_julian_day` entry point.
   double jme_julian_day(
     int year,
     int month,
@@ -2982,6 +3095,7 @@ class JmeBindings {
   late final _jme_julian_day = _jme_julian_dayPtr
       .asFunction<double Function(int, int, int, double, int)>();
 
+  /// Calls the native `jme_lat_to_lmt` entry point.
   int jme_lat_to_lmt(
     double jd_lat,
     double geo_lon,
@@ -3004,6 +3118,7 @@ class JmeBindings {
       int Function(
           double, double, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_lmt_to_lat` entry point.
   int jme_lmt_to_lat(
     double jd_lmt,
     double geo_lon,
@@ -3026,6 +3141,7 @@ class JmeBindings {
       int Function(
           double, double, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_lun_eclipse_how` entry point.
   int jme_lun_eclipse_how(
     double jd_ut,
     int flags,
@@ -3054,6 +3170,7 @@ class JmeBindings {
       int Function(double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_lun_eclipse_when` entry point.
   int jme_lun_eclipse_when(
     double jd_start,
     int flags,
@@ -3085,6 +3202,7 @@ class JmeBindings {
       int Function(double, int, int, ffi.Pointer<ffi.Double>, int,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_lun_eclipse_when_loc` entry point.
   int jme_lun_eclipse_when_loc(
     double jd_start,
     int flags,
@@ -3126,6 +3244,7 @@ class JmeBindings {
               int,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_lun_occult_when_glob` entry point.
   int jme_lun_occult_when_glob(
     double jd_start,
     int body,
@@ -3164,6 +3283,7 @@ class JmeBindings {
           int Function(double, int, ffi.Pointer<ffi.Char>, int, int,
               ffi.Pointer<ffi.Double>, int, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_lun_occult_when_loc` entry point.
   int jme_lun_occult_when_loc(
     double jd_start,
     int body,
@@ -3212,6 +3332,7 @@ class JmeBindings {
           int,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_lun_occult_where` entry point.
   int jme_lun_occult_where(
     double jd_ut,
     int body,
@@ -3252,6 +3373,7 @@ class JmeBindings {
           ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_matrix_identity` entry point.
   void jme_matrix_identity(
     ffi.Pointer<ffi.Double> m,
   ) {
@@ -3266,6 +3388,7 @@ class JmeBindings {
   late final _jme_matrix_identity = _jme_matrix_identityPtr
       .asFunction<void Function(ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_matrix_multiply` entry point.
   void jme_matrix_multiply(
     ffi.Pointer<ffi.Double> a,
     ffi.Pointer<ffi.Double> b,
@@ -3286,6 +3409,7 @@ class JmeBindings {
       void Function(ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_matrix_rotate_x` entry point.
   void jme_matrix_rotate_x(
     double angle_rad,
     ffi.Pointer<ffi.Double> m,
@@ -3303,6 +3427,7 @@ class JmeBindings {
   late final _jme_matrix_rotate_x = _jme_matrix_rotate_xPtr
       .asFunction<void Function(double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_matrix_rotate_y` entry point.
   void jme_matrix_rotate_y(
     double angle_rad,
     ffi.Pointer<ffi.Double> m,
@@ -3320,6 +3445,7 @@ class JmeBindings {
   late final _jme_matrix_rotate_y = _jme_matrix_rotate_yPtr
       .asFunction<void Function(double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_matrix_rotate_z` entry point.
   void jme_matrix_rotate_z(
     double angle_rad,
     ffi.Pointer<ffi.Double> m,
@@ -3337,6 +3463,7 @@ class JmeBindings {
   late final _jme_matrix_rotate_z = _jme_matrix_rotate_zPtr
       .asFunction<void Function(double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_matrix_transform_state` entry point.
   void jme_matrix_transform_state(
     ffi.Pointer<ffi.Double> m,
     ffi.Pointer<ffi.Double> input,
@@ -3358,6 +3485,7 @@ class JmeBindings {
           void Function(ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_meeus_moon_state` entry point.
   int jme_meeus_moon_state(
     double jd_et,
     ffi.Pointer<ffi.Double> results,
@@ -3375,6 +3503,7 @@ class JmeBindings {
   late final _jme_meeus_moon_state = _jme_meeus_moon_statePtr
       .asFunction<int Function(double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_meeus_planet_state` entry point.
   int jme_meeus_planet_state(
     double jd_et,
     int body,
@@ -3394,6 +3523,7 @@ class JmeBindings {
   late final _jme_meeus_planet_state = _jme_meeus_planet_statePtr
       .asFunction<int Function(double, int, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_meeus_sun_state` entry point.
   int jme_meeus_sun_state(
     double jd_et,
     ffi.Pointer<ffi.Double> results,
@@ -3411,6 +3541,7 @@ class JmeBindings {
   late final _jme_meeus_sun_state = _jme_meeus_sun_statePtr
       .asFunction<int Function(double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_mooncross` entry point.
   int jme_mooncross(
     double x2cross,
     double jd_ut,
@@ -3439,6 +3570,7 @@ class JmeBindings {
       int Function(double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_mooncross_node` entry point.
   int jme_mooncross_node(
     double jd_ut,
     int flags,
@@ -3461,6 +3593,7 @@ class JmeBindings {
       int Function(
           double, int, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_mooncross_node_ut` entry point.
   int jme_mooncross_node_ut(
     double jd_ut,
     int flags,
@@ -3483,6 +3616,7 @@ class JmeBindings {
       int Function(
           double, int, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_mooncross_ut` entry point.
   int jme_mooncross_ut(
     double x2cross,
     double jd_ut,
@@ -3511,6 +3645,7 @@ class JmeBindings {
       int Function(double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_moshier_planet_state` entry point.
   int jme_moshier_planet_state(
     double jd_et,
     int body,
@@ -3530,6 +3665,7 @@ class JmeBindings {
   late final _jme_moshier_planet_state = _jme_moshier_planet_statePtr
       .asFunction<int Function(double, int, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_nod_aps` entry point.
   int jme_nod_aps(
     double jd_et,
     int body,
@@ -3556,6 +3692,7 @@ class JmeBindings {
       int Function(double, int, int, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_nod_aps_ut` entry point.
   int jme_nod_aps_ut(
     double jd_ut,
     int body,
@@ -3587,6 +3724,7 @@ class JmeBindings {
       int Function(double, int, int, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_orbit_max_min_true_distance` entry point.
   int jme_orbit_max_min_true_distance(
     double jd_et,
     int body,
@@ -3632,6 +3770,7 @@ class JmeBindings {
               ffi.Pointer<ffi.Double>,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_pheno` entry point.
   int jme_pheno(
     double jd_et,
     int body,
@@ -3656,6 +3795,7 @@ class JmeBindings {
       int Function(
           double, int, int, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_pheno_ut` entry point.
   int jme_pheno_ut(
     double jd_ut,
     int body,
@@ -3680,6 +3820,7 @@ class JmeBindings {
       int Function(
           double, int, int, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_radian_midpoint` entry point.
   double jme_radian_midpoint(
     double x1,
     double x0,
@@ -3696,6 +3837,7 @@ class JmeBindings {
   late final _jme_radian_midpoint =
       _jme_radian_midpointPtr.asFunction<double Function(double, double)>();
 
+  /// Calls the native `jme_radian_normalize` entry point.
   double jme_radian_normalize(
     double x,
   ) {
@@ -3710,6 +3852,7 @@ class JmeBindings {
   late final _jme_radian_normalize =
       _jme_radian_normalizePtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_radians_difference_signed` entry point.
   double jme_radians_difference_signed(
     double p1,
     double p2,
@@ -3726,6 +3869,7 @@ class JmeBindings {
   late final _jme_radians_difference_signed = _jme_radians_difference_signedPtr
       .asFunction<double Function(double, double)>();
 
+  /// Calls the native `jme_radians_to_degrees` entry point.
   double jme_radians_to_degrees(
     double radians,
   ) {
@@ -3740,6 +3884,7 @@ class JmeBindings {
   late final _jme_radians_to_degrees =
       _jme_radians_to_degreesPtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_rectangular_to_spherical_state` entry point.
   int jme_rectangular_to_spherical_state(
     ffi.Pointer<ffi.Double> rectangular,
     ffi.Pointer<ffi.Double> spherical,
@@ -3758,6 +3903,7 @@ class JmeBindings {
       _jme_rectangular_to_spherical_statePtr.asFunction<
           int Function(ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_refract` entry point.
   double jme_refract(
     double altitude,
     double pressure,
@@ -3779,6 +3925,7 @@ class JmeBindings {
   late final _jme_refract = _jme_refractPtr
       .asFunction<double Function(double, double, double, int)>();
 
+  /// Calls the native `jme_refract_extended` entry point.
   double jme_refract_extended(
     double altitude,
     double geoalt,
@@ -3813,6 +3960,7 @@ class JmeBindings {
       double Function(double, double, double, double, double, int,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_reverse_julian_day` entry point.
   void jme_reverse_julian_day(
     double jd,
     int calendar,
@@ -3844,6 +3992,7 @@ class JmeBindings {
       void Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_rise_trans` entry point.
   int jme_rise_trans(
     double jd_ut,
     int body,
@@ -3896,6 +4045,7 @@ class JmeBindings {
           ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_rise_trans_true_hor` entry point.
   int jme_rise_trans_true_hor(
     double jd_ut,
     int body,
@@ -3952,6 +4102,7 @@ class JmeBindings {
           ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_set_astro_models` entry point.
   void jme_set_astro_models(
     ffi.Pointer<ffi.Char> models,
     int flags,
@@ -3969,6 +4120,7 @@ class JmeBindings {
   late final _jme_set_astro_models = _jme_set_astro_modelsPtr
       .asFunction<void Function(ffi.Pointer<ffi.Char>, int)>();
 
+  /// Calls the native `jme_set_delta_t_userdef` entry point.
   void jme_set_delta_t_userdef(
     double dt,
   ) {
@@ -3983,6 +4135,7 @@ class JmeBindings {
   late final _jme_set_delta_t_userdef =
       _jme_set_delta_t_userdefPtr.asFunction<void Function(double)>();
 
+  /// Calls the native `jme_set_ephemeris_path` entry point.
   void jme_set_ephemeris_path(
     ffi.Pointer<ffi.Char> path,
   ) {
@@ -3997,6 +4150,7 @@ class JmeBindings {
   late final _jme_set_ephemeris_path = _jme_set_ephemeris_pathPtr
       .asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_set_interpolate_nut` entry point.
   void jme_set_interpolate_nut(
     int on1,
   ) {
@@ -4011,6 +4165,7 @@ class JmeBindings {
   late final _jme_set_interpolate_nut =
       _jme_set_interpolate_nutPtr.asFunction<void Function(int)>();
 
+  /// Calls the native `jme_set_jpl_file` entry point.
   void jme_set_jpl_file(
     ffi.Pointer<ffi.Char> path,
   ) {
@@ -4025,6 +4180,7 @@ class JmeBindings {
   late final _jme_set_jpl_file =
       _jme_set_jpl_filePtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_set_lapse_rate` entry point.
   void jme_set_lapse_rate(
     double lapse_rate,
   ) {
@@ -4039,6 +4195,7 @@ class JmeBindings {
   late final _jme_set_lapse_rate =
       _jme_set_lapse_ratePtr.asFunction<void Function(double)>();
 
+  /// Calls the native `jme_set_sidereal_mode` entry point.
   void jme_set_sidereal_mode(
     int sidereal_mode,
     double t0,
@@ -4058,6 +4215,7 @@ class JmeBindings {
   late final _jme_set_sidereal_mode = _jme_set_sidereal_modePtr
       .asFunction<void Function(int, double, double)>();
 
+  /// Calls the native `jme_set_tid_acc` entry point.
   void jme_set_tid_acc(
     double t_acc,
   ) {
@@ -4072,6 +4230,7 @@ class JmeBindings {
   late final _jme_set_tid_acc =
       _jme_set_tid_accPtr.asFunction<void Function(double)>();
 
+  /// Calls the native `jme_set_topo` entry point.
   void jme_set_topo(
     double lon,
     double lat,
@@ -4091,6 +4250,7 @@ class JmeBindings {
   late final _jme_set_topo =
       _jme_set_topoPtr.asFunction<void Function(double, double, double)>();
 
+  /// Calls the native `jme_sidereal_time` entry point.
   double jme_sidereal_time(
     double jd_ut,
   ) {
@@ -4105,6 +4265,7 @@ class JmeBindings {
   late final _jme_sidereal_time =
       _jme_sidereal_timePtr.asFunction<double Function(double)>();
 
+  /// Calls the native `jme_sidereal_time0` entry point.
   double jme_sidereal_time0(
     double jd_ut,
     double eps,
@@ -4124,6 +4285,7 @@ class JmeBindings {
   late final _jme_sidereal_time0 = _jme_sidereal_time0Ptr
       .asFunction<double Function(double, double, double)>();
 
+  /// Calls the native `jme_sol_eclipse_how` entry point.
   int jme_sol_eclipse_how(
     double jd_ut,
     int flags,
@@ -4152,6 +4314,7 @@ class JmeBindings {
       int Function(double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_sol_eclipse_when_glob` entry point.
   int jme_sol_eclipse_when_glob(
     double jd_start,
     int flags,
@@ -4184,6 +4347,7 @@ class JmeBindings {
           int Function(double, int, int, ffi.Pointer<ffi.Double>, int,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_sol_eclipse_when_loc` entry point.
   int jme_sol_eclipse_when_loc(
     double jd_start,
     int flags,
@@ -4225,6 +4389,7 @@ class JmeBindings {
               int,
               ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_sol_eclipse_where` entry point.
   int jme_sol_eclipse_where(
     double jd_ut,
     int flags,
@@ -4253,6 +4418,7 @@ class JmeBindings {
       int Function(double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_solcross` entry point.
   int jme_solcross(
     double x2cross,
     double jd_ut,
@@ -4277,6 +4443,7 @@ class JmeBindings {
       int Function(double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_solcross_ut` entry point.
   int jme_solcross_ut(
     double x2cross,
     double jd_ut,
@@ -4305,6 +4472,7 @@ class JmeBindings {
       int Function(double, double, int, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_spherical_angular_separation` entry point.
   double jme_spherical_angular_separation(
     double lon1,
     double lat1,
@@ -4327,6 +4495,7 @@ class JmeBindings {
       _jme_spherical_angular_separationPtr
           .asFunction<double Function(double, double, double, double)>();
 
+  /// Calls the native `jme_spherical_position_angle` entry point.
   double jme_spherical_position_angle(
     double lon1,
     double lat1,
@@ -4348,6 +4517,7 @@ class JmeBindings {
   late final _jme_spherical_position_angle = _jme_spherical_position_anglePtr
       .asFunction<double Function(double, double, double, double)>();
 
+  /// Calls the native `jme_spherical_to_rectangular_state` entry point.
   int jme_spherical_to_rectangular_state(
     ffi.Pointer<ffi.Double> spherical,
     ffi.Pointer<ffi.Double> rectangular,
@@ -4366,6 +4536,7 @@ class JmeBindings {
       _jme_spherical_to_rectangular_statePtr.asFunction<
           int Function(ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_split_degree` entry point.
   void jme_split_degree(
     double ddeg,
     int roundflag,
@@ -4406,6 +4577,7 @@ class JmeBindings {
           ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Int>)>();
 
+  /// Calls the native `jme_state_add` entry point.
   int jme_state_add(
     ffi.Pointer<ffi.Double> left,
     ffi.Pointer<ffi.Double> right,
@@ -4426,6 +4598,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_state_convert_units` entry point.
   int jme_state_convert_units(
     ffi.Pointer<ffi.Double> input,
     int input_unit,
@@ -4448,6 +4621,7 @@ class JmeBindings {
       int Function(
           ffi.Pointer<ffi.Double>, int, int, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_state_distance` entry point.
   double jme_state_distance(
     ffi.Pointer<ffi.Double> state,
   ) {
@@ -4462,6 +4636,7 @@ class JmeBindings {
   late final _jme_state_distance = _jme_state_distancePtr
       .asFunction<double Function(ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_state_light_time_days` entry point.
   double jme_state_light_time_days(
     ffi.Pointer<ffi.Double> state,
     int unit,
@@ -4479,6 +4654,7 @@ class JmeBindings {
   late final _jme_state_light_time_days = _jme_state_light_time_daysPtr
       .asFunction<double Function(ffi.Pointer<ffi.Double>, int)>();
 
+  /// Calls the native `jme_state_position_velocity_dot` entry point.
   double jme_state_position_velocity_dot(
     ffi.Pointer<ffi.Double> state,
   ) {
@@ -4494,6 +4670,7 @@ class JmeBindings {
       _jme_state_position_velocity_dotPtr
           .asFunction<double Function(ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_state_scale` entry point.
   int jme_state_scale(
     ffi.Pointer<ffi.Double> input,
     double factor,
@@ -4513,6 +4690,7 @@ class JmeBindings {
   late final _jme_state_scale = _jme_state_scalePtr.asFunction<
       int Function(ffi.Pointer<ffi.Double>, double, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_state_speed` entry point.
   double jme_state_speed(
     ffi.Pointer<ffi.Double> state,
   ) {
@@ -4527,6 +4705,7 @@ class JmeBindings {
   late final _jme_state_speed = _jme_state_speedPtr
       .asFunction<double Function(ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_state_subtract` entry point.
   int jme_state_subtract(
     ffi.Pointer<ffi.Double> left,
     ffi.Pointer<ffi.Double> right,
@@ -4547,6 +4726,7 @@ class JmeBindings {
       int Function(ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_time_equ` entry point.
   int jme_time_equ(
     double jd_ut,
     ffi.Pointer<ffi.Double> e,
@@ -4566,6 +4746,7 @@ class JmeBindings {
   late final _jme_time_equ = _jme_time_equPtr.asFunction<
       int Function(double, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_topo_arcus_visionis` entry point.
   double jme_topo_arcus_visionis(
     double jd_ut,
     ffi.Pointer<ffi.Double> geopos,
@@ -4591,6 +4772,7 @@ class JmeBindings {
       double Function(double, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_utc_time_zone` entry point.
   void jme_utc_time_zone(
     int year,
     int month,
@@ -4655,6 +4837,7 @@ class JmeBindings {
           ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_utc_to_jd` entry point.
   int jme_utc_to_jd(
     int year,
     int month,
@@ -4685,6 +4868,7 @@ class JmeBindings {
       int Function(
           int, int, int, int, int, double, int, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_vis_limit_mag` entry point.
   int jme_vis_limit_mag(
     double jd_ut,
     ffi.Pointer<ffi.Double> geopos,
@@ -4710,6 +4894,7 @@ class JmeBindings {
       int Function(double, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Double>,
           ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_vsop87_planet_state` entry point.
   int jme_vsop87_planet_state(
     double jd_et,
     int body,
@@ -4729,6 +4914,7 @@ class JmeBindings {
   late final _jme_vsop87_planet_state = _jme_vsop87_planet_statePtr
       .asFunction<int Function(double, int, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_get_frame_bias_matrix` entry point.
   int jme_get_frame_bias_matrix(
     int model,
     ffi.Pointer<ffi.Double> m,
@@ -4746,6 +4932,7 @@ class JmeBindings {
   late final _jme_get_frame_bias_matrix = _jme_get_frame_bias_matrixPtr
       .asFunction<int Function(int, ffi.Pointer<ffi.Double>)>();
 
+  /// Calls the native `jme_body_name` entry point.
   ffi.Pointer<ffi.Char> jme_body_name(
     int body,
   ) {
@@ -4760,6 +4947,7 @@ class JmeBindings {
   late final _jme_body_name =
       _jme_body_namePtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
 
+  /// Calls the native `jme_centiseconds_to_degree_string` entry point.
   ffi.Pointer<ffi.Char> jme_centiseconds_to_degree_string(
     int cs,
     ffi.Pointer<ffi.Char> buffer,
@@ -4778,6 +4966,7 @@ class JmeBindings {
       _jme_centiseconds_to_degree_stringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_centiseconds_to_lonlat_string` entry point.
   ffi.Pointer<ffi.Char> jme_centiseconds_to_lonlat_string(
     int cs,
     ffi.Pointer<ffi.Char> buffer,
@@ -4796,6 +4985,7 @@ class JmeBindings {
       _jme_centiseconds_to_lonlat_stringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_centiseconds_to_time_string` entry point.
   ffi.Pointer<ffi.Char> jme_centiseconds_to_time_string(
     int cs,
     ffi.Pointer<ffi.Char> buffer,
@@ -4814,6 +5004,7 @@ class JmeBindings {
       _jme_centiseconds_to_time_stringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>)>();
 
+  /// Calls the native `jme_copy_body_name` entry point.
   ffi.Pointer<ffi.Char> jme_copy_body_name(
     int body,
     ffi.Pointer<ffi.Char> buffer,
@@ -4841,6 +5032,7 @@ class JmeBindings {
   late final _jme_ephemeris_path =
       _jme_ephemeris_pathPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 
+  /// Calls the native `jme_get_ayanamsa_name` entry point.
   ffi.Pointer<ffi.Char> jme_get_ayanamsa_name(
     int model,
   ) {
@@ -4855,6 +5047,7 @@ class JmeBindings {
   late final _jme_get_ayanamsa_name = _jme_get_ayanamsa_namePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(int)>();
 
+  /// Calls the native `jme_house_system_name` entry point.
   ffi.Pointer<ffi.Char> jme_house_system_name(
     int house_system,
   ) {
@@ -4869,6 +5062,7 @@ class JmeBindings {
   late final _jme_house_system_name = _jme_house_system_namePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(int)>();
 
+  /// Calls the native `jme_jpl_engine_version` entry point.
   ffi.Pointer<ffi.Char> jme_jpl_engine_version(
     ffi.Pointer<ffi.Char> buffer,
     int buffer_size,
@@ -4906,6 +5100,7 @@ class JmeBindings {
   late final _jme_library_path =
       _jme_library_pathPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 
+  /// Calls the native `jme_version` entry point.
   ffi.Pointer<ffi.Char> jme_version(
     ffi.Pointer<ffi.Char> buffer,
     int buffer_size,
@@ -4924,926 +5119,1388 @@ class JmeBindings {
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, int)>();
 }
 
+/// Native JME constant `JME_JME_H` exposed by the generated FFI bindings.
 const int JME_JME_H = 1;
 
+/// Native JME constant `JME_VERSION` exposed by the generated FFI bindings.
 const String JME_VERSION = '0.1.0';
 
+/// Native JME constant `JME_AU_KM` exposed by the generated FFI bindings.
 const double JME_AU_KM = 149597870.7;
 
+/// Native JME constant `JME_SPEED_OF_LIGHT_KM_PER_SEC` exposed by the generated FFI bindings.
 const double JME_SPEED_OF_LIGHT_KM_PER_SEC = 299792.458;
 
+/// Native JME constant `JME_SECONDS_PER_DAY` exposed by the generated FFI bindings.
 const double JME_SECONDS_PER_DAY = 86400.0;
 
+/// Native JME constant `JME_OK` exposed by the generated FFI bindings.
 const int JME_OK = 0;
 
+/// Native JME constant `JME_ERR` exposed by the generated FFI bindings.
 const int JME_ERR = -1;
 
+/// Native JME constant `JME_CALENDAR_JULIAN` exposed by the generated FFI bindings.
 const int JME_CALENDAR_JULIAN = 0;
 
+/// Native JME constant `JME_CALENDAR_GREGORIAN` exposed by the generated FFI bindings.
 const int JME_CALENDAR_GREGORIAN = 1;
 
+/// Native JME constant `JME_BODY_SUN` exposed by the generated FFI bindings.
 const int JME_BODY_SUN = 0;
 
+/// Native JME constant `JME_BODY_MOON` exposed by the generated FFI bindings.
 const int JME_BODY_MOON = 1;
 
+/// Native JME constant `JME_BODY_MERCURY` exposed by the generated FFI bindings.
 const int JME_BODY_MERCURY = 2;
 
+/// Native JME constant `JME_BODY_VENUS` exposed by the generated FFI bindings.
 const int JME_BODY_VENUS = 3;
 
+/// Native JME constant `JME_BODY_MARS` exposed by the generated FFI bindings.
 const int JME_BODY_MARS = 4;
 
+/// Native JME constant `JME_BODY_JUPITER` exposed by the generated FFI bindings.
 const int JME_BODY_JUPITER = 5;
 
+/// Native JME constant `JME_BODY_SATURN` exposed by the generated FFI bindings.
 const int JME_BODY_SATURN = 6;
 
+/// Native JME constant `JME_BODY_URANUS` exposed by the generated FFI bindings.
 const int JME_BODY_URANUS = 7;
 
+/// Native JME constant `JME_BODY_NEPTUNE` exposed by the generated FFI bindings.
 const int JME_BODY_NEPTUNE = 8;
 
+/// Native JME constant `JME_BODY_PLUTO` exposed by the generated FFI bindings.
 const int JME_BODY_PLUTO = 9;
 
+/// Native JME constant `JME_BODY_EARTH` exposed by the generated FFI bindings.
 const int JME_BODY_EARTH = 10;
 
+/// Native JME constant `JME_BODY_SOLAR_SYSTEM_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_SOLAR_SYSTEM_BARYCENTER = 11;
 
+/// Native JME constant `JME_BODY_MERCURY_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_MERCURY_BARYCENTER = 12;
 
+/// Native JME constant `JME_BODY_VENUS_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_VENUS_BARYCENTER = 13;
 
+/// Native JME constant `JME_BODY_EARTH_MOON_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_EARTH_MOON_BARYCENTER = 14;
 
+/// Native JME constant `JME_BODY_MARS_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_MARS_BARYCENTER = 15;
 
+/// Native JME constant `JME_BODY_JUPITER_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_JUPITER_BARYCENTER = 16;
 
+/// Native JME constant `JME_BODY_SATURN_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_SATURN_BARYCENTER = 17;
 
+/// Native JME constant `JME_BODY_URANUS_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_URANUS_BARYCENTER = 18;
 
+/// Native JME constant `JME_BODY_NEPTUNE_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_NEPTUNE_BARYCENTER = 19;
 
+/// Native JME constant `JME_BODY_PLUTO_BARYCENTER` exposed by the generated FFI bindings.
 const int JME_BODY_PLUTO_BARYCENTER = 20;
 
+/// Native JME constant `JME_BODY_MEAN_NODE` exposed by the generated FFI bindings.
 const int JME_BODY_MEAN_NODE = 21;
 
+/// Native JME constant `JME_BODY_TRUE_NODE` exposed by the generated FFI bindings.
 const int JME_BODY_TRUE_NODE = 22;
 
+/// Native JME constant `JME_CALC_NONE` exposed by the generated FFI bindings.
 const int JME_CALC_NONE = 0;
 
+/// Native JME constant `JME_CALC_SPEED` exposed by the generated FFI bindings.
 const int JME_CALC_SPEED = 1;
 
+/// Native JME constant `JME_CALC_EQUATORIAL` exposed by the generated FFI bindings.
 const int JME_CALC_EQUATORIAL = 2;
 
+/// Native JME constant `JME_CALC_XYZ` exposed by the generated FFI bindings.
 const int JME_CALC_XYZ = 4;
 
+/// Native JME constant `JME_CALC_RADIANS` exposed by the generated FFI bindings.
 const int JME_CALC_RADIANS = 8;
 
+/// Native JME constant `JME_CALC_BARYCENTRIC` exposed by the generated FFI bindings.
 const int JME_CALC_BARYCENTRIC = 16;
 
+/// Native JME constant `JME_CALC_HELIOCENTRIC` exposed by the generated FFI bindings.
 const int JME_CALC_HELIOCENTRIC = 32;
 
+/// Native JME constant `JME_CALC_TRUE_POSITION` exposed by the generated FFI bindings.
 const int JME_CALC_TRUE_POSITION = 64;
 
+/// Native JME constant `JME_CALC_J2000` exposed by the generated FFI bindings.
 const int JME_CALC_J2000 = 128;
 
+/// Native JME constant `JME_CALC_NO_NUTATION` exposed by the generated FFI bindings.
 const int JME_CALC_NO_NUTATION = 256;
 
+/// Native JME constant `JME_CALC_SIDEREAL` exposed by the generated FFI bindings.
 const int JME_CALC_SIDEREAL = 512;
 
+/// Native JME constant `JME_SIDEREAL_FAGAN_BRADLEY` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_FAGAN_BRADLEY = 0;
 
+/// Native JME constant `JME_SIDEREAL_LAHIRI` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_LAHIRI = 1;
 
+/// Native JME constant `JME_SIDEREAL_USER` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_USER = 255;
 
+/// Native JME constant `JME_VECTOR_AU_PER_DAY` exposed by the generated FFI bindings.
 const int JME_VECTOR_AU_PER_DAY = 0;
 
+/// Native JME constant `JME_VECTOR_KM_PER_DAY` exposed by the generated FFI bindings.
 const int JME_VECTOR_KM_PER_DAY = 1;
 
+/// Native JME constant `JME_VECTOR_AU_PER_SECOND` exposed by the generated FFI bindings.
 const int JME_VECTOR_AU_PER_SECOND = 2;
 
+/// Native JME constant `JME_VECTOR_KM_PER_SECOND` exposed by the generated FFI bindings.
 const int JME_VECTOR_KM_PER_SECOND = 3;
 
+/// Native JME constant `JME_ORIENTATION_RAD_PER_DAY` exposed by the generated FFI bindings.
 const int JME_ORIENTATION_RAD_PER_DAY = 0;
 
+/// Native JME constant `JME_ORIENTATION_RAD_PER_SECOND` exposed by the generated FFI bindings.
 const int JME_ORIENTATION_RAD_PER_SECOND = 1;
 
+/// Native JME constant `JME_JPL_TIMESCALE_UNKNOWN` exposed by the generated FFI bindings.
 const int JME_JPL_TIMESCALE_UNKNOWN = 0;
 
+/// Native JME constant `JME_JPL_TIMESCALE_TDB` exposed by the generated FFI bindings.
 const int JME_JPL_TIMESCALE_TDB = 1;
 
+/// Native JME constant `JME_JPL_TIMESCALE_TCB` exposed by the generated FFI bindings.
 const int JME_JPL_TIMESCALE_TCB = 2;
 
+/// Native JME constant `JME_EXTENDED_H` exposed by the generated FFI bindings.
 const int JME_EXTENDED_H = 1;
 
+/// Native JME constant `JME_ANGLE_FORMAT_KEEP_DEG` exposed by the generated FFI bindings.
 const int JME_ANGLE_FORMAT_KEEP_DEG = 0;
 
+/// Native JME constant `JME_ANGLE_FORMAT_KEEP_SIGN` exposed by the generated FFI bindings.
 const int JME_ANGLE_FORMAT_KEEP_SIGN = 1;
 
+/// Native JME constant `JME_ANGLE_FORMAT_NAKSHATRA` exposed by the generated FFI bindings.
 const int JME_ANGLE_FORMAT_NAKSHATRA = 2;
 
+/// Native JME constant `JME_ANGLE_FORMAT_ROUND_DEG` exposed by the generated FFI bindings.
 const int JME_ANGLE_FORMAT_ROUND_DEG = 3;
 
+/// Native JME constant `JME_ANGLE_FORMAT_ROUND_MIN` exposed by the generated FFI bindings.
 const int JME_ANGLE_FORMAT_ROUND_MIN = 4;
 
+/// Native JME constant `JME_ANGLE_FORMAT_ROUND_SEC` exposed by the generated FFI bindings.
 const int JME_ANGLE_FORMAT_ROUND_SEC = 5;
 
+/// Native JME constant `JME_ANGLE_FORMAT_ZODIACAL` exposed by the generated FFI bindings.
 const int JME_ANGLE_FORMAT_ZODIACAL = 6;
 
+/// Native JME constant `JME_BODY_ALTJIRA` exposed by the generated FFI bindings.
 const int JME_BODY_ALTJIRA = 7;
 
+/// Native JME constant `JME_BODY_AMYCUS` exposed by the generated FFI bindings.
 const int JME_BODY_AMYCUS = 8;
 
+/// Native JME constant `JME_BODY_ARROKOTH` exposed by the generated FFI bindings.
 const int JME_BODY_ARROKOTH = 9;
 
+/// Native JME constant `JME_BODY_ASBOLUS` exposed by the generated FFI bindings.
 const int JME_BODY_ASBOLUS = 10;
 
+/// Native JME constant `JME_BODY_ASTEROID_001` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_001 = 11;
 
+/// Native JME constant `JME_BODY_ASTEROID_002` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_002 = 12;
 
+/// Native JME constant `JME_BODY_ASTEROID_003` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_003 = 13;
 
+/// Native JME constant `JME_BODY_ASTEROID_004` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_004 = 14;
 
+/// Native JME constant `JME_BODY_ASTEROID_005` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_005 = 15;
 
+/// Native JME constant `JME_BODY_ASTEROID_006` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_006 = 16;
 
+/// Native JME constant `JME_BODY_ASTEROID_007` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_007 = 17;
 
+/// Native JME constant `JME_BODY_ASTEROID_008` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_008 = 18;
 
+/// Native JME constant `JME_BODY_ASTEROID_009` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_009 = 19;
 
+/// Native JME constant `JME_BODY_ASTEROID_010` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_010 = 20;
 
+/// Native JME constant `JME_BODY_ASTEROID_011` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_011 = 21;
 
+/// Native JME constant `JME_BODY_ASTEROID_012` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_012 = 22;
 
+/// Native JME constant `JME_BODY_ASTEROID_013` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_013 = 23;
 
+/// Native JME constant `JME_BODY_ASTEROID_014` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_014 = 24;
 
+/// Native JME constant `JME_BODY_ASTEROID_015` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_015 = 25;
 
+/// Native JME constant `JME_BODY_ASTEROID_016` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_016 = 26;
 
+/// Native JME constant `JME_BODY_ASTEROID_017` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_017 = 27;
 
+/// Native JME constant `JME_BODY_ASTEROID_018` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_018 = 28;
 
+/// Native JME constant `JME_BODY_ASTEROID_019` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_019 = 29;
 
+/// Native JME constant `JME_BODY_ASTEROID_020` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_020 = 30;
 
+/// Native JME constant `JME_BODY_ASTEROID_021` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_021 = 31;
 
+/// Native JME constant `JME_BODY_ASTEROID_022` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_022 = 32;
 
+/// Native JME constant `JME_BODY_ASTEROID_023` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_023 = 33;
 
+/// Native JME constant `JME_BODY_ASTEROID_024` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_024 = 34;
 
+/// Native JME constant `JME_BODY_ASTEROID_025` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_025 = 35;
 
+/// Native JME constant `JME_BODY_ASTEROID_026` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_026 = 36;
 
+/// Native JME constant `JME_BODY_ASTEROID_027` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_027 = 37;
 
+/// Native JME constant `JME_BODY_ASTEROID_028` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_028 = 38;
 
+/// Native JME constant `JME_BODY_ASTEROID_029` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_029 = 39;
 
+/// Native JME constant `JME_BODY_ASTEROID_030` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_030 = 40;
 
+/// Native JME constant `JME_BODY_ASTEROID_031` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_031 = 41;
 
+/// Native JME constant `JME_BODY_ASTEROID_032` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_032 = 42;
 
+/// Native JME constant `JME_BODY_ASTEROID_033` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_033 = 43;
 
+/// Native JME constant `JME_BODY_ASTEROID_034` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_034 = 44;
 
+/// Native JME constant `JME_BODY_ASTEROID_035` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_035 = 45;
 
+/// Native JME constant `JME_BODY_ASTEROID_036` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_036 = 46;
 
+/// Native JME constant `JME_BODY_ASTEROID_037` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_037 = 47;
 
+/// Native JME constant `JME_BODY_ASTEROID_038` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_038 = 48;
 
+/// Native JME constant `JME_BODY_ASTEROID_039` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_039 = 49;
 
+/// Native JME constant `JME_BODY_ASTEROID_040` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_040 = 50;
 
+/// Native JME constant `JME_BODY_ASTEROID_041` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_041 = 51;
 
+/// Native JME constant `JME_BODY_ASTEROID_042` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_042 = 52;
 
+/// Native JME constant `JME_BODY_ASTEROID_043` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_043 = 53;
 
+/// Native JME constant `JME_BODY_ASTEROID_044` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_044 = 54;
 
+/// Native JME constant `JME_BODY_ASTEROID_045` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_045 = 55;
 
+/// Native JME constant `JME_BODY_ASTEROID_046` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_046 = 56;
 
+/// Native JME constant `JME_BODY_ASTEROID_047` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_047 = 57;
 
+/// Native JME constant `JME_BODY_ASTEROID_048` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_048 = 58;
 
+/// Native JME constant `JME_BODY_ASTEROID_049` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_049 = 59;
 
+/// Native JME constant `JME_BODY_ASTEROID_050` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_050 = 60;
 
+/// Native JME constant `JME_BODY_ASTEROID_051` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_051 = 61;
 
+/// Native JME constant `JME_BODY_ASTEROID_052` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_052 = 62;
 
+/// Native JME constant `JME_BODY_ASTEROID_053` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_053 = 63;
 
+/// Native JME constant `JME_BODY_ASTEROID_054` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_054 = 64;
 
+/// Native JME constant `JME_BODY_ASTEROID_055` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_055 = 65;
 
+/// Native JME constant `JME_BODY_ASTEROID_056` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_056 = 66;
 
+/// Native JME constant `JME_BODY_ASTEROID_057` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_057 = 67;
 
+/// Native JME constant `JME_BODY_ASTEROID_058` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_058 = 68;
 
+/// Native JME constant `JME_BODY_ASTEROID_059` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_059 = 69;
 
+/// Native JME constant `JME_BODY_ASTEROID_060` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_060 = 70;
 
+/// Native JME constant `JME_BODY_ASTEROID_061` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_061 = 71;
 
+/// Native JME constant `JME_BODY_ASTEROID_062` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_062 = 72;
 
+/// Native JME constant `JME_BODY_ASTEROID_063` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_063 = 73;
 
+/// Native JME constant `JME_BODY_ASTEROID_064` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_064 = 74;
 
+/// Native JME constant `JME_BODY_ASTEROID_065` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_065 = 75;
 
+/// Native JME constant `JME_BODY_ASTEROID_066` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_066 = 76;
 
+/// Native JME constant `JME_BODY_ASTEROID_067` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_067 = 77;
 
+/// Native JME constant `JME_BODY_ASTEROID_068` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_068 = 78;
 
+/// Native JME constant `JME_BODY_ASTEROID_069` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_069 = 79;
 
+/// Native JME constant `JME_BODY_ASTEROID_070` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_070 = 80;
 
+/// Native JME constant `JME_BODY_ASTEROID_071` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_071 = 81;
 
+/// Native JME constant `JME_BODY_ASTEROID_072` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_072 = 82;
 
+/// Native JME constant `JME_BODY_ASTEROID_073` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_073 = 83;
 
+/// Native JME constant `JME_BODY_ASTEROID_074` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_074 = 84;
 
+/// Native JME constant `JME_BODY_ASTEROID_075` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_075 = 85;
 
+/// Native JME constant `JME_BODY_ASTEROID_076` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_076 = 86;
 
+/// Native JME constant `JME_BODY_ASTEROID_077` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_077 = 87;
 
+/// Native JME constant `JME_BODY_ASTEROID_078` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_078 = 88;
 
+/// Native JME constant `JME_BODY_ASTEROID_079` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_079 = 89;
 
+/// Native JME constant `JME_BODY_ASTEROID_080` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_080 = 90;
 
+/// Native JME constant `JME_BODY_ASTEROID_081` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_081 = 91;
 
+/// Native JME constant `JME_BODY_ASTEROID_082` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_082 = 92;
 
+/// Native JME constant `JME_BODY_ASTEROID_083` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_083 = 93;
 
+/// Native JME constant `JME_BODY_ASTEROID_084` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_084 = 94;
 
+/// Native JME constant `JME_BODY_ASTEROID_085` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_085 = 95;
 
+/// Native JME constant `JME_BODY_ASTEROID_086` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_086 = 96;
 
+/// Native JME constant `JME_BODY_ASTEROID_087` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_087 = 97;
 
+/// Native JME constant `JME_BODY_ASTEROID_088` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_088 = 98;
 
+/// Native JME constant `JME_BODY_ASTEROID_089` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_089 = 99;
 
+/// Native JME constant `JME_BODY_ASTEROID_090` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_090 = 100;
 
+/// Native JME constant `JME_BODY_ASTEROID_091` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_091 = 101;
 
+/// Native JME constant `JME_BODY_ASTEROID_092` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_092 = 102;
 
+/// Native JME constant `JME_BODY_ASTEROID_093` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_093 = 103;
 
+/// Native JME constant `JME_BODY_ASTEROID_094` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_094 = 104;
 
+/// Native JME constant `JME_BODY_ASTEROID_095` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_095 = 105;
 
+/// Native JME constant `JME_BODY_ASTEROID_096` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_096 = 106;
 
+/// Native JME constant `JME_BODY_ASTEROID_097` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_097 = 107;
 
+/// Native JME constant `JME_BODY_ASTEROID_098` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_098 = 108;
 
+/// Native JME constant `JME_BODY_ASTEROID_099` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_099 = 109;
 
+/// Native JME constant `JME_BODY_ASTEROID_100` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_100 = 110;
 
+/// Native JME constant `JME_BODY_ASTEROID_101` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_101 = 111;
 
+/// Native JME constant `JME_BODY_ASTEROID_102` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_102 = 112;
 
+/// Native JME constant `JME_BODY_ASTEROID_103` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_103 = 113;
 
+/// Native JME constant `JME_BODY_ASTEROID_104` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_104 = 114;
 
+/// Native JME constant `JME_BODY_ASTEROID_105` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_105 = 115;
 
+/// Native JME constant `JME_BODY_ASTEROID_106` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_106 = 116;
 
+/// Native JME constant `JME_BODY_ASTEROID_107` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_107 = 117;
 
+/// Native JME constant `JME_BODY_ASTEROID_108` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_108 = 118;
 
+/// Native JME constant `JME_BODY_ASTEROID_109` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_109 = 119;
 
+/// Native JME constant `JME_BODY_ASTEROID_110` exposed by the generated FFI bindings.
 const int JME_BODY_ASTEROID_110 = 120;
 
+/// Native JME constant `JME_BODY_BIENOR` exposed by the generated FFI bindings.
 const int JME_BODY_BIENOR = 121;
 
+/// Native JME constant `JME_BODY_BORASISI` exposed by the generated FFI bindings.
 const int JME_BODY_BORASISI = 122;
 
+/// Native JME constant `JME_BODY_CERES` exposed by the generated FFI bindings.
 const int JME_BODY_CERES = 123;
 
+/// Native JME constant `JME_BODY_CHARIKLO` exposed by the generated FFI bindings.
 const int JME_BODY_CHARIKLO = 124;
 
+/// Native JME constant `JME_BODY_CHIRON` exposed by the generated FFI bindings.
 const int JME_BODY_CHIRON = 125;
 
+/// Native JME constant `JME_BODY_COMET_001` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_001 = 126;
 
+/// Native JME constant `JME_BODY_COMET_002` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_002 = 127;
 
+/// Native JME constant `JME_BODY_COMET_003` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_003 = 128;
 
+/// Native JME constant `JME_BODY_COMET_004` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_004 = 129;
 
+/// Native JME constant `JME_BODY_COMET_005` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_005 = 130;
 
+/// Native JME constant `JME_BODY_COMET_006` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_006 = 131;
 
+/// Native JME constant `JME_BODY_COMET_007` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_007 = 132;
 
+/// Native JME constant `JME_BODY_COMET_008` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_008 = 133;
 
+/// Native JME constant `JME_BODY_COMET_009` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_009 = 134;
 
+/// Native JME constant `JME_BODY_COMET_010` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_010 = 135;
 
+/// Native JME constant `JME_BODY_COMET_011` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_011 = 136;
 
+/// Native JME constant `JME_BODY_COMET_012` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_012 = 137;
 
+/// Native JME constant `JME_BODY_COMET_013` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_013 = 138;
 
+/// Native JME constant `JME_BODY_COMET_014` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_014 = 139;
 
+/// Native JME constant `JME_BODY_COMET_015` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_015 = 140;
 
+/// Native JME constant `JME_BODY_COMET_016` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_016 = 141;
 
+/// Native JME constant `JME_BODY_COMET_017` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_017 = 142;
 
+/// Native JME constant `JME_BODY_COMET_018` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_018 = 143;
 
+/// Native JME constant `JME_BODY_COMET_019` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_019 = 144;
 
+/// Native JME constant `JME_BODY_COMET_020` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_020 = 145;
 
+/// Native JME constant `JME_BODY_COMET_021` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_021 = 146;
 
+/// Native JME constant `JME_BODY_COMET_022` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_022 = 147;
 
+/// Native JME constant `JME_BODY_COMET_023` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_023 = 148;
 
+/// Native JME constant `JME_BODY_COMET_024` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_024 = 149;
 
+/// Native JME constant `JME_BODY_COMET_025` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_025 = 150;
 
+/// Native JME constant `JME_BODY_COMET_026` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_026 = 151;
 
+/// Native JME constant `JME_BODY_COMET_027` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_027 = 152;
 
+/// Native JME constant `JME_BODY_COMET_028` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_028 = 153;
 
+/// Native JME constant `JME_BODY_COMET_029` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_029 = 154;
 
+/// Native JME constant `JME_BODY_COMET_030` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_030 = 155;
 
+/// Native JME constant `JME_BODY_COMET_031` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_031 = 156;
 
+/// Native JME constant `JME_BODY_COMET_032` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_032 = 157;
 
+/// Native JME constant `JME_BODY_COMET_033` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_033 = 158;
 
+/// Native JME constant `JME_BODY_COMET_034` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_034 = 159;
 
+/// Native JME constant `JME_BODY_COMET_035` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_035 = 160;
 
+/// Native JME constant `JME_BODY_COMET_036` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_036 = 161;
 
+/// Native JME constant `JME_BODY_COMET_037` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_037 = 162;
 
+/// Native JME constant `JME_BODY_COMET_038` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_038 = 163;
 
+/// Native JME constant `JME_BODY_COMET_039` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_039 = 164;
 
+/// Native JME constant `JME_BODY_COMET_040` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_040 = 165;
 
+/// Native JME constant `JME_BODY_COMET_041` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_041 = 166;
 
+/// Native JME constant `JME_BODY_COMET_042` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_042 = 167;
 
+/// Native JME constant `JME_BODY_COMET_043` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_043 = 168;
 
+/// Native JME constant `JME_BODY_COMET_044` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_044 = 169;
 
+/// Native JME constant `JME_BODY_COMET_045` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_045 = 170;
 
+/// Native JME constant `JME_BODY_COMET_046` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_046 = 171;
 
+/// Native JME constant `JME_BODY_COMET_047` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_047 = 172;
 
+/// Native JME constant `JME_BODY_COMET_048` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_048 = 173;
 
+/// Native JME constant `JME_BODY_COMET_049` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_049 = 174;
 
+/// Native JME constant `JME_BODY_COMET_050` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_050 = 175;
 
+/// Native JME constant `JME_BODY_COMET_051` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_051 = 176;
 
+/// Native JME constant `JME_BODY_COMET_052` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_052 = 177;
 
+/// Native JME constant `JME_BODY_COMET_053` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_053 = 178;
 
+/// Native JME constant `JME_BODY_COMET_054` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_054 = 179;
 
+/// Native JME constant `JME_BODY_COMET_055` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_055 = 180;
 
+/// Native JME constant `JME_BODY_COMET_056` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_056 = 181;
 
+/// Native JME constant `JME_BODY_COMET_057` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_057 = 182;
 
+/// Native JME constant `JME_BODY_COMET_058` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_058 = 183;
 
+/// Native JME constant `JME_BODY_COMET_059` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_059 = 184;
 
+/// Native JME constant `JME_BODY_COMET_060` exposed by the generated FFI bindings.
 const int JME_BODY_COMET_060 = 185;
 
+/// Native JME constant `JME_BODY_CRANTOR` exposed by the generated FFI bindings.
 const int JME_BODY_CRANTOR = 186;
 
+/// Native JME constant `JME_BODY_CYLLARUS` exposed by the generated FFI bindings.
 const int JME_BODY_CYLLARUS = 187;
 
+/// Native JME constant `JME_BODY_DEUCALION` exposed by the generated FFI bindings.
 const int JME_BODY_DEUCALION = 188;
 
+/// Native JME constant `JME_BODY_ECHECLUS` exposed by the generated FFI bindings.
 const int JME_BODY_ECHECLUS = 189;
 
+/// Native JME constant `JME_BODY_ELATUS` exposed by the generated FFI bindings.
 const int JME_BODY_ELATUS = 190;
 
+/// Native JME constant `JME_BODY_ERIS` exposed by the generated FFI bindings.
 const int JME_BODY_ERIS = 191;
 
+/// Native JME constant `JME_BODY_GONGGONG` exposed by the generated FFI bindings.
 const int JME_BODY_GONGGONG = 192;
 
+/// Native JME constant `JME_BODY_HAUMEA` exposed by the generated FFI bindings.
 const int JME_BODY_HAUMEA = 193;
 
+/// Native JME constant `JME_BODY_HUYA` exposed by the generated FFI bindings.
 const int JME_BODY_HUYA = 194;
 
+/// Native JME constant `JME_BODY_HYLONOME` exposed by the generated FFI bindings.
 const int JME_BODY_HYLONOME = 195;
 
+/// Native JME constant `JME_BODY_IXION` exposed by the generated FFI bindings.
 const int JME_BODY_IXION = 196;
 
+/// Native JME constant `JME_BODY_JUNO` exposed by the generated FFI bindings.
 const int JME_BODY_JUNO = 197;
 
+/// Native JME constant `JME_BODY_MAKEMAKE` exposed by the generated FFI bindings.
 const int JME_BODY_MAKEMAKE = 198;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_001` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_001 = 199;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_002` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_002 = 200;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_003` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_003 = 201;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_004` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_004 = 202;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_005` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_005 = 203;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_006` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_006 = 204;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_007` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_007 = 205;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_008` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_008 = 206;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_009` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_009 = 207;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_010` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_010 = 208;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_011` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_011 = 209;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_012` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_012 = 210;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_013` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_013 = 211;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_014` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_014 = 212;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_015` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_015 = 213;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_016` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_016 = 214;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_017` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_017 = 215;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_018` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_018 = 216;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_019` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_019 = 217;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_020` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_020 = 218;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_021` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_021 = 219;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_022` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_022 = 220;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_023` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_023 = 221;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_024` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_024 = 222;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_025` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_025 = 223;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_026` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_026 = 224;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_027` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_027 = 225;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_028` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_028 = 226;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_029` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_029 = 227;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_030` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_030 = 228;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_031` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_031 = 229;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_032` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_032 = 230;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_033` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_033 = 231;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_034` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_034 = 232;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_035` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_035 = 233;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_036` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_036 = 234;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_037` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_037 = 235;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_038` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_038 = 236;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_039` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_039 = 237;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_040` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_040 = 238;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_041` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_041 = 239;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_042` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_042 = 240;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_043` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_043 = 241;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_044` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_044 = 242;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_045` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_045 = 243;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_046` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_046 = 244;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_047` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_047 = 245;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_048` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_048 = 246;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_049` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_049 = 247;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_050` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_050 = 248;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_051` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_051 = 249;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_052` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_052 = 250;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_053` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_053 = 251;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_054` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_054 = 252;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_055` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_055 = 253;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_056` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_056 = 254;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_057` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_057 = 255;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_058` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_058 = 256;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_059` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_059 = 257;
 
+/// Native JME constant `JME_BODY_MINOR_PLANET_060` exposed by the generated FFI bindings.
 const int JME_BODY_MINOR_PLANET_060 = 258;
 
+/// Native JME constant `JME_BODY_NESSUS` exposed by the generated FFI bindings.
 const int JME_BODY_NESSUS = 259;
 
+/// Native JME constant `JME_BODY_OKYRHOE` exposed by the generated FFI bindings.
 const int JME_BODY_OKYRHOE = 260;
 
+/// Native JME constant `JME_BODY_ORCUS` exposed by the generated FFI bindings.
 const int JME_BODY_ORCUS = 261;
 
+/// Native JME constant `JME_BODY_PALLAS` exposed by the generated FFI bindings.
 const int JME_BODY_PALLAS = 262;
 
+/// Native JME constant `JME_BODY_PELOPS` exposed by the generated FFI bindings.
 const int JME_BODY_PELOPS = 263;
 
+/// Native JME constant `JME_BODY_PHOLUS` exposed by the generated FFI bindings.
 const int JME_BODY_PHOLUS = 264;
 
+/// Native JME constant `JME_BODY_QUAOAR` exposed by the generated FFI bindings.
 const int JME_BODY_QUAOAR = 265;
 
+/// Native JME constant `JME_BODY_RHADAMANTHUS` exposed by the generated FFI bindings.
 const int JME_BODY_RHADAMANTHUS = 266;
 
+/// Native JME constant `JME_BODY_SALACIA` exposed by the generated FFI bindings.
 const int JME_BODY_SALACIA = 267;
 
+/// Native JME constant `JME_BODY_SEDNA` exposed by the generated FFI bindings.
 const int JME_BODY_SEDNA = 268;
 
+/// Native JME constant `JME_BODY_THEREUS` exposed by the generated FFI bindings.
 const int JME_BODY_THEREUS = 269;
 
+/// Native JME constant `JME_BODY_TYTHONUS` exposed by the generated FFI bindings.
 const int JME_BODY_TYTHONUS = 270;
 
+/// Native JME constant `JME_BODY_VARUNA` exposed by the generated FFI bindings.
 const int JME_BODY_VARUNA = 271;
 
+/// Native JME constant `JME_BODY_VESTA` exposed by the generated FFI bindings.
 const int JME_BODY_VESTA = 272;
 
+/// Native JME constant `JME_CALC_APPARENT_POSITION` exposed by the generated FFI bindings.
 const int JME_CALC_APPARENT_POSITION = 0;
 
+/// Native JME constant `JME_CALC_ASTROMETRIC` exposed by the generated FFI bindings.
 const int JME_CALC_ASTROMETRIC = 3072;
 
+/// Native JME constant `JME_CALC_CENTER_BODY` exposed by the generated FFI bindings.
 const int JME_CALC_CENTER_BODY = 4096;
 
+/// Native JME constant `JME_CALC_DISTANCE_AU` exposed by the generated FFI bindings.
 const int JME_CALC_DISTANCE_AU = 0;
 
+/// Native JME constant `JME_CALC_DISTANCE_KM` exposed by the generated FFI bindings.
 const int JME_CALC_DISTANCE_KM = 8192;
 
+/// Native JME constant `JME_CALC_HIGH_PRECISION` exposed by the generated FFI bindings.
 const int JME_CALC_HIGH_PRECISION = 16384;
 
+/// Native JME constant `JME_CALC_ICRS` exposed by the generated FFI bindings.
 const int JME_CALC_ICRS = 32768;
 
+/// Native JME constant `JME_CALC_NO_ABERRATION` exposed by the generated FFI bindings.
 const int JME_CALC_NO_ABERRATION = 1024;
 
+/// Native JME constant `JME_CALC_NO_LIGHT_DEFLECTION` exposed by the generated FFI bindings.
 const int JME_CALC_NO_LIGHT_DEFLECTION = 2048;
 
+/// Native JME constant `JME_CALC_RAW_VECTOR` exposed by the generated FFI bindings.
 const int JME_CALC_RAW_VECTOR = 4;
 
+/// Native JME constant `JME_CALC_RECTANGULAR` exposed by the generated FFI bindings.
 const int JME_CALC_RECTANGULAR = 4;
 
+/// Native JME constant `JME_CALC_SPHERICAL` exposed by the generated FFI bindings.
 const int JME_CALC_SPHERICAL = 0;
 
+/// Native JME constant `JME_CALC_STRICT` exposed by the generated FFI bindings.
 const int JME_CALC_STRICT = 65536;
 
+/// Native JME constant `JME_CALC_TOPOCENTRIC` exposed by the generated FFI bindings.
 const int JME_CALC_TOPOCENTRIC = 131072;
 
+/// Native JME constant `JME_CALC_VELOCITY_PER_DAY` exposed by the generated FFI bindings.
 const int JME_CALC_VELOCITY_PER_DAY = 0;
 
+/// Native JME constant `JME_CALC_VELOCITY_PER_SECOND` exposed by the generated FFI bindings.
 const int JME_CALC_VELOCITY_PER_SECOND = 262144;
 
+/// Native JME constant `JME_COORD_APPARENT_TO_TRUE` exposed by the generated FFI bindings.
 const int JME_COORD_APPARENT_TO_TRUE = 289;
 
+/// Native JME constant `JME_COORD_ECLIPTIC_TO_HORIZONTAL` exposed by the generated FFI bindings.
 const int JME_COORD_ECLIPTIC_TO_HORIZONTAL = 290;
 
+/// Native JME constant `JME_COORD_EQUATORIAL_TO_HORIZONTAL` exposed by the generated FFI bindings.
 const int JME_COORD_EQUATORIAL_TO_HORIZONTAL = 291;
 
+/// Native JME constant `JME_COORD_HORIZONTAL_TO_ECLIPTIC` exposed by the generated FFI bindings.
 const int JME_COORD_HORIZONTAL_TO_ECLIPTIC = 292;
 
+/// Native JME constant `JME_COORD_HORIZONTAL_TO_EQUATORIAL` exposed by the generated FFI bindings.
 const int JME_COORD_HORIZONTAL_TO_EQUATORIAL = 293;
 
+/// Native JME constant `JME_COORD_TRUE_TO_APPARENT` exposed by the generated FFI bindings.
 const int JME_COORD_TRUE_TO_APPARENT = 294;
 
+/// Native JME constant `JME_ECLIPSE_FIRST_CONTACT` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_FIRST_CONTACT = 295;
 
+/// Native JME constant `JME_ECLIPSE_FOURTH_CONTACT` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_FOURTH_CONTACT = 296;
 
+/// Native JME constant `JME_ECLIPSE_LUNAR_PARTIAL` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_LUNAR_PARTIAL = 297;
 
+/// Native JME constant `JME_ECLIPSE_LUNAR_PENUMBRAL` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_LUNAR_PENUMBRAL = 298;
 
+/// Native JME constant `JME_ECLIPSE_LUNAR_TOTAL` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_LUNAR_TOTAL = 299;
 
+/// Native JME constant `JME_ECLIPSE_MAX_VISIBLE` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_MAX_VISIBLE = 300;
 
+/// Native JME constant `JME_ECLIPSE_PENUMBRAL_BEGIN` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_PENUMBRAL_BEGIN = 301;
 
+/// Native JME constant `JME_ECLIPSE_PENUMBRAL_END` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_PENUMBRAL_END = 302;
 
+/// Native JME constant `JME_ECLIPSE_SECOND_CONTACT` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_SECOND_CONTACT = 303;
 
+/// Native JME constant `JME_ECLIPSE_SOLAR_ANNULAR` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_SOLAR_ANNULAR = 304;
 
+/// Native JME constant `JME_ECLIPSE_SOLAR_CENTRAL` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_SOLAR_CENTRAL = 305;
 
+/// Native JME constant `JME_ECLIPSE_SOLAR_HYBRID` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_SOLAR_HYBRID = 306;
 
+/// Native JME constant `JME_ECLIPSE_SOLAR_NONCENTRAL` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_SOLAR_NONCENTRAL = 307;
 
+/// Native JME constant `JME_ECLIPSE_SOLAR_PARTIAL` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_SOLAR_PARTIAL = 308;
 
+/// Native JME constant `JME_ECLIPSE_SOLAR_TOTAL` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_SOLAR_TOTAL = 309;
 
+/// Native JME constant `JME_ECLIPSE_THIRD_CONTACT` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_THIRD_CONTACT = 310;
 
+/// Native JME constant `JME_ECLIPSE_VISIBLE` exposed by the generated FFI bindings.
 const int JME_ECLIPSE_VISIBLE = 311;
 
+/// Native JME constant `JME_HOUSE_ALCABITIUS` exposed by the generated FFI bindings.
 const int JME_HOUSE_ALCABITIUS = 312;
 
+/// Native JME constant `JME_HOUSE_APC` exposed by the generated FFI bindings.
 const int JME_HOUSE_APC = 313;
 
+/// Native JME constant `JME_HOUSE_AZIMUTHAL` exposed by the generated FFI bindings.
 const int JME_HOUSE_AZIMUTHAL = 314;
 
+/// Native JME constant `JME_HOUSE_CAMPANUS` exposed by the generated FFI bindings.
 const int JME_HOUSE_CAMPANUS = 315;
 
+/// Native JME constant `JME_HOUSE_EQUAL` exposed by the generated FFI bindings.
 const int JME_HOUSE_EQUAL = 316;
 
+/// Native JME constant `JME_HOUSE_GAUQUELIN` exposed by the generated FFI bindings.
 const int JME_HOUSE_GAUQUELIN = 317;
 
+/// Native JME constant `JME_HOUSE_HORIZONTAL` exposed by the generated FFI bindings.
 const int JME_HOUSE_HORIZONTAL = 318;
 
+/// Native JME constant `JME_HOUSE_KOCH` exposed by the generated FFI bindings.
 const int JME_HOUSE_KOCH = 319;
 
+/// Native JME constant `JME_HOUSE_KRUSINSKI` exposed by the generated FFI bindings.
 const int JME_HOUSE_KRUSINSKI = 320;
 
+/// Native JME constant `JME_HOUSE_MERIDIAN` exposed by the generated FFI bindings.
 const int JME_HOUSE_MERIDIAN = 321;
 
+/// Native JME constant `JME_HOUSE_MORINUS` exposed by the generated FFI bindings.
 const int JME_HOUSE_MORINUS = 322;
 
+/// Native JME constant `JME_HOUSE_PLACIDUS` exposed by the generated FFI bindings.
 const int JME_HOUSE_PLACIDUS = 323;
 
+/// Native JME constant `JME_HOUSE_POLICH_PAGE` exposed by the generated FFI bindings.
 const int JME_HOUSE_POLICH_PAGE = 324;
 
+/// Native JME constant `JME_HOUSE_PORPHYRIUS` exposed by the generated FFI bindings.
 const int JME_HOUSE_PORPHYRIUS = 325;
 
+/// Native JME constant `JME_HOUSE_REGIOMONTANUS` exposed by the generated FFI bindings.
 const int JME_HOUSE_REGIOMONTANUS = 326;
 
+/// Native JME constant `JME_HOUSE_SUNSHINE` exposed by the generated FFI bindings.
 const int JME_HOUSE_SUNSHINE = 327;
 
+/// Native JME constant `JME_HOUSE_VEHLOW_EQUAL` exposed by the generated FFI bindings.
 const int JME_HOUSE_VEHLOW_EQUAL = 328;
 
+/// Native JME constant `JME_HOUSE_WHOLE_SIGN` exposed by the generated FFI bindings.
 const int JME_HOUSE_WHOLE_SIGN = 329;
 
+/// Native JME constant `JME_MODEL_BIAS_IAU2000` exposed by the generated FFI bindings.
 const int JME_MODEL_BIAS_IAU2000 = 330;
 
+/// Native JME constant `JME_MODEL_BIAS_IAU2006` exposed by the generated FFI bindings.
 const int JME_MODEL_BIAS_IAU2006 = 331;
 
+/// Native JME constant `JME_MODEL_BIAS_NONE` exposed by the generated FFI bindings.
 const int JME_MODEL_BIAS_NONE = 332;
 
+/// Native JME constant `JME_MODEL_NUT_IAU_1980` exposed by the generated FFI bindings.
 const int JME_MODEL_NUT_IAU_1980 = 333;
 
+/// Native JME constant `JME_MODEL_NUT_IAU_2000A` exposed by the generated FFI bindings.
 const int JME_MODEL_NUT_IAU_2000A = 334;
 
+/// Native JME constant `JME_MODEL_NUT_IAU_2000B` exposed by the generated FFI bindings.
 const int JME_MODEL_NUT_IAU_2000B = 335;
 
+/// Native JME constant `JME_MODEL_OBL_IAU_1980` exposed by the generated FFI bindings.
 const int JME_MODEL_OBL_IAU_1980 = 336;
 
+/// Native JME constant `JME_MODEL_OBL_IAU_2000` exposed by the generated FFI bindings.
 const int JME_MODEL_OBL_IAU_2000 = 337;
 
+/// Native JME constant `JME_MODEL_OBL_IAU_2006` exposed by the generated FFI bindings.
 const int JME_MODEL_OBL_IAU_2006 = 338;
 
+/// Native JME constant `JME_MODEL_PREC_IAU_1976` exposed by the generated FFI bindings.
 const int JME_MODEL_PREC_IAU_1976 = 339;
 
+/// Native JME constant `JME_MODEL_PREC_IAU_2000` exposed by the generated FFI bindings.
 const int JME_MODEL_PREC_IAU_2000 = 340;
 
+/// Native JME constant `JME_MODEL_PREC_IAU_2006` exposed by the generated FFI bindings.
 const int JME_MODEL_PREC_IAU_2006 = 341;
 
+/// Native JME constant `JME_MODEL_PREC_LASKAR_1986` exposed by the generated FFI bindings.
 const int JME_MODEL_PREC_LASKAR_1986 = 342;
 
+/// Native JME constant `JME_MODEL_PREC_VONDRAK_2011` exposed by the generated FFI bindings.
 const int JME_MODEL_PREC_VONDRAK_2011 = 343;
 
+/// Native JME constant `JME_MODEL_SIDT_IAU_1976` exposed by the generated FFI bindings.
 const int JME_MODEL_SIDT_IAU_1976 = 344;
 
+/// Native JME constant `JME_MODEL_SIDT_IAU_2006` exposed by the generated FFI bindings.
 const int JME_MODEL_SIDT_IAU_2006 = 345;
 
+/// Native JME constant `JME_MODEL_DELTAT_STEPHENSON_MORRISON_1984` exposed by the generated FFI bindings.
 const int JME_MODEL_DELTAT_STEPHENSON_MORRISON_1984 = 346;
 
+/// Native JME constant `JME_MODEL_DELTAT_STEPHENSON_1997` exposed by the generated FFI bindings.
 const int JME_MODEL_DELTAT_STEPHENSON_1997 = 347;
 
+/// Native JME constant `JME_MODEL_DELTAT_STEPHENSON_MORRISON_2004` exposed by the generated FFI bindings.
 const int JME_MODEL_DELTAT_STEPHENSON_MORRISON_2004 = 348;
 
+/// Native JME constant `JME_MODEL_DELTAT_ESPENAK_MEEUS_2006` exposed by the generated FFI bindings.
 const int JME_MODEL_DELTAT_ESPENAK_MEEUS_2006 = 349;
 
+/// Native JME constant `JME_MODEL_DELTAT_STEPHENSON_ETC_2016` exposed by the generated FFI bindings.
 const int JME_MODEL_DELTAT_STEPHENSON_ETC_2016 = 350;
 
+/// Native JME constant `JME_RISE_ANTI_MERIDIAN_TRANSIT` exposed by the generated FFI bindings.
 const int JME_RISE_ANTI_MERIDIAN_TRANSIT = 8;
 
+/// Native JME constant `JME_RISE_ASTRONOMICAL_TWILIGHT` exposed by the generated FFI bindings.
 const int JME_RISE_ASTRONOMICAL_TWILIGHT = 512;
 
+/// Native JME constant `JME_RISE_CIVIL_TWILIGHT` exposed by the generated FFI bindings.
 const int JME_RISE_CIVIL_TWILIGHT = 128;
 
+/// Native JME constant `JME_RISE_DISC_BOTTOM` exposed by the generated FFI bindings.
 const int JME_RISE_DISC_BOTTOM = 2048;
 
+/// Native JME constant `JME_RISE_DISC_CENTER` exposed by the generated FFI bindings.
 const int JME_RISE_DISC_CENTER = 256;
 
+/// Native JME constant `JME_RISE_FIXED_DISC_SIZE` exposed by the generated FFI bindings.
 const int JME_RISE_FIXED_DISC_SIZE = 1024;
 
+/// Native JME constant `JME_RISE_HINDU_RISING` exposed by the generated FFI bindings.
 const int JME_RISE_HINDU_RISING = 4096;
 
+/// Native JME constant `JME_RISE_MERIDIAN_TRANSIT` exposed by the generated FFI bindings.
 const int JME_RISE_MERIDIAN_TRANSIT = 4;
 
+/// Native JME constant `JME_RISE_NAUTICAL_TWILIGHT` exposed by the generated FFI bindings.
 const int JME_RISE_NAUTICAL_TWILIGHT = 64;
 
+/// Native JME constant `JME_RISE_NO_REFRACTION` exposed by the generated FFI bindings.
 const int JME_RISE_NO_REFRACTION = 8192;
 
+/// Native JME constant `JME_RISE_RISE` exposed by the generated FFI bindings.
 const int JME_RISE_RISE = 1;
 
+/// Native JME constant `JME_RISE_SET` exposed by the generated FFI bindings.
 const int JME_RISE_SET = 2;
 
+/// Native JME constant `JME_SIDEREAL_ALDEBARAN_15TAU` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_ALDEBARAN_15TAU = 363;
 
+/// Native JME constant `JME_SIDEREAL_ARYABHATA` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_ARYABHATA = 364;
 
+/// Native JME constant `JME_SIDEREAL_B1950` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_B1950 = 365;
 
+/// Native JME constant `JME_SIDEREAL_BABYL_ETPSC` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_BABYL_ETPSC = 366;
 
+/// Native JME constant `JME_SIDEREAL_BABYL_HUBER` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_BABYL_HUBER = 367;
 
+/// Native JME constant `JME_SIDEREAL_BABYL_KUGLER1` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_BABYL_KUGLER1 = 368;
 
+/// Native JME constant `JME_SIDEREAL_BABYL_KUGLER2` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_BABYL_KUGLER2 = 369;
 
+/// Native JME constant `JME_SIDEREAL_BABYL_KUGLER3` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_BABYL_KUGLER3 = 370;
 
+/// Native JME constant `JME_SIDEREAL_DELUCE` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_DELUCE = 371;
 
+/// Native JME constant `JME_SIDEREAL_GALCENT_0SAG` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_GALCENT_0SAG = 372;
 
+/// Native JME constant `JME_SIDEREAL_HIPPARCHOS` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_HIPPARCHOS = 373;
 
+/// Native JME constant `JME_SIDEREAL_J1900` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_J1900 = 374;
 
+/// Native JME constant `JME_SIDEREAL_J2000` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_J2000 = 375;
 
+/// Native JME constant `JME_SIDEREAL_JN_BHASIN` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_JN_BHASIN = 376;
 
+/// Native JME constant `JME_SIDEREAL_KRISHNAMURTI` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_KRISHNAMURTI = 377;
 
+/// Native JME constant `JME_SIDEREAL_RAMAN` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_RAMAN = 378;
 
+/// Native JME constant `JME_SIDEREAL_SASSANIAN` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_SASSANIAN = 379;
 
+/// Native JME constant `JME_SIDEREAL_SS_CITRA` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_SS_CITRA = 380;
 
+/// Native JME constant `JME_SIDEREAL_SS_REVATI` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_SS_REVATI = 381;
 
+/// Native JME constant `JME_SIDEREAL_SURYASIDDHANTA` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_SURYASIDDHANTA = 382;
 
+/// Native JME constant `JME_SIDEREAL_TRUE_CITRA` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_TRUE_CITRA = 383;
 
+/// Native JME constant `JME_SIDEREAL_TRUE_MULA` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_TRUE_MULA = 384;
 
+/// Native JME constant `JME_SIDEREAL_TRUE_PUSHYA` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_TRUE_PUSHYA = 385;
 
+/// Native JME constant `JME_SIDEREAL_TRUE_REVATI` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_TRUE_REVATI = 386;
 
+/// Native JME constant `JME_SIDEREAL_USHASHASHI` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_USHASHASHI = 387;
 
+/// Native JME constant `JME_SIDEREAL_YUKTESHWAR` exposed by the generated FFI bindings.
 const int JME_SIDEREAL_YUKTESHWAR = 388;
 
+/// Native JME constant `JME_TIME_DELTAT_AUTOMATIC` exposed by the generated FFI bindings.
 const int JME_TIME_DELTAT_AUTOMATIC = 389;
 
+/// Native JME constant `JME_TIME_TIDAL_AUTOMATIC` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_AUTOMATIC = 390;
 
+/// Native JME constant `JME_TIME_TIDAL_DE200` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_DE200 = 391;
 
+/// Native JME constant `JME_TIME_TIDAL_DE403` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_DE403 = 392;
 
+/// Native JME constant `JME_TIME_TIDAL_DE404` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_DE404 = 393;
 
+/// Native JME constant `JME_TIME_TIDAL_DE405` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_DE405 = 394;
 
+/// Native JME constant `JME_TIME_TIDAL_DE406` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_DE406 = 395;
 
+/// Native JME constant `JME_TIME_TIDAL_DE421` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_DE421 = 396;
 
+/// Native JME constant `JME_TIME_TIDAL_DE430` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_DE430 = 397;
 
+/// Native JME constant `JME_TIME_TIDAL_DE431` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_DE431 = 398;
 
+/// Native JME constant `JME_TIME_TIDAL_DE441` exposed by the generated FFI bindings.
 const int JME_TIME_TIDAL_DE441 = 399;
 
+/// Native JME constant `JME_VERSION_ID` exposed by the generated FFI bindings.
 const int JME_VERSION_ID = 400;
 
+/// Native JME constant `JME_MODEL_REVISED_IAU_2000` exposed by the generated FFI bindings.
 const int JME_MODEL_REVISED_IAU_2000 = 401;
 
+/// Native JME constant `JME_MODEL_REVISED_IAU_2006` exposed by the generated FFI bindings.
 const int JME_MODEL_REVISED_IAU_2006 = 402;
 
+/// Native JME constant `JME_MODEL_REVISED_PREC_LASKAR` exposed by the generated FFI bindings.
 const int JME_MODEL_REVISED_PREC_LASKAR = 403;
 
+/// Native JME constant `JME_MODEL_REVISED_PREC_VONDRAK` exposed by the generated FFI bindings.
 const int JME_MODEL_REVISED_PREC_VONDRAK = 404;
 
+/// Native JME constant `JME_MODEL_REVISED_PREC_LIESKE` exposed by the generated FFI bindings.
 const int JME_MODEL_REVISED_PREC_LIESKE = 405;

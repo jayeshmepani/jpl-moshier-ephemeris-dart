@@ -1,3 +1,14 @@
+/// Dart and Flutter FFI access to the JPL Moshier Ephemeris native library.
+///
+/// The package exposes:
+/// - [JmeEph] as a convenience wrapper for loading the runtime and configuring
+///   the engine.
+/// - [JmeBindings] for low-level direct `jme_*` access.
+/// - [JmeLoader] for custom runtime loading flows.
+/// - exported JME constants and metadata generated from the bundled native
+///   headers.
+library;
+
 import 'dart:ffi';
 import 'dart:io';
 import 'package:ffi/ffi.dart';

@@ -1,4 +1,11 @@
-# jpl_moshier_ephemeris_dart
+# JPL Moshier Ephemeris Dart
+
+[![pub version](https://img.shields.io/pub/v/jpl_moshier_ephemeris_dart.svg?style=flat-square)](https://pub.dev/packages/jpl_moshier_ephemeris_dart)
+[![pub points](https://img.shields.io/pub/points/jpl_moshier_ephemeris_dart?style=flat-square)](https://pub.dev/packages/jpl_moshier_ephemeris_dart)
+[![likes](https://img.shields.io/pub/likes/jpl_moshier_ephemeris_dart?style=flat-square)](https://pub.dev/packages/jpl_moshier_ephemeris_dart)
+[![dart](https://img.shields.io/badge/dart-3.3%2B-blue.svg?style=flat-square)](https://dart.dev/)
+[![flutter](https://img.shields.io/badge/flutter-3.19%2B-blue.svg?style=flat-square)](https://flutter.dev/)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
 Flutter FFI plugin for the JPL Moshier Ephemeris native library.
 

@@ -1,3 +1,9 @@
+# Unreleased
+
+* Add bundled desktop runtime payloads for Linux, macOS, and Windows.
+* Add desktop loader resolution for package-root, package-config, and executable-adjacent runtimes.
+* Add Flutter desktop bundling metadata for Linux, macOS, and Windows.
+
 # 1.0.0
 
 *   Initial release of `jpl_moshier_ephemeris_dart`.

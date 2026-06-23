@@ -21,6 +21,40 @@ bool _hasBundledHostCalceph() {
   }
 }
 
+String _hostLibraryFilename(String kind) {
+  if (kind == 'jme') {
+    if (Platform.isWindows) {
+      return 'jme.dll';
+    }
+    if (Platform.isMacOS) {
+      return 'libjme.dylib';
+    }
+    return 'libjme.so';
+  }
+
+  if (Platform.isWindows) {
+    return 'calceph.dll';
+  }
+  if (Platform.isMacOS) {
+    return 'libcalceph.dylib';
+  }
+  return 'libcalceph.so';
+}
+
+String _hostPlatformDir() {
+  final version = Platform.version.toLowerCase();
+  final arch = version.contains('arm64') || version.contains('aarch64')
+      ? 'arm64'
+      : 'x64';
+  if (Platform.isWindows) {
+    return 'windows-$arch';
+  }
+  if (Platform.isMacOS) {
+    return 'macos-$arch';
+  }
+  return 'linux-$arch';
+}
+
 void main() {
   group('surface parity', () {
     test('exports the same 204 native functions as the bundled header', () {
@@ -74,6 +108,81 @@ void main() {
   });
 
   group('loader parity', () {
+    test('honors explicit environment overrides', () {
+      final tempDir = Directory.systemTemp.createTempSync('jme-loader-env-');
+      addTearDown(() => tempDir.deleteSync(recursive: true));
+
+      final jmePath = '${tempDir.path}/${_hostLibraryFilename('jme')}';
+      File(jmePath).writeAsStringSync('stub');
+
+      expect(
+        JmeLoader.findLibraryPath(
+          environment: {'JME_LIBRARY_PATH': jmePath},
+        ),
+        jmePath,
+      );
+    });
+
+    test('finds bundled desktop libraries via package_config roots', () {
+      final tempDir = Directory.systemTemp.createTempSync('jme-loader-pkg-');
+      addTearDown(() => tempDir.deleteSync(recursive: true));
+
+      final packageRoot = Directory('${tempDir.path}/deps/package')
+        ..createSync(recursive: true);
+      final appRoot = Directory('${tempDir.path}/app/sub/dir')
+        ..createSync(recursive: true);
+      final packageConfigDir = Directory('${tempDir.path}/app/.dart_tool')
+        ..createSync(recursive: true);
+
+      final bundledPath =
+          '${packageRoot.path}/libs/${_hostPlatformDir()}/${_hostLibraryFilename('jme')}';
+      File(bundledPath)
+        ..createSync(recursive: true)
+        ..writeAsStringSync('stub');
+
+      File('${packageConfigDir.path}/package_config.json').writeAsStringSync('''
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "jpl_moshier_ephemeris_dart",
+      "rootUri": "../deps/package",
+      "packageUri": "lib/"
+    }
+  ]
+}
+''');
+
+      expect(
+        JmeLoader.findLibraryPath(
+          environment: const {},
+          currentDirectory: appRoot.path,
+          executablePath: '${tempDir.path}/bin/fake_executable',
+        ),
+        bundledPath,
+      );
+    });
+
+    test('finds desktop libraries next to the executable', () {
+      final tempDir = Directory.systemTemp.createTempSync('jme-loader-exe-');
+      addTearDown(() => tempDir.deleteSync(recursive: true));
+
+      final executableDir = Directory('${tempDir.path}/bin')
+        ..createSync(recursive: true);
+      final bundledPath =
+          '${executableDir.path}/${_hostLibraryFilename('jme')}';
+      File(bundledPath).writeAsStringSync('stub');
+
+      expect(
+        JmeLoader.findLibraryPath(
+          environment: const {},
+          currentDirectory: tempDir.path,
+          executablePath: '${executableDir.path}/fake_executable',
+        ),
+        bundledPath,
+      );
+    });
+
     test('finds a bundled JME library for this host', () {
       if (!_hasBundledHostJme()) {
         return;

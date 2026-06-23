@@ -22,7 +22,7 @@ bool _hasBundledHostCalceph() {
 }
 
 String _normalizePath(String path) =>
-    path.replaceAll('\\', '/').replaceAll('//', '/');
+    path.replaceAll(r'\', '/').replaceAll('//', '/');
 
 String _hostLibraryFilename(String kind) {
   if (kind == 'jme') {

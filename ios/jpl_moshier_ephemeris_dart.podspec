@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'jpl_moshier_ephemeris_dart'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'Dart FFI wrapper for JPL Moshier Ephemeris.'
   s.description      = <<-DESC
 Flutter FFI plugin for the JPL Moshier Ephemeris native library with direct jme_* API access for iOS and Android.

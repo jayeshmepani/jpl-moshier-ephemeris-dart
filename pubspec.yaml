@@ -1,6 +1,6 @@
 name: jpl_moshier_ephemeris_dart
 description: "Flutter FFI plugin for the JPL Moshier Ephemeris native library with direct jme_* API access and bundled mobile plus desktop runtimes."
-version: 1.0.0
+version: 1.1.0
 homepage: https://github.com/jayeshmepani/jpl-moshier-ephemeris-dart
 repository: https://github.com/jayeshmepani/jpl-moshier-ephemeris-dart
 issue_tracker: https://github.com/jayeshmepani/jpl-moshier-ephemeris-dart/issues

@@ -19,6 +19,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Checkout native JME
+        uses: actions/checkout@v4
+        with:
+          repository: jayeshmepani/jpl-ephemeris
+          path: native
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:

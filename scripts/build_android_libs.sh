@@ -82,12 +82,14 @@ prepare_calceph_source() {
 copy_calceph_runtime_artifacts() {
   local runtime_prefix="$1"
   local output_dir="$2"
-  local file
+  local file="$runtime_prefix/lib/libcalceph.so"
 
-  for file in "$runtime_prefix"/lib/libcalceph.so*; do
-    [[ -e "$file" ]] || continue
-    cp -L "$file" "$output_dir/$(basename "$file")"
-  done
+  if [[ ! -f "$file" ]]; then
+    echo "Shared CALCEPH runtime not found: $file" >&2
+    exit 1
+  fi
+
+  cp -L "$file" "$output_dir/libcalceph.so"
 }
 
 write_calceph_config() {

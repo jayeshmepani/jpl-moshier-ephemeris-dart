@@ -12,3 +12,6 @@ android/local.properties
 ports/
 scripts/
 vcpkg-triplets/
+native/
+android/src/main/jniLibs/*/libcalceph.so.2
+android/src/main/jniLibs/*/libcalceph.so.2.0.5

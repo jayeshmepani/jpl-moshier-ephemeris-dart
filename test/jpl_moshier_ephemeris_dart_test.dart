@@ -21,6 +21,9 @@ bool _hasBundledHostCalceph() {
   }
 }
 
+String _normalizePath(String path) =>
+    path.replaceAll('\\', '/').replaceAll('//', '/');
+
 String _hostLibraryFilename(String kind) {
   if (kind == 'jme') {
     if (Platform.isWindows) {
@@ -154,12 +157,14 @@ void main() {
 ''');
 
       expect(
-        JmeLoader.findLibraryPath(
-          environment: const {},
-          currentDirectory: appRoot.path,
-          executablePath: '${tempDir.path}/bin/fake_executable',
+        _normalizePath(
+          JmeLoader.findLibraryPath(
+            environment: const {},
+            currentDirectory: appRoot.path,
+            executablePath: '${tempDir.path}/bin/fake_executable',
+          ),
         ),
-        bundledPath,
+        _normalizePath(bundledPath),
       );
     });
 
@@ -174,12 +179,14 @@ void main() {
       File(bundledPath).writeAsStringSync('stub');
 
       expect(
-        JmeLoader.findLibraryPath(
-          environment: const {},
-          currentDirectory: tempDir.path,
-          executablePath: '${executableDir.path}/fake_executable',
+        _normalizePath(
+          JmeLoader.findLibraryPath(
+            environment: const {},
+            currentDirectory: tempDir.path,
+            executablePath: '${executableDir.path}/fake_executable',
+          ),
         ),
-        bundledPath,
+        _normalizePath(bundledPath),
       );
     });
 

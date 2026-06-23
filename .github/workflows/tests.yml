@@ -11,8 +11,8 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    name: Flutter stable on Ubuntu
+  linux-host:
+    name: Host tests on Ubuntu
     runs-on: ubuntu-latest
 
     steps:
@@ -47,6 +47,7 @@ jobs:
           VCPKG_EXE: ${{ env.VCPKG_EXE }}
           ANDROID_NDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
           ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
+          JME_SOURCE_PATH: ${{ github.workspace }}/native
         run: ./scripts/build_android_libs.sh
 
       - name: Format check
@@ -60,6 +61,46 @@ jobs:
 
       - name: Publish dry-run
         run: flutter pub publish --dry-run
+
+  macos-host:
+    name: Host tests on macOS
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
+
+  windows-host:
+    name: Host tests on Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
 
   ios-package:
     name: iOS packaging on macOS
@@ -96,6 +137,12 @@ jobs:
           VCPKG_ROOT: ${{ env.VCPKG_ROOT }}
           VCPKG_EXE: ${{ env.VCPKG_EXE }}
         run: ./scripts/build_ios_xcframework.sh native
+
+      - name: Restore tracked xcframework metadata
+        run: |
+          git checkout -- \
+            ios/Frameworks/Calceph.xcframework/Info.plist \
+            ios/Frameworks/Jme.xcframework/Info.plist
 
       - name: Verify xcframework exists
         run: |

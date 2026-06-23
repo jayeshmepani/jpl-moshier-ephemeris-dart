@@ -57,6 +57,7 @@ jobs:
           VCPKG_EXE: ${{ env.VCPKG_EXE }}
           ANDROID_NDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
           ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
+          JME_SOURCE_PATH: ${{ github.workspace }}/native
         run: ./scripts/build_android_libs.sh
 
       - name: Build iOS xcframework
@@ -64,6 +65,12 @@ jobs:
           VCPKG_ROOT: ${{ env.VCPKG_ROOT }}
           VCPKG_EXE: ${{ env.VCPKG_EXE }}
         run: ./scripts/build_ios_xcframework.sh native
+
+      - name: Restore tracked xcframework metadata
+        run: |
+          git checkout -- \
+            ios/Frameworks/Calceph.xcframework/Info.plist \
+            ios/Frameworks/Jme.xcframework/Info.plist
 
       - name: Format check
         run: dart format --output=none --set-exit-if-changed .

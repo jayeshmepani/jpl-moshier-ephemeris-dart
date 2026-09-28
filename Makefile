@@ -17,4 +17,4 @@ modernize-dry:
 quality:
 	dart format --output=none --set-exit-if-changed .
 	dart analyze --fatal-infos
-	dart test
+	flutter test

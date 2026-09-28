@@ -12,13 +12,11 @@ class JmeExampleApp extends StatelessWidget {
   const JmeExampleApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'JPL Moshier Ephemeris Dart',
-      theme: ThemeData(colorSchemeSeed: Colors.blue, useMaterial3: true),
-      home: const JmeExampleHomePage(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        title: 'JPL Moshier Ephemeris Dart',
+        theme: ThemeData(colorSchemeSeed: Colors.blue, useMaterial3: true),
+        home: const JmeExampleHomePage(),
+      );
 }
 
 class JmeExampleHomePage extends StatefulWidget {
@@ -69,6 +67,7 @@ class _JmeExampleHomePageState extends State<JmeExampleHomePage> {
         _version = version;
         _sunPosition = sunPosition;
       });
+      // ignore: avoid_catches_without_on_clauses
     } catch (error) {
       if (!mounted) return;
       setState(() {
@@ -79,39 +78,37 @@ class _JmeExampleHomePageState extends State<JmeExampleHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('JPL Moshier Ephemeris Dart')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'This example loads the bundled native runtime and queries a couple '
-              'of simple values through the generated FFI bindings.',
-            ),
-            const SizedBox(height: 16),
-            Card(
-              child: ListTile(
-                title: const Text('Native runtime version'),
-                subtitle: Text(_version),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(title: const Text('JPL Moshier Ephemeris Dart')),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'This example loads the bundled native runtime and queries a couple '
+                'of simple values through the generated FFI bindings.',
               ),
-            ),
-            Card(
-              child: ListTile(
-                title: const Text('Sun position at J2000'),
-                subtitle: Text(_sunPosition),
+              const SizedBox(height: 16),
+              Card(
+                child: ListTile(
+                  title: const Text('Native runtime version'),
+                  subtitle: Text(_version),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: _refresh,
-              child: const Text('Refresh'),
-            ),
-          ],
+              Card(
+                child: ListTile(
+                  title: const Text('Sun position at J2000'),
+                  subtitle: Text(_sunPosition),
+                ),
+              ),
+              const SizedBox(height: 16),
+              FilledButton(
+                onPressed: _refresh,
+                child: const Text('Refresh'),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

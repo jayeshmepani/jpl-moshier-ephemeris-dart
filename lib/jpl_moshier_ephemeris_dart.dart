@@ -37,7 +37,7 @@ class JmeEph {
     final normalizedEngine = _normalizeEngine(engine);
 
     if (ephemerisPath != null && ephemerisPath.isNotEmpty) {
-      using((Arena arena) {
+      using((arena) {
         bindings.jme_set_ephemeris_path(
           ephemerisPath.toNativeUtf8(allocator: arena).cast(),
         );
@@ -45,7 +45,7 @@ class JmeEph {
     }
 
     if (jplFile != null && jplFile.isNotEmpty) {
-      using((Arena arena) {
+      using((arena) {
         bindings.jme_set_jpl_file(
           jplFile.toNativeUtf8(allocator: arena).cast(),
         );
@@ -54,7 +54,7 @@ class JmeEph {
 
     if (normalizedEngine == 'JPL') {
       final kernelPath = _resolveUsableJplKernelPath(ephemerisPath, jplFile);
-      using((Arena arena) {
+      using((arena) {
         final error = arena<Char>(256);
         final pathPtr = kernelPath.toNativeUtf8(allocator: arena).cast<Char>();
         bindings.jme_set_jpl_file(pathPtr);
@@ -68,7 +68,7 @@ class JmeEph {
       });
     }
 
-    using((Arena arena) {
+    using((arena) {
       bindings.jme_set_astro_models(
         'ENGINE=$normalizedEngine'.toNativeUtf8(allocator: arena).cast(),
         0,
@@ -93,11 +93,11 @@ class JmeEph {
   }
 
   String _resolveUsableJplKernelPath(String? ephemerisPath, String? jplFile) {
-    final runtimeJplFile = using((Arena arena) {
+    final runtimeJplFile = using((arena) {
       final ptr = bindings.jme_jpl_file();
       return ptr == nullptr ? '' : ptr.cast<Utf8>().toDartString();
     });
-    final runtimeEphemerisPath = using((Arena arena) {
+    final runtimeEphemerisPath = using((arena) {
       final ptr = bindings.jme_ephemeris_path();
       return ptr == nullptr ? '' : ptr.cast<Utf8>().toDartString();
     });

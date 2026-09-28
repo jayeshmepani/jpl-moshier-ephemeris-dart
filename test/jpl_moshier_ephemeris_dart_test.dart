@@ -214,7 +214,7 @@ void main() {
       }
       final jme = JmeEph();
 
-      using((Arena arena) {
+      using((arena) {
         final buffer = arena<Char>(256);
         final result = jme.bindings.jme_version(buffer, 256);
         final version = buffer.cast<Utf8>().toDartString();
@@ -239,7 +239,7 @@ void main() {
 
       expect(jd, closeTo(2451545.0, 1e-9));
 
-      using((Arena arena) {
+      using((arena) {
         final year = arena<Int>();
         final month = arena<Int>();
         final day = arena<Int>();
@@ -267,7 +267,7 @@ void main() {
       }
       final jme = JmeEph();
 
-      using((Arena arena) {
+      using((arena) {
         final xx = arena<Double>(6);
         final err = arena<Char>(256);
         final result = jme.bindings.jme_calc_ut(

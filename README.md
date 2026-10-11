@@ -5,7 +5,7 @@
 [![likes](https://img.shields.io/pub/likes/jpl_moshier_ephemeris_dart?style=flat-square)](https://pub.dev/packages/jpl_moshier_ephemeris_dart)
 [![dart](https://img.shields.io/badge/dart-3.3%2B-blue.svg?style=flat-square)](https://dart.dev/)
 [![flutter](https://img.shields.io/badge/flutter-3.19%2B-blue.svg?style=flat-square)](https://flutter.dev/)
-[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![License: MIT AND CeCILL-B](https://img.shields.io/badge/license-MIT%20AND%20CeCILL--B-blue.svg?style=flat-square)](#license)
 
 Flutter FFI plugin for the JPL Moshier Ephemeris native library.
 
@@ -147,6 +147,10 @@ Full credits, terms, and required notice texts: [THIRD_PARTY_NOTICES.md](THIRD_P
 
 ## License
 
-The original code in this repository is licensed under the [MIT License](LICENSE), Copyright (c) 2026 Jayesh Mepani (Jayesh Patel).
+**Package license: `MIT AND CeCILL-B`.**
 
-**Scope:** MIT applies to the original code in this repository; third-party components keep their own terms, see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The bundled CALCEPH runtime libraries are licensed under CeCILL-B, not MIT. The bundled JME runtime libraries include the Moshier and ELP2000-82B components described there, which are not covered by the MIT License.
+- The original code in this repository (the Dart/Flutter FFI plugin, tests and build scripts) is licensed under the [MIT License](LICENSE), Copyright (c) 2026 Jayesh Mepani (Jayesh Patel). The `LICENSE` file contains only the MIT text for that code.
+- The bundled prebuilt CALCEPH 4.0.5 runtime libraries are licensed under CeCILL-B; the full text is in [`LICENSES/CeCILL-B.txt`](LICENSES/CeCILL-B.txt).
+- The bundled JME runtime libraries also contain the Moshier and ELP2000-82B components, whose redistribution permission is still pending from their authors. They are not covered by the MIT License.
+
+Third-party components keep their own terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

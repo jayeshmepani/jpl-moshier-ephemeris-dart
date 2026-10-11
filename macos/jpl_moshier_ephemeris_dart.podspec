@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
 Flutter FFI plugin for the JPL Moshier Ephemeris native library with bundled desktop runtimes for macOS.
                        DESC
   s.homepage         = 'https://github.com/jayeshmepani/jpl-moshier-ephemeris-dart'
-  s.license          = { :file => '../LICENSE' }
+  s.license          = { :type => 'MIT AND CeCILL-B', :file => '../LICENSE' }
   s.author           = { 'Jayesh Patel' => 'jayeshmepani777@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files     = 'Classes/**/*'

@@ -5117,6 +5117,471 @@ class JmeBindings {
               ffi.Pointer<ffi.Char>, ffi.Size)>>('jme_version');
   late final _jme_version = _jme_versionPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, int)>();
+
+  /// Calls the native `jme_calc_resolve_engine` entry point.
+  int jme_calc_resolve_engine(
+    double jd_et,
+    int body,
+    ffi.Pointer<ffi.Int> engine_id,
+    ffi.Pointer<ffi.Int> jpl_center_substituted,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_calc_resolve_engine(
+      jd_et,
+      body,
+      engine_id,
+      jpl_center_substituted,
+      error,
+    );
+  }
+
+  late final _jme_calc_resolve_enginePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_calc_resolve_engine');
+  late final _jme_calc_resolve_engine = _jme_calc_resolve_enginePtr.asFunction<
+      int Function(
+          double,
+          int,
+          ffi.Pointer<ffi.Int>,
+          ffi.Pointer<ffi.Int>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_delta_t_iers_table_info` entry point.
+  int jme_delta_t_iers_table_info(
+    ffi.Pointer<ffi.Double> jd_first,
+    ffi.Pointer<ffi.Double> jd_last_observed,
+    ffi.Pointer<ffi.Double> jd_last,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_delta_t_iers_table_info(
+      jd_first,
+      jd_last_observed,
+      jd_last,
+      error,
+    );
+  }
+
+  late final _jme_delta_t_iers_table_infoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_delta_t_iers_table_info');
+  late final _jme_delta_t_iers_table_info = _jme_delta_t_iers_table_infoPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_get_ayanamsa_ex2` entry point.
+  int jme_get_ayanamsa_ex2(
+    double jd_et,
+    int model,
+    int flags,
+    ffi.Pointer<ffi.Double> ayan,
+    ffi.Pointer<ffi.Double> rate,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_get_ayanamsa_ex2(
+      jd_et,
+      model,
+      flags,
+      ayan,
+      rate,
+      error,
+    );
+  }
+
+  late final _jme_get_ayanamsa_ex2Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Int,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_get_ayanamsa_ex2');
+  late final _jme_get_ayanamsa_ex2 = _jme_get_ayanamsa_ex2Ptr.asFunction<
+      int Function(
+          double,
+          int,
+          int,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_get_ayanamsa_ex2_ut` entry point.
+  int jme_get_ayanamsa_ex2_ut(
+    double jd_ut,
+    int model,
+    int flags,
+    ffi.Pointer<ffi.Double> ayan,
+    ffi.Pointer<ffi.Double> rate,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_get_ayanamsa_ex2_ut(
+      jd_ut,
+      model,
+      flags,
+      ayan,
+      rate,
+      error,
+    );
+  }
+
+  late final _jme_get_ayanamsa_ex2_utPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Int,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_get_ayanamsa_ex2_ut');
+  late final _jme_get_ayanamsa_ex2_ut = _jme_get_ayanamsa_ex2_utPtr.asFunction<
+      int Function(
+          double,
+          int,
+          int,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_get_jpl_center_policy` entry point.
+  int jme_get_jpl_center_policy() {
+    return _jme_get_jpl_center_policy();
+  }
+
+  late final _jme_get_jpl_center_policyPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>(
+          'jme_get_jpl_center_policy');
+  late final _jme_get_jpl_center_policy =
+      _jme_get_jpl_center_policyPtr.asFunction<int Function()>();
+
+  /// Calls the native `jme_houses_gauquelin` entry point.
+  int jme_houses_gauquelin(
+    double jd_ut,
+    int flags,
+    double geo_lat,
+    double geo_lon,
+    ffi.Pointer<ffi.Double> cusps,
+    ffi.Pointer<ffi.Double> ascmc,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_houses_gauquelin(
+      jd_ut,
+      flags,
+      geo_lat,
+      geo_lon,
+      cusps,
+      ascmc,
+      error,
+    );
+  }
+
+  late final _jme_houses_gauquelinPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Double,
+              ffi.Double,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_houses_gauquelin');
+  late final _jme_houses_gauquelin = _jme_houses_gauquelinPtr.asFunction<
+      int Function(
+          double,
+          int,
+          double,
+          double,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_houses_gauquelin_armc` entry point.
+  int jme_houses_gauquelin_armc(
+    double armc,
+    double geo_lat,
+    double eps,
+    ffi.Pointer<ffi.Double> cusps,
+    ffi.Pointer<ffi.Double> ascmc,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_houses_gauquelin_armc(
+      armc,
+      geo_lat,
+      eps,
+      cusps,
+      ascmc,
+      error,
+    );
+  }
+
+  late final _jme_houses_gauquelin_armcPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Double,
+              ffi.Double,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_houses_gauquelin_armc');
+  late final _jme_houses_gauquelin_armc = _jme_houses_gauquelin_armcPtr.asFunction<
+      int Function(
+          double,
+          double,
+          double,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_leap_second_table_info` entry point.
+  int jme_leap_second_table_info(
+    ffi.Pointer<ffi.Double> jd_utc_valid_until,
+    ffi.Pointer<ffi.Double> last_tai_minus_utc,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_leap_second_table_info(
+      jd_utc_valid_until,
+      last_tai_minus_utc,
+      error,
+    );
+  }
+
+  late final _jme_leap_second_table_infoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_leap_second_table_info');
+  late final _jme_leap_second_table_info = _jme_leap_second_table_infoPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_set_astro_models_checked` entry point.
+  int jme_set_astro_models_checked(
+    ffi.Pointer<ffi.Char> models,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_set_astro_models_checked(
+      models,
+      error,
+    );
+  }
+
+  late final _jme_set_astro_models_checkedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_set_astro_models_checked');
+  late final _jme_set_astro_models_checked = _jme_set_astro_models_checkedPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_set_jpl_center_policy` entry point.
+  int jme_set_jpl_center_policy(
+    int policy,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_set_jpl_center_policy(
+      policy,
+      error,
+    );
+  }
+
+  late final _jme_set_jpl_center_policyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Int,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_set_jpl_center_policy');
+  late final _jme_set_jpl_center_policy = _jme_set_jpl_center_policyPtr.asFunction<
+      int Function(
+          int,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_set_sidereal_mode_checked` entry point.
+  int jme_set_sidereal_mode_checked(
+    int sidereal_mode,
+    double t0,
+    double ayan_t0,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_set_sidereal_mode_checked(
+      sidereal_mode,
+      t0,
+      ayan_t0,
+      error,
+    );
+  }
+
+  late final _jme_set_sidereal_mode_checkedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Int,
+              ffi.Double,
+              ffi.Double,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_set_sidereal_mode_checked');
+  late final _jme_set_sidereal_mode_checked = _jme_set_sidereal_mode_checkedPtr.asFunction<
+      int Function(
+          int,
+          double,
+          double,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_set_topo_checked` entry point.
+  int jme_set_topo_checked(
+    double lon,
+    double lat,
+    double altitude,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_set_topo_checked(
+      lon,
+      lat,
+      altitude,
+      error,
+    );
+  }
+
+  late final _jme_set_topo_checkedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Double,
+              ffi.Double,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_set_topo_checked');
+  late final _jme_set_topo_checked = _jme_set_topo_checkedPtr.asFunction<
+      int Function(
+          double,
+          double,
+          double,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_sidereal_time_ex` entry point.
+  int jme_sidereal_time_ex(
+    double jd_ut,
+    int apparent,
+    ffi.Pointer<ffi.Double> hours,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_sidereal_time_ex(
+      jd_ut,
+      apparent,
+      hours,
+      error,
+    );
+  }
+
+  late final _jme_sidereal_time_exPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_sidereal_time_ex');
+  late final _jme_sidereal_time_ex = _jme_sidereal_time_exPtr.asFunction<
+      int Function(
+          double,
+          int,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_time_scale_convert` entry point.
+  int jme_time_scale_convert(
+    double jd1,
+    double jd2,
+    int from_scale,
+    int to_scale,
+    ffi.Pointer<ffi.Double> out1,
+    ffi.Pointer<ffi.Double> out2,
+    ffi.Pointer<ffi.Char> error,
+  ) {
+    return _jme_time_scale_convert(
+      jd1,
+      jd2,
+      from_scale,
+      to_scale,
+      out1,
+      out2,
+      error,
+    );
+  }
+
+  late final _jme_time_scale_convertPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Double,
+              ffi.Int,
+              ffi.Int,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Double>,
+              ffi.Pointer<ffi.Char>,
+          )>>('jme_time_scale_convert');
+  late final _jme_time_scale_convert = _jme_time_scale_convertPtr.asFunction<
+      int Function(
+          double,
+          double,
+          int,
+          int,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Double>,
+          ffi.Pointer<ffi.Char>,
+      )>();
+
+  /// Calls the native `jme_time_scale_name` entry point.
+  ffi.Pointer<ffi.Char> jme_time_scale_name(
+    int scale,
+  ) {
+    return _jme_time_scale_name(
+      scale,
+    );
+  }
+
+  late final _jme_time_scale_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Int,
+          )>>('jme_time_scale_name');
+  late final _jme_time_scale_name = _jme_time_scale_namePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          int,
+      )>();
 }
 
 /// Native JME constant `JME_JME_H` exposed by the generated FFI bindings.

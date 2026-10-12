@@ -52,10 +52,13 @@ jobs:
           path: native
 
       - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses || true
+        run: yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses || true
 
       - name: Install Android NDK
-        run: sdkmanager "ndk;27.2.12479018"
+        run: |
+          SDKM="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
+          test -x "$SDKM" || SDKM="$(command -v sdkmanager)"
+          "$SDKM" "ndk;27.2.12479018"
 
       - name: Prepare vcpkg
         run: |

@@ -73,7 +73,7 @@ void main() {
       expect(signatureNames().toList(), orderedEquals(headerFunctions));
     });
 
-    test('exports the same 478 tracked constants as the bundled header', () {
+    test('exports the same 477 exported constants as the bundled header', () {
       final header = File('src/include/jme/jme.h').readAsStringSync();
       final headerConstants = RegExp(r'\b(JME_[A-Z0-9_]+)\b')
           .allMatches(header)
@@ -83,7 +83,7 @@ void main() {
           .toList()
         ..sort();
 
-      expect(headerConstants, hasLength(478));
+      expect(headerConstants, hasLength(477));
       expect(constantNames().toList(), orderedEquals(headerConstants));
     });
 

@@ -51,14 +51,18 @@ jobs:
           ref: ${{ inputs.native_ref || 'main' }}
           path: native
 
-      - name: Accept Android SDK licenses
-        run: yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses || true
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
 
       - name: Install Android NDK
         run: |
-          SDKM="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
-          test -x "$SDKM" || SDKM="$(command -v sdkmanager)"
-          "$SDKM" "ndk;27.2.12479018"
+          sdkmanager "ndk;27.2.12479018"
+          SDK="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+          test -f "$SDK/ndk/27.2.12479018/build/cmake/android.toolchain.cmake"
+          echo "ANDROID_NDK_ROOT=$SDK/ndk/27.2.12479018" >> "$GITHUB_ENV"
+          echo "ANDROID_NDK_HOME=$SDK/ndk/27.2.12479018" >> "$GITHUB_ENV"
 
       - name: Prepare vcpkg
         run: |
@@ -71,8 +75,6 @@ jobs:
         env:
           VCPKG_ROOT: ${{ env.VCPKG_ROOT }}
           VCPKG_EXE: ${{ env.VCPKG_EXE }}
-          ANDROID_NDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
-          ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
           JME_SOURCE_PATH: ${{ github.workspace }}/native
         run: ./scripts/build_android_libs.sh
 

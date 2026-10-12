@@ -320,8 +320,7 @@ class JmeBindings {
   }
 
   late final _jme_decimal_hourPtr = _lookup<
-          ffi
-          .NativeFunction<ffi.Double Function(ffi.Int, ffi.Int, ffi.Double)>>(
+      ffi.NativeFunction<ffi.Double Function(ffi.Int, ffi.Int, ffi.Double)>>(
       'jme_decimal_hour');
   late final _jme_decimal_hour =
       _jme_decimal_hourPtr.asFunction<double Function(int, int, double)>();
@@ -4114,8 +4113,7 @@ class JmeBindings {
   }
 
   late final _jme_set_astro_modelsPtr = _lookup<
-          ffi
-          .NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
+      ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
       'jme_set_astro_models');
   late final _jme_set_astro_models = _jme_set_astro_modelsPtr
       .asFunction<void Function(ffi.Pointer<ffi.Char>, int)>();
@@ -4209,8 +4207,7 @@ class JmeBindings {
   }
 
   late final _jme_set_sidereal_modePtr = _lookup<
-          ffi
-          .NativeFunction<ffi.Void Function(ffi.Int, ffi.Double, ffi.Double)>>(
+      ffi.NativeFunction<ffi.Void Function(ffi.Int, ffi.Double, ffi.Double)>>(
       'jme_set_sidereal_mode');
   late final _jme_set_sidereal_mode = _jme_set_sidereal_modePtr
       .asFunction<void Function(int, double, double)>();
@@ -4926,8 +4923,7 @@ class JmeBindings {
   }
 
   late final _jme_get_frame_bias_matrixPtr = _lookup<
-          ffi
-          .NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Double>)>>(
+      ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Double>)>>(
       'jme_get_frame_bias_matrix');
   late final _jme_get_frame_bias_matrix = _jme_get_frame_bias_matrixPtr
       .asFunction<int Function(int, ffi.Pointer<ffi.Double>)>();

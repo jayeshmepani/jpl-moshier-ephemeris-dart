@@ -8,6 +8,16 @@ on:
         required: true
         default: mobile-binaries
         type: string
+      native_ref:
+        description: jpl-ephemeris commit/branch to build
+        required: false
+        default: main
+        type: string
+      publish:
+        description: Publish a GitHub release (false = CI artifacts only)
+        required: false
+        default: false
+        type: boolean
   push:
     tags:
       - 'v*'
@@ -38,13 +48,21 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: jayeshmepani/jpl-ephemeris
+          ref: ${{ inputs.native_ref || 'main' }}
           path: native
 
-      - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses || true
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
 
       - name: Install Android NDK
-        run: sdkmanager "ndk;27.2.12479018"
+        run: |
+          sdkmanager "ndk;27.2.12479018"
+          SDK="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+          test -f "$SDK/ndk/27.2.12479018/build/cmake/android.toolchain.cmake"
+          echo "ANDROID_NDK_ROOT=$SDK/ndk/27.2.12479018" >> "$GITHUB_ENV"
+          echo "ANDROID_NDK_HOME=$SDK/ndk/27.2.12479018" >> "$GITHUB_ENV"
 
       - name: Prepare vcpkg
         run: |
@@ -57,14 +75,15 @@ jobs:
         env:
           VCPKG_ROOT: ${{ env.VCPKG_ROOT }}
           VCPKG_EXE: ${{ env.VCPKG_EXE }}
-          ANDROID_NDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
-          ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
           JME_SOURCE_PATH: ${{ github.workspace }}/native
         run: ./scripts/build_android_libs.sh
 
       - name: Package Android artifact
         run: |
           mkdir -p dist
+          N="android/src/main/jniLibs/${{ matrix.abi }}/notices"; mkdir -p "$N"
+          for f in LICENSE NOTICE.md THIRD_PARTY_NOTICES.md src/erfa/vendor/LICENSE.ERFA docs/permissions/MOSHIER_PERMISSION.md; do cp "native/$f" "$N/"; done
+          git -C native rev-parse HEAD > "$N/JME_NATIVE_COMMIT.txt"
           tar -czf "dist/jme-android-${{ matrix.abi }}.tar.gz" -C "android/src/main/jniLibs/${{ matrix.abi }}" .
 
       - name: Upload Android artifact
@@ -86,6 +105,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: jayeshmepani/jpl-ephemeris
+          ref: ${{ inputs.native_ref || 'main' }}
           path: native
 
       - name: Prepare vcpkg
@@ -104,6 +124,9 @@ jobs:
       - name: Package iOS artifact
         run: |
           mkdir -p dist
+          N="ios/Frameworks/notices"; mkdir -p "$N"
+          for f in LICENSE NOTICE.md THIRD_PARTY_NOTICES.md src/erfa/vendor/LICENSE.ERFA docs/permissions/MOSHIER_PERMISSION.md; do cp "native/$f" "$N/"; done
+          git -C native rev-parse HEAD > "$N/JME_NATIVE_COMMIT.txt"
           ditto -c -k --sequesterRsrc --keepParent "ios/Frameworks" "dist/jme-ios-frameworks.zip"
 
       - name: Upload iOS artifact
@@ -118,6 +141,7 @@ jobs:
     needs:
       - android
       - ios
+    if: github.event_name == 'push' || inputs.publish
     runs-on: ubuntu-latest
 
     steps:

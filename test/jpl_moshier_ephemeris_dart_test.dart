@@ -60,7 +60,7 @@ String _hostPlatformDir() {
 
 void main() {
   group('surface parity', () {
-    test('exports the same 219 native functions as the bundled header', () {
+    test('exports the same 225 native functions as the bundled header', () {
       final header = File('src/include/jme/jme.h').readAsStringSync();
       final headerFunctions = RegExp(r'\b(jme_[A-Za-z0-9_]+)\s*\(')
           .allMatches(header)
@@ -69,11 +69,11 @@ void main() {
           .toList()
         ..sort();
 
-      expect(headerFunctions, hasLength(219));
+      expect(headerFunctions, hasLength(225));
       expect(signatureNames().toList(), orderedEquals(headerFunctions));
     });
 
-    test('exports the same 477 exported constants as the bundled header', () {
+    test('exports the same 480 exported constants as the bundled header', () {
       final header = File('src/include/jme/jme.h').readAsStringSync();
       final headerConstants = RegExp(r'\b(JME_[A-Z0-9_]+)\b')
           .allMatches(header)
@@ -83,7 +83,7 @@ void main() {
           .toList()
         ..sort();
 
-      expect(headerConstants, hasLength(477));
+      expect(headerConstants, hasLength(480));
       expect(constantNames().toList(), orderedEquals(headerConstants));
     });
 

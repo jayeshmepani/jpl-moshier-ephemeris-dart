@@ -7,24 +7,7 @@ analyzer:
   errors:
     missing_required_param: error
     missing_return: error
-    avoid_print: ignore
-    always_put_control_body_on_new_line: ignore
     lines_longer_than_80_chars: ignore
-    cascade_invocations: ignore
-    always_use_package_imports: ignore
-    avoid_catching_errors: ignore
-    prefer_foreach: ignore
-    avoid_dynamic_calls: ignore
-    avoid_positional_boolean_parameters: ignore
-    require_trailing_commas: ignore
-    parameter_assignments: ignore
-    library_prefixes: ignore
-    avoid_redundant_argument_values: ignore
-    unused_local_variable: ignore
-    unused_import: ignore
-    inference_failure_on_untyped_parameter: ignore
-    directives_ordering: ignore
-    sort_pub_dependencies: ignore
 
   exclude:
     - build/**

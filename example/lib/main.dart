@@ -62,14 +62,17 @@ class _JmeExampleHomePageState extends State<JmeExampleHomePage> {
             'dist=${result[2].toStringAsFixed(9)} AU';
       });
 
-      if (!mounted) return;
+      if (!mounted) {
+        return;
+      }
       setState(() {
         _version = version;
         _sunPosition = sunPosition;
       });
-      // ignore: avoid_catches_without_on_clauses
-    } catch (error) {
-      if (!mounted) return;
+    } on Exception catch (error) {
+      if (!mounted) {
+        return;
+      }
       setState(() {
         _version = 'Error: $error';
         _sunPosition = 'Unable to compute a sample ephemeris result.';

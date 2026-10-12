@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_catches_without_on_clauses
 import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
@@ -49,7 +48,10 @@ class JmeLoader {
         executablePath: executablePath,
       );
 
-  /// Best-effort preload of CALCEPH so JME can resolve dependent symbols.
+  /// Preloads CALCEPH so JME can resolve dependent symbols.
+  ///
+  /// Returns null when no CALCEPH runtime is bundled for the platform; a
+  /// runtime that is present but cannot be loaded throws.
   static DynamicLibrary? loadCalcephRuntime() {
     try {
       if (Platform.isAndroid) {
@@ -63,8 +65,6 @@ class JmeLoader {
       }
       return null;
     } on JmeLibraryNotFoundError {
-      return null;
-    } catch (_) {
       return null;
     }
   }
@@ -190,8 +190,10 @@ class JmeLoader {
       }
 
       try {
-        final decoded = jsonDecode(packageConfig.readAsStringSync())
-            as Map<String, Object?>;
+        final decoded = jsonDecode(packageConfig.readAsStringSync());
+        if (decoded is! Map<String, Object?>) {
+          continue;
+        }
         final packages = decoded['packages'];
         if (packages is! List<Object?>) {
           continue;
@@ -216,7 +218,9 @@ class JmeLoader {
               rootUri.isAbsolute ? rootUri : configRoot.resolveUri(rootUri);
           return <String>{Directory.fromUri(resolvedUri).absolute.path};
         }
-      } catch (_) {
+      } on FileSystemException {
+        continue;
+      } on FormatException {
         continue;
       }
     }

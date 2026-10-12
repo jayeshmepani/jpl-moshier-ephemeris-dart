@@ -320,7 +320,8 @@ class JmeBindings {
   }
 
   late final _jme_decimal_hourPtr = _lookup<
-      ffi.NativeFunction<ffi.Double Function(ffi.Int, ffi.Int, ffi.Double)>>(
+          ffi
+          .NativeFunction<ffi.Double Function(ffi.Int, ffi.Int, ffi.Double)>>(
       'jme_decimal_hour');
   late final _jme_decimal_hour =
       _jme_decimal_hourPtr.asFunction<double Function(int, int, double)>();
@@ -4113,7 +4114,8 @@ class JmeBindings {
   }
 
   late final _jme_set_astro_modelsPtr = _lookup<
-      ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
+          ffi
+          .NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
       'jme_set_astro_models');
   late final _jme_set_astro_models = _jme_set_astro_modelsPtr
       .asFunction<void Function(ffi.Pointer<ffi.Char>, int)>();
@@ -4207,7 +4209,8 @@ class JmeBindings {
   }
 
   late final _jme_set_sidereal_modePtr = _lookup<
-      ffi.NativeFunction<ffi.Void Function(ffi.Int, ffi.Double, ffi.Double)>>(
+          ffi
+          .NativeFunction<ffi.Void Function(ffi.Int, ffi.Double, ffi.Double)>>(
       'jme_set_sidereal_mode');
   late final _jme_set_sidereal_mode = _jme_set_sidereal_modePtr
       .asFunction<void Function(int, double, double)>();
@@ -4923,7 +4926,8 @@ class JmeBindings {
   }
 
   late final _jme_get_frame_bias_matrixPtr = _lookup<
-      ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Double>)>>(
+          ffi
+          .NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Double>)>>(
       'jme_get_frame_bias_matrix');
   late final _jme_get_frame_bias_matrix = _jme_get_frame_bias_matrixPtr
       .asFunction<int Function(int, ffi.Pointer<ffi.Double>)>();
@@ -5134,19 +5138,19 @@ class JmeBindings {
   late final _jme_calc_resolve_enginePtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Double,
+            ffi.Int,
+            ffi.Pointer<ffi.Int>,
+            ffi.Pointer<ffi.Int>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_calc_resolve_engine');
   late final _jme_calc_resolve_engine = _jme_calc_resolve_enginePtr.asFunction<
       int Function(
-          double,
-          int,
-          ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>,
+        double,
+        int,
+        ffi.Pointer<ffi.Int>,
+        ffi.Pointer<ffi.Int>,
+        ffi.Pointer<ffi.Char>,
       )>();
 
   /// Calls the native `jme_delta_t_iers_table_info` entry point.
@@ -5167,18 +5171,19 @@ class JmeBindings {
   late final _jme_delta_t_iers_table_infoPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_delta_t_iers_table_info');
-  late final _jme_delta_t_iers_table_info = _jme_delta_t_iers_table_infoPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Char>,
-      )>();
+  late final _jme_delta_t_iers_table_info =
+      _jme_delta_t_iers_table_infoPtr.asFunction<
+          int Function(
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
+          )>();
 
   /// Calls the native `jme_get_ayanamsa_ex2` entry point.
   int jme_get_ayanamsa_ex2(
@@ -5202,21 +5207,21 @@ class JmeBindings {
   late final _jme_get_ayanamsa_ex2Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Int,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Double,
+            ffi.Int,
+            ffi.Int,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_get_ayanamsa_ex2');
   late final _jme_get_ayanamsa_ex2 = _jme_get_ayanamsa_ex2Ptr.asFunction<
       int Function(
-          double,
-          int,
-          int,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Char>,
+        double,
+        int,
+        int,
+        ffi.Pointer<ffi.Double>,
+        ffi.Pointer<ffi.Double>,
+        ffi.Pointer<ffi.Char>,
       )>();
 
   /// Calls the native `jme_get_ayanamsa_ex2_ut` entry point.
@@ -5241,21 +5246,21 @@ class JmeBindings {
   late final _jme_get_ayanamsa_ex2_utPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Int,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Double,
+            ffi.Int,
+            ffi.Int,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_get_ayanamsa_ex2_ut');
   late final _jme_get_ayanamsa_ex2_ut = _jme_get_ayanamsa_ex2_utPtr.asFunction<
       int Function(
-          double,
-          int,
-          int,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Char>,
+        double,
+        int,
+        int,
+        ffi.Pointer<ffi.Double>,
+        ffi.Pointer<ffi.Double>,
+        ffi.Pointer<ffi.Char>,
       )>();
 
   /// Calls the native `jme_get_jpl_center_policy` entry point.
@@ -5293,23 +5298,23 @@ class JmeBindings {
   late final _jme_houses_gauquelinPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Double,
-              ffi.Double,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Double,
+            ffi.Int,
+            ffi.Double,
+            ffi.Double,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_houses_gauquelin');
   late final _jme_houses_gauquelin = _jme_houses_gauquelinPtr.asFunction<
       int Function(
-          double,
-          int,
-          double,
-          double,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Char>,
+        double,
+        int,
+        double,
+        double,
+        ffi.Pointer<ffi.Double>,
+        ffi.Pointer<ffi.Double>,
+        ffi.Pointer<ffi.Char>,
       )>();
 
   /// Calls the native `jme_houses_gauquelin_armc` entry point.
@@ -5334,22 +5339,23 @@ class JmeBindings {
   late final _jme_houses_gauquelin_armcPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Double,
-              ffi.Double,
-              ffi.Double,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Double,
+            ffi.Double,
+            ffi.Double,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_houses_gauquelin_armc');
-  late final _jme_houses_gauquelin_armc = _jme_houses_gauquelin_armcPtr.asFunction<
-      int Function(
-          double,
-          double,
-          double,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Char>,
-      )>();
+  late final _jme_houses_gauquelin_armc =
+      _jme_houses_gauquelin_armcPtr.asFunction<
+          int Function(
+            double,
+            double,
+            double,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
+          )>();
 
   /// Calls the native `jme_leap_second_table_info` entry point.
   int jme_leap_second_table_info(
@@ -5367,16 +5373,17 @@ class JmeBindings {
   late final _jme_leap_second_table_infoPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_leap_second_table_info');
-  late final _jme_leap_second_table_info = _jme_leap_second_table_infoPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Char>,
-      )>();
+  late final _jme_leap_second_table_info =
+      _jme_leap_second_table_infoPtr.asFunction<
+          int Function(
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
+          )>();
 
   /// Calls the native `jme_set_astro_models_checked` entry point.
   int jme_set_astro_models_checked(
@@ -5392,14 +5399,15 @@ class JmeBindings {
   late final _jme_set_astro_models_checkedPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Pointer<ffi.Char>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_set_astro_models_checked');
-  late final _jme_set_astro_models_checked = _jme_set_astro_models_checkedPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-      )>();
+  late final _jme_set_astro_models_checked =
+      _jme_set_astro_models_checkedPtr.asFunction<
+          int Function(
+            ffi.Pointer<ffi.Char>,
+            ffi.Pointer<ffi.Char>,
+          )>();
 
   /// Calls the native `jme_set_jpl_center_policy` entry point.
   int jme_set_jpl_center_policy(
@@ -5415,14 +5423,15 @@ class JmeBindings {
   late final _jme_set_jpl_center_policyPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<ffi.Char>,
+            ffi.Int,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_set_jpl_center_policy');
-  late final _jme_set_jpl_center_policy = _jme_set_jpl_center_policyPtr.asFunction<
-      int Function(
-          int,
-          ffi.Pointer<ffi.Char>,
-      )>();
+  late final _jme_set_jpl_center_policy =
+      _jme_set_jpl_center_policyPtr.asFunction<
+          int Function(
+            int,
+            ffi.Pointer<ffi.Char>,
+          )>();
 
   /// Calls the native `jme_set_sidereal_mode_checked` entry point.
   int jme_set_sidereal_mode_checked(
@@ -5442,18 +5451,19 @@ class JmeBindings {
   late final _jme_set_sidereal_mode_checkedPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Int,
-              ffi.Double,
-              ffi.Double,
-              ffi.Pointer<ffi.Char>,
+            ffi.Int,
+            ffi.Double,
+            ffi.Double,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_set_sidereal_mode_checked');
-  late final _jme_set_sidereal_mode_checked = _jme_set_sidereal_mode_checkedPtr.asFunction<
-      int Function(
-          int,
-          double,
-          double,
-          ffi.Pointer<ffi.Char>,
-      )>();
+  late final _jme_set_sidereal_mode_checked =
+      _jme_set_sidereal_mode_checkedPtr.asFunction<
+          int Function(
+            int,
+            double,
+            double,
+            ffi.Pointer<ffi.Char>,
+          )>();
 
   /// Calls the native `jme_set_topo_checked` entry point.
   int jme_set_topo_checked(
@@ -5473,17 +5483,17 @@ class JmeBindings {
   late final _jme_set_topo_checkedPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Double,
-              ffi.Double,
-              ffi.Double,
-              ffi.Pointer<ffi.Char>,
+            ffi.Double,
+            ffi.Double,
+            ffi.Double,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_set_topo_checked');
   late final _jme_set_topo_checked = _jme_set_topo_checkedPtr.asFunction<
       int Function(
-          double,
-          double,
-          double,
-          ffi.Pointer<ffi.Char>,
+        double,
+        double,
+        double,
+        ffi.Pointer<ffi.Char>,
       )>();
 
   /// Calls the native `jme_sidereal_time_ex` entry point.
@@ -5504,17 +5514,17 @@ class JmeBindings {
   late final _jme_sidereal_time_exPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Double,
+            ffi.Int,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_sidereal_time_ex');
   late final _jme_sidereal_time_ex = _jme_sidereal_time_exPtr.asFunction<
       int Function(
-          double,
-          int,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Char>,
+        double,
+        int,
+        ffi.Pointer<ffi.Double>,
+        ffi.Pointer<ffi.Char>,
       )>();
 
   /// Calls the native `jme_time_scale_convert` entry point.
@@ -5541,23 +5551,23 @@ class JmeBindings {
   late final _jme_time_scale_convertPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Double,
-              ffi.Double,
-              ffi.Int,
-              ffi.Int,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Double>,
-              ffi.Pointer<ffi.Char>,
+            ffi.Double,
+            ffi.Double,
+            ffi.Int,
+            ffi.Int,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Double>,
+            ffi.Pointer<ffi.Char>,
           )>>('jme_time_scale_convert');
   late final _jme_time_scale_convert = _jme_time_scale_convertPtr.asFunction<
       int Function(
-          double,
-          double,
-          int,
-          int,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Double>,
-          ffi.Pointer<ffi.Char>,
+        double,
+        double,
+        int,
+        int,
+        ffi.Pointer<ffi.Double>,
+        ffi.Pointer<ffi.Double>,
+        ffi.Pointer<ffi.Char>,
       )>();
 
   /// Calls the native `jme_time_scale_name` entry point.
@@ -5572,11 +5582,11 @@ class JmeBindings {
   late final _jme_time_scale_namePtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
-              ffi.Int,
+            ffi.Int,
           )>>('jme_time_scale_name');
   late final _jme_time_scale_name = _jme_time_scale_namePtr.asFunction<
       ffi.Pointer<ffi.Char> Function(
-          int,
+        int,
       )>();
 }
 

@@ -58,6 +58,12 @@ jobs:
           JME_SOURCE_PATH: ${{ github.workspace }}/native
         run: ./scripts/build_android_libs.sh
 
+      - name: Restore tracked Android runtime binaries after build
+        run: |
+          git checkout -- \
+            android/src/main/jniLibs/arm64-v8a/libjme.so \
+            android/src/main/jniLibs/x86_64/libjme.so
+
       - name: Format check
         run: dart format --output=none --set-exit-if-changed .
 

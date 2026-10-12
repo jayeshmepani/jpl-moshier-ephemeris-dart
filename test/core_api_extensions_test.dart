@@ -1,5 +1,5 @@
-// Tests for the C engine API added in jpl-ephemeris PR #3. Expected values
-// were printed by the C library itself (%.17g) at jpl-ephemeris c15031e; the
+// Tests for the C engine API added in jpl-ephemeris 1.1.0. Expected values
+// were printed by the C library itself (%.17g) in jpl-ephemeris 1.1.0; the
 // bindings must pass them through unchanged. Arithmetic-only results are
 // compared exactly; results that go through libm transcendental functions
 // allow 1e-14 relative (platform libm).
@@ -21,7 +21,9 @@ void main() {
     using((arena) {
       b
         ..jme_set_astro_models(
-            'DEFAULT'.toNativeUtf8(allocator: arena).cast(), 0)
+          'DEFAULT'.toNativeUtf8(allocator: arena).cast(),
+          0,
+        )
         ..jme_set_tid_acc(JME_TIME_TIDAL_AUTOMATIC.toDouble());
     });
   });
@@ -138,7 +140,9 @@ void main() {
       final sub = arena<Int>()..value = -1;
       final err = arena<Char>(256);
       expect(
-          b.jme_calc_resolve_engine(2451545, JME_BODY_MARS, eid, sub, err), 0);
+        b.jme_calc_resolve_engine(2451545, JME_BODY_MARS, eid, sub, err),
+        0,
+      );
       expect([eid.value, sub.value], [JME_ENGINE_ID_MOSHIER, 0]);
       expect(b.jme_set_jpl_center_policy(7, err), -1);
       expect(err.cast<Utf8>().toDartString(), isNotEmpty);

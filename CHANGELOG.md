@@ -1,9 +1,10 @@
-# Unreleased
+# 1.2.0
 
-* Sync with jpl-ephemeris PR #3 (native c15031e): 225 functions (21 new, including time-scale conversion, the ayanamsa mean/true API, Gauquelin sectors, the engine-resolution report, the JPL centre policy, validating setters, EOP/polar motion) and 480 constants.
+* Sync with jpl-ephemeris 1.1.0: 225 functions (21 new, including time-scale conversion, the ayanamsa mean/true API, Gauquelin sectors, the engine-resolution report, the JPL centre policy, validating setters, EOP/polar motion) and 480 constants.
 * Regenerate `jme.h`, ffigen bindings and metadata reproducibly (`scripts/generate_h.py`, `scripts/annotate_bindings.py`, `scripts/generate_metadata.py`).
-* Rebuild desktop runtimes from c15031e with `notices/` (NOTICE.md, LICENSE.ERFA, THIRD_PARTY_NOTICES.md).
+* Rebuild desktop, Android and iOS runtimes from jpl-ephemeris 1.1.0 with `notices/` (NOTICE.md, LICENSE.ERFA, THIRD_PARTY_NOTICES.md).
 * Tests for every new function.
+* Desktop runtimes now bundle CALCEPH 5.0.1; Android and iOS keep CALCEPH 4.0.5.
 
 # 1.1.1
 

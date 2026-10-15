@@ -6560,6 +6560,6 @@ const int JME_VECTOR_KM_PER_DAY = 1;
 
 const int JME_VECTOR_KM_PER_SECOND = 3;
 
-const String JME_VERSION = '0.1.0';
+const String JME_VERSION = '1.3.0';
 
 const int JME_VERSION_ID = 400;

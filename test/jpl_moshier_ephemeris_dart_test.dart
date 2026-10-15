@@ -88,7 +88,7 @@ void main() {
     });
 
     test('matches the native core constant contract', () {
-      expect(JME_VERSION, '0.1.0');
+      expect(JME_VERSION, '1.3.0');
       expect(JME_OK, 0);
       expect(JME_ERR, -1);
       expect(JME_BODY_SUN, 0);

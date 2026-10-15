@@ -141,7 +141,7 @@ jobs:
     needs:
       - android
       - ios
-    if: github.event_name == 'push' || inputs.publish
+    if: github.event_name == 'push' || inputs.publish == true || inputs.publish == 'true'
     runs-on: ubuntu-latest
 
     steps:

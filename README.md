@@ -11,6 +11,8 @@ Flutter FFI plugin for the JPL Moshier Ephemeris native library.
 
 This package exposes the native `jme_*` API and ships the required runtime binaries for supported mobile and desktop targets. After adding the dependency, no separate native download step is required for the default setup.
 
+Dart and Flutter setup, and the shared function list, are in the native library's single reference: <https://jayeshmepani.github.io/jpl-ephemeris/#lang-dart>.
+
 ## Features
 
 - Direct Dart FFI bindings for the JPL Moshier Ephemeris native API

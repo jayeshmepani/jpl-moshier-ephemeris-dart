@@ -154,11 +154,15 @@ jobs:
           VCPKG_EXE: ${{ env.VCPKG_EXE }}
         run: ./scripts/build_ios_xcframework.sh native
 
-      - name: Restore tracked xcframework metadata
+      - name: Restore tracked xcframework binaries after build
         run: |
           git checkout -- \
             ios/Frameworks/Calceph.xcframework/Info.plist \
-            ios/Frameworks/Jme.xcframework/Info.plist
+            ios/Frameworks/Calceph.xcframework/ios-arm64/libcalceph.2.0.5.dylib \
+            ios/Frameworks/Calceph.xcframework/ios-arm64_x86_64-simulator/libcalceph.2.0.5.dylib \
+            ios/Frameworks/Jme.xcframework/Info.plist \
+            ios/Frameworks/Jme.xcframework/ios-arm64/libjme.dylib \
+            ios/Frameworks/Jme.xcframework/ios-arm64_x86_64-simulator/libjme.dylib
 
       - name: Verify xcframework exists
         run: |

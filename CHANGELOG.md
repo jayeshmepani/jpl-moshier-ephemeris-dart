@@ -1,9 +1,15 @@
+# 1.3.1
+
+* Replaces the native runtimes. The 1.3.0 pub.dev upload contained the previous libraries, native commit `e371446`, and `jme_version()` returned `0.1.0`. Version 1.3.0 is retracted.
+* Desktop libraries are jpl-ephemeris `fd0fcf5`. Android and iOS libraries are `9aba069`. `jme_version()` returns `1.3.0`.
+* Desktop CALCEPH stays 5.0.1. Android and iOS stay on CALCEPH 4.0.5.
+
 # 1.3.0
 
 * Version alignment with jpl-ephemeris 1.3.0. `JME_VERSION` is `1.3.0`.
 * The public surface is unchanged: 225 functions and 478 public constants, plus the two header include guards `JME_JME_H` and `JME_EXTENDED_H`.
 * The native library is the ISO C17 build. Position-only paths inside the library skip a discarded velocity. Public `jme_calc_ut` still returns six values, including the rates. The published reduction is unchanged.
-* Runtimes are rebuilt from jpl-ephemeris 1.3.0. The C library changed, so this release ships fresh binaries and does not reuse the 1.1.0 libraries. Desktop CALCEPH stays 5.0.1. Android and iOS stay on CALCEPH 4.0.5. `jme_version()` returns `1.3.0`.
+* The 1.3.0 pub.dev upload did not contain the rebuilt runtimes. 1.3.1 does. Desktop CALCEPH stays 5.0.1. Android and iOS stay on CALCEPH 4.0.5.
 
 # 1.2.0
 

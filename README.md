@@ -20,6 +20,10 @@ Dart and Flutter setup, and the shared function list, are in the native library'
 - JPL mode support through bundled CALCEPH binaries
 - Suitable for Flutter applications that need low-level access to the native library
 
+## JME 2.0.0 upgrade note
+
+Extended-body identifiers now use JME's negative identifier range, separate from the core body identifiers. Applications that stored the old numeric values must migrate to the corresponding `JME_BODY_*` constants. Function signatures are unchanged.
+
 ## Supported Platforms
 
 ### Android

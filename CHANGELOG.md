@@ -1,3 +1,8 @@
+# 2.0.0 — unreleased
+
+* Align Dart constants and generated public headers with JME 2.0.0. Extended-body identifiers now use JME's reserved negative range, so applications that stored their previous numeric values must migrate to the named constants.
+* Function signatures and the 225-function, 478-constant API surface are unchanged. Rebuild and verify all bundled native runtimes against JME 2.0.0 before publishing this package.
+
 # 1.3.1
 
 * Replaces the native runtimes. The 1.3.0 pub.dev upload contained the previous libraries, native commit `e371446`, and `jme_version()` returned `0.1.0`. Version 1.3.0 is retracted.

@@ -88,13 +88,17 @@ void main() {
     });
 
     test('matches the native core constant contract', () {
-      expect(JME_VERSION, '1.3.0');
+      expect(JME_VERSION, '2.0.0');
       expect(JME_OK, 0);
       expect(JME_ERR, -1);
       expect(JME_BODY_SUN, 0);
       expect(JME_BODY_MOON, 1);
       expect(JME_BODY_MEAN_NODE, 21);
       expect(JME_BODY_TRUE_NODE, 22);
+      expect(JME_BODY_URANUS, 7);
+      expect(JME_BODY_ALTJIRA, -1000);
+      expect(JME_BODY_ASTEROID_012, -1015);
+      expect(JME_BODY_VESTA, -1265);
       expect(JME_CALC_SPEED, 1);
       expect(JME_CALC_SIDEREAL, 512);
       expect(JME_CALC_NO_ABERRATION, 1024);
